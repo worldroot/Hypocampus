@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>
+        formation
+    </title>
+</head>
+<body>
+<h1>Liste des réclamations</h1>
+<table border="1px">
+
+    <th>
+        Matricule
+    <td><b>Nom</b></td>
+    <td><b>Prenom</b></td>
+    <td><b>Email</b></td>
+    <td><b >Password</b></td>
+    <td><b>Choix</b></td>
+
+
+    </th>
+
+    {% for i in tabs %}
+        <tr>
+            <td>{{ i.nomp }}</td>
+            <td>{{ i.prenomp }}</td>
+            <td>{{ i.email }}</td>
+            <td type="password">{{ i.passwordp }}</td>
+            <td>{{ i.choix }}</td>
+
+        </tr>
+    {% endfor %}
+
+</table>
+<a href="{{path('_addevent')}}">GO TO ADD</a><br>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+event_homepage:
+    path:     /
+    defaults: { _controller: EventBundle:Default:index }
+
+_addevent:
+    path:     /Addevent
+    defaults: { _controller: EventBundle:Event:Addevent }
+
+_updatevent:
+    path:     /Updatevent
+    defaults: { _controller: EventBundle:Event:Updatevent }
+
+_readevent:
+    path:     /Readevent
+    defaults: { _controller: EventBundle:Event:Readevent }
+
+_deletevent:
+    path:     /Deletevent
+    defaults: { _controller: EventBundle:Event:Deletevent }
+
+_searchevent:
+    path:     /Searchevent
+    defaults: { _controller: EventBundle:Event:Searchevent }
