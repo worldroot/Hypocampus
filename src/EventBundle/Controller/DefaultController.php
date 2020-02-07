@@ -9,7 +9,7 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('User/UserIndex.html.twig');
+        return $this->render('backend.html.twig');
     }
 
 
