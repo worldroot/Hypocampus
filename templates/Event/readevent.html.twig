@@ -51,6 +51,7 @@
                                     <td>{{ i.email }}</td>
                                     <td type="password">{{ i.passwordp }}</td>
                                     <td>{{ i.choix }}</td>
+                                    <td><a href="{{path('_deletevent',{'nomp':i.nomp})}}">Supprimer</a></td>
 
                                 </tr>
                             {% endfor %}

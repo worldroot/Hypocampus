@@ -15,7 +15,7 @@ _readevent:
     defaults: { _controller: EventBundle:Event:Readevent }
 
 _deletevent:
-    path:     /Deletevent
+    path:     /Deletevent/{nomp}
     defaults: { _controller: EventBundle:Event:Deletevent }
 
 _searchevent:

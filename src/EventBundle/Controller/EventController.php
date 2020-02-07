@@ -22,23 +22,15 @@ class EventController extends Controller
 
     public function AddeventAction(Request $request)
     {
-        //1.A Create Objet Vide
-        $club=new Participant();
-        //1.B Create Form
-        $form=$this->createForm(ParticipantType::class, $club);
+        $club = new Participant();
+        $form = $this->createForm(ParticipantType::class, $club);
 
-        //2.A Recup
-        $form=$form->handleRequest($request);
-        //3.A Test form
-        if( ($form->isSubmitted()) & ($form->isValid()) ){
+        $form = $form->handleRequest($request);
+        if (($form->isSubmitted()) & ($form->isValid())) {
 
-            //4.A Creation objet Doctrine
-            $em=$this->getDoctrine()->getManager();
-            //4.B
+            $em = $this->getDoctrine()->getManager();
             $em->persist($club);
-            //5.B
             $em->flush();
-            //6.
             return $this->redirectToRoute('_readevent');
 
         }
@@ -48,6 +40,21 @@ class EventController extends Controller
         ));
     }
 
+
+
+        public function DeleteventAction($nomp)
+    {
+        $cnx=$this->getDoctrine()->getManager();
+        $d=$cnx->getRepository(Participant::class)->find($nomp);
+        $cnx->remove($d);
+        $cnx->flush();
+        echo "<script>alert('Suppression succeed')</script>";
+        return $this->redirectToRoute('_readevent');
+    }
+
+
+
+
     public function UpdateventAction()
     {
         return $this->render('EventBundle:Event:updatevent.html.twig', array(
@@ -55,12 +62,6 @@ class EventController extends Controller
         ));
     }
 
-    public function DeleteventAction()
-    {
-        return $this->render('EventBundle:Event:deletevent.html.twig', array(
-            // ...
-        ));
-    }
 
     public function SearcheventAction()
     {
