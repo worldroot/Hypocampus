@@ -7,7 +7,7 @@ _addevent:
     defaults: { _controller: EventBundle:Event:Addevent }
 
 _updatevent:
-    path:     /Updatevent
+    path:     /Updatevent/{nomp}
     defaults: { _controller: EventBundle:Event:Updatevent }
 
 _readevent:

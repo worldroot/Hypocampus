@@ -42,7 +42,7 @@ class EventController extends Controller
 
 
 
-        public function DeleteventAction($nomp)
+    public function DeleteventAction($nomp)
     {
         $cnx=$this->getDoctrine()->getManager();
         $d=$cnx->getRepository(Participant::class)->find($nomp);
@@ -55,10 +55,22 @@ class EventController extends Controller
 
 
 
-    public function UpdateventAction()
+    public function UpdateventAction($nomp,Request $request)
     {
-        return $this->render('EventBundle:Event:updatevent.html.twig', array(
-            // ...
+
+        $em=$this->getDoctrine()->getManager();
+        $club=$em->getRepository(Participant::class)->find($nomp);
+        $form=$this->createForm(ParticipantType::class, $club);
+        $form=$form->handleRequest($request);
+
+        if( ($form->isSubmitted()) & ($form->isValid()) ){
+
+            $em->flush();
+            return $this->redirectToRoute('_readevent');
+        }
+
+        return $this->render('Event/addevent.html.twig', array(
+            'form'=>$form->createView()
         ));
     }
 

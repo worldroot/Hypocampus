@@ -1,38 +1,4 @@
-{{ form_start(form) }}
-<table>
-    <tr>
-        <td><label>Nom:</label></td>
-        <td>{{ form_widget(form.nomp) }}</td>
-    </tr>
-
-    <tr>
-        <td><label>Prenom:</label></td>
-        <td>{{ form_widget(form.prenomp) }}</td>
-    </tr>
-
-    <tr>
-        <td><label>Email:</label></td>
-        <td>{{ form_widget(form.email) }}</td>
-    </tr>
-
-    <tr>
-        <td><label>Password:</label></td>
-        <td>{{ form_widget(form.passwordp) }}</td>
-    </tr>
-
-    <tr>
-        <td><label>Choix:</label></td>
-        <td>{{ form_widget(form.choix) }}</td>
-    </tr>
-
-    <tr>
-        <td><label></label></td>
-        <td>{{ form_widget(form.valider) }}</td>
-    </tr>
-{{ form_end(form) }}
-
-
-    {% extends 'backend.html.twig' %}
+{% extends 'backend.html.twig' %}
 
     {% block sidenavbar %}
         <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="theme-assets/images/backgrounds/02.jpg">
@@ -61,36 +27,54 @@
                 <!-- PUT BODY HERE -->
                 <div class="content-body">
                     <div class="row match-height">
-                        <div class="card">
-                            <table class="table">
-                                <thead>
-                                <th>
-                                    Nom
+                        <div class="col-xl-4 col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Inscription Participant</h4>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body">
+                                        <form class="form">
+                                            <div class="form-body">
+                                                {{ form_start(form) }}
+                                                <div class="form-group">
+                                                    <label for="donationinput1" class="sr-only">First Name</label>
+                                                    <input type="text"  class="form-control" placeholder="Nom"  {{ form_widget(form.nomp) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="donationinput2" class="sr-only">Last Name</label>
+                                                    <input type="text"  class="form-control" placeholder="Prenom"  {{ form_widget(form.prenomp) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="donationinput3" class="sr-only">E-mail</label>
+                                                    <input type="email"  class="form-control" placeholder="E-mail"  {{ form_widget(form.email) }}
+                                                </div>
 
-                                <td><b>Prenom</b></td>
-                                <td><b>Email</b></td>
-                                <td><b >Password</b></td>
-                                <td><b>Choix</b></td>
+                                                <div class="form-group">
+                                                    <label for="donationinput4" class="sr-only">Password</label>
+                                                    <input type="password" class="form-control" placeholder="Password"  {{ form_widget(form.passwordp) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="donationinput7" class="sr-only">Choix</label>
+                                                    <input  class="form-control" placeholder="Choix"  {{ form_widget(form.choix) }}
+                                                </div>
 
+                                            </div>
+                                            <div class="form-actions center">
+                                                <button class="btn btn-primary">  </button>
+                                            </div>
+                                            {{ form_widget(form.valider) }}
 
-                                </th>
+                                            {{ form_end(form) }}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
-
-                                </thead>
-                                <tbody>
-                                {% for i in tabs %}
-                                    <tr>
-                                        <td>{{ i.nomp }}</td>
-                                        <td>{{ i.prenomp }}</td>
-                                        <td>{{ i.email }}</td>
-                                        <td type="password">{{ i.passwordp }}</td>
-                                        <td>{{ i.choix }}</td>
-
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
+                                </div>
+                            </div>
                         </div>
+
 
 
                     </div>

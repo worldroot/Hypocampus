@@ -27,46 +27,86 @@
             <!-- PUT BODY HERE -->
             <div class="content-body">
                 <div class="row match-height">
+
                     <div class="card">
-                        <table class="table">
-                            <thead>
-                            <th>
-                                Nom
+                        <div class="card-content">
+                            <div id="product-summary" class="media-list position-relative">
+                                <div class="table-responsive">
+                                    <table class="table table-padded table-xl mb-0" id="product-summary-table">
+                                     <thead>
+                                     <tr>
+                                         <th class="border-top-0">Nom</th>
+                                         <th class="border-top-0">Prenom</th>
+                                         <th class="border-top-0">Email</th>
+                                         <th class="border-top-0">Password</th>
+                                         <th class="border-top-0">Choix</th>
+                                         <th ></th>
+                                         <th ></th>
+                                     </tr>
+                                     </thead>
+                                        <tbody>
+                                        {% for i in tabs %}
+                                     <tr>
+                                    <td class="text-truncate">{{ i.nomp }}</td>
+                                    <td class="text-truncate">{{ i.prenomp }}</td>
+                                    <td class="text-truncate">{{ i.email }}</td>
+                                    <td class="text-truncate">{{ i.passwordp }}</td>
+                                    <td class="text-truncate">{{ i.choix }}</td>
+                                         <td class="text-truncat mr-1">
+                                             <a href="{{path('_deletevent',{'nomp':i.nomp})}}">
+                                             <button class="btn btn-sm btn-outline-danger round" type="submit">Supprimer</button>
+                                             </a>
+                                         </td>
+                                         <td class="text-truncat mr-1">
+                                             <a href="{{path('_updatevent',{'nomp':i.nomp})}}">
+                                             <button class="btn btn-sm btn-outline-success round" type="submit">Modifier</button>
+                                             </a>
+                                         </td>
 
-                            <td><b>Prenom</b></td>
-                            <td><b>Email</b></td>
-                            <td><b >Password</b></td>
-                            <td><b>Choix</b></td>
 
 
-                            </th>
+                                    </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                     </table>
 
+                                 </div>
 
-                            </thead>
-                            <tbody>
-                            {% for i in tabs %}
-                                <tr>
-                                    <td>{{ i.nomp }}</td>
-                                    <td>{{ i.prenomp }}</td>
-                                    <td>{{ i.email }}</td>
-                                    <td type="password">{{ i.passwordp }}</td>
-                                    <td>{{ i.choix }}</td>
-                                    <td><a href="{{path('_deletevent',{'nomp':i.nomp})}}">Supprimer</a></td>
-
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="col-xl-4 col-lg-6 col-md-12">
+                        <div class="card">
+
+                            <div class="card-block">
+                                <div class="card-body">
+                                    <fieldset class="form-group">
+                                        <a  href="{{path('_addevent')}}">
+                                            <button class="btn btn-primary" type="button">To Add</button>
+                                        </a>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
 
 
                 </div>
             </div>
+            </div>
+
+
+
+
+
             <!--/ END BODY -->
         </div>
     </div>
-    </div>
+
+
+
 
 
 {% endblock %}
+
 
