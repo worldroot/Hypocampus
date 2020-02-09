@@ -44,6 +44,8 @@
                                             <th>#</th>
                                             <th>TeamName</th>
                                             <th>Date</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -52,6 +54,8 @@
                                             <th scope="row">{{ i.id }}</th>
                                             <td>{{ i.teamname }}</td>
                                             <td>{{ i.dateofcreation |date("m/d/Y")  }}</td>
+                                            <td></td>
+                                            <td><a href="{{ path('deleteteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Delete</button></a>  </td>
                                         </tr>
                                        {% endfor %}
                                         </tbody>
