@@ -1,3 +1,7 @@
+team:
+    resource: "@TeamBundle/Resources/config/routing.yml"
+    prefix:   /team
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
