@@ -21,3 +21,6 @@ _deletevent:
 _searchevent:
     path:     /Searchevent
     defaults: { _controller: EventBundle:Event:Searchevent }
+
+
+
