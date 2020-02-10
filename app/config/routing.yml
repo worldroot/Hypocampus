@@ -1,3 +1,6 @@
+projets:
+    resource: "@projetsBundle/Resources/config/routing.yml"
+    prefix:   /projets
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
