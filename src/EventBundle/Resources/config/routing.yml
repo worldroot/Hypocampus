@@ -24,3 +24,23 @@ _searchevent:
 
 
 
+
+addevent:
+    path:     /addeventA
+    defaults: { _controller: EventBundle:EventAdmin:addevent }
+
+afficherevent:
+    path:     /afficherevent
+    defaults: { _controller: EventBundle:EventAdmin:afficherevent }
+
+update_events:
+    path:     /updateEvents
+    defaults: { _controller: EventBundle:EventAdmin:updateEvents }
+
+deleteevents:
+    path:     /deleteevents
+    defaults: { _controller: EventBundle:EventAdmin:deleteevents }
+
+searchevents:
+    path:     /searchevents
+    defaults: { _controller: EventBundle:EventAdmin:searchevents }

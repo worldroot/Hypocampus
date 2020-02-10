@@ -14,7 +14,7 @@ class EventController extends Controller
     {
         $em=$this->getDoctrine();
         $tab=$em->getRepository(Participant::class)->findAll();
-        return $this->render('Event/readevent.html.twig', array(
+        return $this->render('@Event/Event/readevent.html.twig', array(
             'tabs'=>$tab
             // ...
         ));
@@ -31,11 +31,12 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($club);
             $em->flush();
-            return $this->redirectToRoute('_readevent');
+            echo "<script>alert('Ajouté avec succès')</script>";
+
 
         }
 
-        return $this->render('Event/addevent.html.twig', array(
+        return $this->render('@Event/Event/addevent.html.twig', array(
             'form'=>$form->createView()
         ));
     }
@@ -69,7 +70,7 @@ class EventController extends Controller
             return $this->redirectToRoute('_readevent');
         }
 
-        return $this->render('Event/addevent.html.twig', array(
+        return $this->render('@Event/Event/addevent.html.twig', array(
             'form'=>$form->createView()
         ));
     }
