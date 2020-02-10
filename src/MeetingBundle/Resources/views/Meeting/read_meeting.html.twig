@@ -42,22 +42,22 @@
                                         <thead class="bg-primary white">
                                         <tr>
                                             <th>#</th>
-                                            <th>TeamName</th>
-                                            <th>Date</th>
+                                            <th>Meeting</th>
+                                            <th>duree</th>
                                             <th>Update</th>
                                             <th>Delete</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for i in teams %}
-                                        <tr>
-                                            <th scope="row">{{ i.id }}</th>
-                                            <td>{{ i.teamname }}</td>
-                                            <td>{{ i.dateofcreation |date("m/d/Y")  }}</td>
-                                            <td><a href="{{ path('updateteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">I</button></a>  </td>
-                                            <td><a href="{{ path('deleteteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Delete</button></a>  </td>
-                                        </tr>
-                                       {% endfor %}
+                                        {% for i in meetings %}
+                                            <tr>
+                                                <th scope="row">{{ i.id }}</th>
+                                                <td>{{ i.description }}</td>
+                                                <td>{{ i.duration   }}</td>
+                                                <td><a href="{{ path('update_meeting',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Update</button></a>  </td>
+                                                <td><a href="{{ path('delete_meeting',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Delete</button></a>  </td>
+                                            </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
                                 </div>

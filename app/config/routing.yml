@@ -1,3 +1,7 @@
+meeting:
+    resource: "@MeetingBundle/Resources/config/routing.yml"
+    prefix:   /meeting
+
 team:
     resource: "@TeamBundle/Resources/config/routing.yml"
     prefix:   /team

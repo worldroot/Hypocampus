@@ -37,10 +37,25 @@ class teamController extends Controller
         ));
     }
 
-    public function updateteamAction()
+    public function updateteamAction($id,Request $request)
     {
-        return $this->render('TeamBundle:team:updateteam.html.twig', array(
-            // ...
+        $em = $this->getDoctrine()->getManager();
+        $team = $em->getRepository(team::class)->find($id);
+
+
+        //Save?
+        if ($request->isMethod('POST')) {
+            //Mettre a jour
+            $team->setTeamname($request->get('teamname'));
+            $team->setDateofcreation($request->get('dateofcreation'));
+
+            $em->persist($team);
+            $em->flush();
+            //Rederiger vers read
+            return $this->redirectToRoute('readteam');
+        }
+        return $this->render('@Team/team/updateteam.html.twig', array(
+            'form'=>$team
         ));
     }
 

@@ -11,7 +11,7 @@ readteam:
     defaults: { _controller: TeamBundle:team:readteam }
 
 updateteam:
-    path:     /updateteam
+    path:     /updateteam/{id}
     defaults: { _controller: TeamBundle:team:updateteam }
 
 deleteteam:
