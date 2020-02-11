@@ -50,7 +50,7 @@ class EventAdminController extends Controller
             $em->flush();
             return $this->redirectToRoute('afficherevent');
         }
-        return $this->render('@Event/EventAdmin/update_events.html.twig', array(
+        return $this->render('@Event/EventAdmin/addevent.html.twig', array(
             'form'=>$form->createView()
         ));
     }

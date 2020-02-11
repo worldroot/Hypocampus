@@ -11,7 +11,7 @@
             </div>
             <div class="main-menu-content">
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li class=" nav-item"><a href=""><i class="ft-book"></i><span class="menu-title" data-i18n="">Evenement</span></a>
+                    <li class=" nav-item"><a href="{{path('afficherevent')}}"><i class="ft-book"></i><span class="menu-title" data-i18n="">Evenements</span></a>
                     </li>
                 </ul>
             </div>
@@ -39,15 +39,15 @@
                                             {{ form_start(form) }}
                                             <div class="form-group">
                                                 <label for="donationinput1" class="sr-only">Titre d'event</label>
-                                                <input type="text"  class="form-control" placeholder="Nom"  {{ form_widget(form.titreEvent) }}
+                                                <input type="text"  class="form-control" placeholder="Titre"  {{ form_widget(form.titreEvent) }}
                                             </div>
                                             <div class="form-group">
                                                 <label for="donationinput2" class="sr-only">Numero d'event</label>
-                                                <input type="text"  class="form-control" placeholder="Prenom"  {{ form_widget(form.numeroEvent) }}
+                                                <input type="text"  class="form-control" placeholder="Numero"  {{ form_widget(form.numeroEvent) }}
                                             </div>
                                             <div class="form-group">
                                                 <label for="donationinput7" class="sr-only">Type d'event</label>
-                                                <input  class="form-control" placeholder="Choix"  {{ form_widget(form.typeEvent) }}
+                                                <input  class="form-control" placeholder="Type"  {{ form_widget(form.typeEvent) }}
                                             </div>
 
                                         </div>

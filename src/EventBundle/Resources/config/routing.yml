@@ -34,11 +34,11 @@ afficherevent:
     defaults: { _controller: EventBundle:EventAdmin:afficherevent }
 
 update_events:
-    path:     /updateEvents
+    path:     /updateEvents/{idev}
     defaults: { _controller: EventBundle:EventAdmin:updateEvents }
 
 deleteevents:
-    path:     /deleteevents
+    path:     /deleteevents/{idev}
     defaults: { _controller: EventBundle:EventAdmin:deleteevents }
 
 searchevents:
