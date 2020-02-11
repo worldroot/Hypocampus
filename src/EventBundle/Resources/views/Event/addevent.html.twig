@@ -56,7 +56,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="donationinput7" class="sr-only">Choix</label>
-                                                    <input  class="form-control" placeholder="Choix"  {{ form_widget(form.choix) }}
+                                                    {{ form_widget(form.choix, { 'attr' : { 'class' : 'form-control' } }) }}
                                                 </div>
 
                                             </div>

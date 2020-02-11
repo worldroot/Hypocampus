@@ -31,7 +31,7 @@ class EventController extends Controller
 
             $em = $this->getDoctrine()->getManager();
 
-
+/*
                         $club->setChoix($request->get('typeEvent'));
 
                         if($club->getChoix()=="Cours")
@@ -49,8 +49,7 @@ class EventController extends Controller
                             $choix=$em->getRepository(EventsAdmin::class)->findType("Formation");
                             $club->setChoix($choix[0]);
                         }
-
-
+*/
 
             $em->persist($club);
             $em->flush();
