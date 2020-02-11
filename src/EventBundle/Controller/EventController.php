@@ -3,6 +3,7 @@
 namespace EventBundle\Controller;
 
 use EventBundle\Entity\Event;
+use EventBundle\Entity\EventsAdmin;
 use EventBundle\Entity\Participant;
 use EventBundle\Form\ParticipantType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,6 +30,28 @@ class EventController extends Controller
         if (($form->isSubmitted()) & ($form->isValid())) {
 
             $em = $this->getDoctrine()->getManager();
+
+
+                        $club->setChoix($request->get('typeEvent'));
+
+                        if($club->getChoix()=="Cours")
+                        {
+                            $choix=$em->getRepository(EventsAdmin::class)->findType("Cours");
+                            $club->setChoix($choix[0]);
+                        }
+                        if($club->getChoix()=="Workshop")
+                        {
+                            $choix=$em->getRepository(EventsAdmin::class)->findType("Workshop");
+                            $club->setChoix($choix[0]);
+                        }
+                        if($club->getChoix()=="Formation")
+                        {
+                            $choix=$em->getRepository(EventsAdmin::class)->findType("Formation");
+                            $club->setChoix($choix[0]);
+                        }
+
+
+
             $em->persist($club);
             $em->flush();
             echo "<script>alert('Ajouté avec succès')</script>";

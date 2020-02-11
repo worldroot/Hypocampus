@@ -10,4 +10,10 @@ namespace EventBundle\Repository;
  */
 class ParticipantRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findType($input)
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT f FROM EventBundle:Participant f 
+WHERE f.choix='$input'");
+        return $query->getResult();
+    }
 }

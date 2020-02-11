@@ -43,11 +43,34 @@ class Participant
     private $passwordp;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="choix", type="string", length=255)
+     *@ORM\ManyToOne(targetEntity="EventsAdmin")
+     *@ORM\JoinColumn(name="choix",referencedColumnName="idev")
      */
     private $choix;
+
+    /**
+     * Set choix
+     *
+     * @param \EventBundle\Entity\EventsAdmin $choix
+     *
+     * @return Participant
+     */
+    public function setChoix(\EventBundle\Entity\EventsAdmin $choix)
+    {
+        $this->choix = $choix;
+
+        return $this;
+    }
+
+    /**
+     * Get choix
+     *
+     * @return \EventBundle\Entity\EventsAdmin
+     */
+    public function getChoix()
+    {
+        return $this->choix;
+    }
 
 
     /**
@@ -146,28 +169,6 @@ class Participant
         return $this->passwordp;
     }
 
-    /**
-     * Set choix
-     *
-     * @param string $choix
-     *
-     * @return Participant
-     */
-    public function setChoix($choix)
-    {
-        $this->choix = $choix;
 
-        return $this;
-    }
-
-    /**
-     * Get choix
-     *
-     * @return string
-     */
-    public function getChoix()
-    {
-        return $this->choix;
-    }
 }
 

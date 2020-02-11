@@ -2,6 +2,8 @@
 
 namespace EventBundle\Form;
 
+use EventBundle\Entity\EventsAdmin;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,9 +20,14 @@ class ParticipantType extends AbstractType
                 ->add('prenomp')
                 ->add('email')
                 ->add('passwordp')
-                ->add('choix')
-                ->add('valider',SubmitType::class);
+                ->add('valider',SubmitType::class)
+                ->add('choix',EntityType::class, array(
+                'class'=>EventsAdmin::class,
+                'choice_label'=>'TypeEvent',
+                'multiple'=>false))
+
         ;
+
     }/**
      * {@inheritdoc}
      */
