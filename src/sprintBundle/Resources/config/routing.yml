@@ -1,0 +1,19 @@
+sprint_homepage:
+    path:     /
+    defaults: { _controller: sprintBundle:Default:index }
+
+createsprint:
+    path:     /createsprint
+    defaults: { _controller: sprintBundle:sprint:createsprint }
+
+affichersprint:
+    path:     /affichersprint
+    defaults: { _controller: sprintBundle:sprint:affichersprint }
+
+updatesprint:
+    path:     /updatesprint/{id}
+    defaults: { _controller: sprintBundle:sprint:updatesprint }
+
+deletesprint:
+    path:     /deletesprint/{id}
+    defaults: { _controller: sprintBundle:sprint:deletesprint }

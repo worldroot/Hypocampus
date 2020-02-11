@@ -46,6 +46,7 @@ class projetsController extends Controller
 
     public function updateprojetAction($id,Request $request)
     {
+
         $em = $this->getDoctrine()->getManager();
         $projets = $em->getRepository(projets::class)->find($id);
 
@@ -53,11 +54,14 @@ class projetsController extends Controller
         //Save?
         if ($request->isMethod('POST')) {
             //Mettre a jour
+
+            $startDate = \DateTime::createFromFormat('Y-m-d', $request->get('startDate'));
+            $endDate = \DateTime::createFromFormat('Y-m-d', $request->get('endDate'));
             $projets->setProjetName($request->get('projet_name'));
             $projets->setOwner($request->get('owner'));
 
-            $projets->setStartDate($request->get('startDate' ));
-            $projets->setEndDate($request->get('endDate'));
+            $projets->setStartDate($startDate);
+            $projets->setEndDate($endDate);
 
 
             $em->persist($projets);

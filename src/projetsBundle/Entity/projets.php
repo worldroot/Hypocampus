@@ -124,7 +124,8 @@ class projets
      */
     public function setStartDate($startDate)
     {
-        $this->startDate = new \DateTime($startDate) ;
+
+        $this->startDate =$startDate;
 
         return $this;
     }
@@ -148,7 +149,7 @@ class projets
      */
     public function setEndDate($endDate)
     {
-        $this->endDate = new \DateTime($endDate) ;
+        $this->endDate = $endDate ;
 
         return $this;
     }

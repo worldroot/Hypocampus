@@ -42,7 +42,7 @@
                     <div class="card" >
 
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-icons">Créer un Projet</h4>
+                            <h4 class="card-title" id="basic-layout-icons">Créer sprint</h4>
                             <a class="heading-elements-toggle">
                                 <i class="la la-ellipsis-v font-medium-3"></i>
                             </a>
@@ -73,76 +73,64 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                    <div class="form-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {{ form_start(form) }}
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_start(form) }}
 
-                                                <div class="form-group">
-                                                    <div class="form-control-position">
+                                            <div class="form-group">
+                                                <div class="form-control-position">
 
-                                                    </div>
-                                                    <label for="timesheetinput1"><i class="ft-user"></i>  Employee Name</label>
-
-                                                    <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.owner, { 'attr' : { 'class' : 'form-control' ,'type' : 'date' } }) }}
-                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>   Project Name</label>
-                                                    <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.projetName, { 'attr' : { 'class' : 'form-control' } }) }}
-                                                    </div>
+                                                <label for="timesheetinput1"><i class="ft-user"></i>  Projet Name</label>
+
+                                                <div class="position-relative has-icon-left">
+                                                    {{ form_widget(form.projets, { 'attr' : { 'class' : 'form-control' } }) }}
                                                 </div>
                                             </div>
                                         </div>
-
-
-
-
-
-                                        <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="timesheetinput5"> <i class="ft-clock"></i> Start Date</label>
+                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>   sprint Name</label>
                                                     <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.startDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
+                                                        {{ form_widget(form.sprintName, { 'attr' : { 'class' : 'form-control' } }) }}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="timesheetinput6"><i class="ft-clock"></i> End Date</label>
-                                                    <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.endDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="timesheetinput2"><i class="ft-message-square"></i>   Description</label>
-                                                    <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
-                                                    </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="timesheetinput5"> <i class="ft-clock"></i> Start Date</label>
+                                                <div class="position-relative has-icon-left">
+                                                    {{ form_widget(form.startDatesprint, {'values' : '2222-05-05','type' : 'date' ,'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="timesheetinput6"><i class="ft-clock"></i> End Date</label>
+                                                <div class="position-relative has-icon-left">
+                                                    {{ form_widget(form.endDatesprint, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
 
-
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
-                                    <div class="form-actions right">
-                                        <a href="{{ path('afficherprojet') }}">
+
+                                </div>
+
+                                <div class="form-actions right">
+                                    <a href="{{ path('affichersprint') }}">
                                         <button type="button" class="btn btn-danger round btn-min-width ">
                                             <i class="ft-x"></i>Annuler
                                         </button>
-                                        </a>
-                                        {{ form_widget(form.ajouter, { 'attr' : { 'class' : 'btn btn-bg-gradient-x-blue-green round  pull-right' } }) }}
-                                    </div>
-                                    {{ form_end(form) }}
+                                    </a>
+                                    {{ form_widget(form.ajouter, { 'attr' : { 'class' : 'btn btn-bg-gradient-x-blue-green round  pull-right' } }) }}
+                                </div>
+                                {{ form_end(form) }}
 
                             </div>
                         </div>

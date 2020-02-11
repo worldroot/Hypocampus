@@ -42,7 +42,7 @@
                     <div class="card" >
 
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-icons">Créer un Projet</h4>
+                            <h4 class="card-title" id="basic-layout-icons">Modifier sprint</h4>
                             <a class="heading-elements-toggle">
                                 <i class="la la-ellipsis-v font-medium-3"></i>
                             </a>
@@ -72,28 +72,34 @@
                             </div>
                         </div>
                         <div class="card-content collapse show">
-                            <div class="card-body">
+                            <form method="POST">
+                                <div class="card-body">
                                     <div class="form-body">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                {{ form_start(form) }}
 
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="form-control-position">
 
                                                     </div>
-                                                    <label for="timesheetinput1"><i class="ft-user"></i>  Employee Name</label>
-
+                                                    <label for="timesheetinput1"><i class="ft-user"></i>  Projet Name</label>
                                                     <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.owner, { 'attr' : { 'class' : 'form-control' ,'type' : 'date' } }) }}
+                                                        <select class="form-control" id="priority">
+
+                                                            {% for i in form %}
+                                                                <option value="{{ form.projets.projetName }}">{{ form.projets.projetName }}</option>
+                                                            {% endfor %}
+                                                        </select>
+
+
+
+
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>   Project Name</label>
+                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>   sprint Name</label>
                                                     <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.projetName, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                        <input type="text" id="timesheetinput2" class="form-control" placeholder="sprintName" name="sprintName" value="{{ form.sprintName }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -108,7 +114,7 @@
                                                 <div class="form-group">
                                                     <label for="timesheetinput5"> <i class="ft-clock"></i> Start Date</label>
                                                     <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.startDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
+                                                        <input type="date" class="form-control" placeholder="startDatesprint"  name="startDatesprint" value="{{ form.startDatesprint | date('Y-m-d')  }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -116,16 +122,7 @@
                                                 <div class="form-group">
                                                     <label for="timesheetinput6"><i class="ft-clock"></i> End Date</label>
                                                     <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.endDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="timesheetinput2"><i class="ft-message-square"></i>   Description</label>
-                                                    <div class="position-relative has-icon-left">
-                                                        {{ form_widget(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                        <input type="date" class="form-control" placeholder="endDatesprint" name="endDatesprint" value="{{ form.endDatesprint | date('Y-m-d')  }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,16 +132,17 @@
                                     </div>
 
                                     <div class="form-actions right">
-                                        <a href="{{ path('afficherprojet') }}">
-                                        <button type="button" class="btn btn-danger round btn-min-width ">
-                                            <i class="ft-x"></i>Annuler
-                                        </button>
+                                        <a href="{{ path('affichersprint') }}">
+                                            <button type="button" class="btn btn-danger round btn-min-width ">
+                                                <i class="ft-x"></i> Annuler
+                                            </button>
                                         </a>
-                                        {{ form_widget(form.ajouter, { 'attr' : { 'class' : 'btn btn-bg-gradient-x-blue-green round  pull-right' } }) }}
+                                        <input type="submit" class="btn btn-bg-gradient-x-blue-green round  pull-right" value="Enregistrer">
                                     </div>
-                                    {{ form_end(form) }}
 
-                            </div>
+
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
