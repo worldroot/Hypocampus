@@ -1,0 +1,15 @@
+backlog_sprint_homepage:
+    path:     /
+    defaults: { _controller: BacklogBundle:Default:backlog_sprint_index }
+
+backlog_nav_homepage:
+    path:     /backlog_nav
+    defaults: { _controller: BacklogBundle:Default:backlog_nav }
+
+create_ProjectBacklog:
+    path:     /ProjectBacklog/new
+    defaults: { _controller: BacklogBundle:Default:create_ProjectBacklog }
+
+view_ProjectBacklog:
+    path:     /ProjectBacklog/view
+    defaults: { _controller: BacklogBundle:Default:view_ProjectBacklog }
