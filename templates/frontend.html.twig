@@ -25,21 +25,21 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400" rel="stylesheet">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 
     <!-- Owl Carousel -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Modernizr JS -->
     <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-md-10 text-right menu-1">
                         <ul>
-                            <li class="active"><a href="index.html">Acceuil</a></li>
+                            <li class="active"><a href="{{ asset('index.html') }}">Acceuil</a></li>
                            <!-- <li class="has-dropdown">
                                 <a href="work.html">Works</a>
                                 <ul class="dropdown">
@@ -74,10 +74,10 @@
                                     <li><a href="work-grid-without-text.html">Works grid w/o text</a></li>
                                 </ul>
                             </li> -->
-                            <li><a href="services.html">Fonctionnalitées</a></li>
-                            <li><a href="about.html">A propos</a></li>
-                            <li><a href="shop.html">Tarif</a></li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="{{ asset('services.html') }}">Fonctionnalitées</a></li>
+                            <li><a href="{{ asset('about.html') }}">A propos</a></li>
+                            <li><a href="{{ asset('shop.html') }}">Tarif</a></li>
+                            <li><a href="{{ asset('contact.html') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                         <div class="animate-box">
                             <h2>Booster et améliorer votre methode de travaille</h2>
                             <p>avec les fonctionnalitées de Hypocampus</p>
-                            <p><a href="gallery.html" class="btn btn-primary btn-lg btn-custom">Demander une Demo</a></p>
+                            <p><a href="{{ asset('gallery.html') }}" class="btn btn-primary btn-lg btn-custom">Demander une Demo</a></p>
                         </div>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
         <div class="container">
             <div class="row mobile-wrap">
                 <div class="col-md-5 animate-box">
-                    <div class="mobile-img" style="background-image: url(images/mobile-2.jpg);"></div>
+                    <div class="mobile-img" style="background-image: url({{ asset('images/mobile-2.jpg') }});"></div>
                 </div>
                 <div class="col-md-7 animate-box">
                     <div class="desc">
@@ -226,7 +226,7 @@
             </div>
             <div class="row mobile-wrap">
                 <div class="col-md-5 col-md-push-7 animate-box">
-                    <div class="mobile-img" style="background-image: url(images/mobile-1.jpg);"></div>
+                    <div class="mobile-img" style="background-image: url({{ asset('images/mobile-1.jpg') }});"></div>
                 </div>
                 <div class="col-md-7 col-md-pull-5 animate-box">
                     <div class="desc">
@@ -308,7 +308,7 @@
                         <h2>Meilleur outil pour une equipe agile</h2>
                         <p class="admin"><span>May 12, 2018</span></p>
                         <p>Malgre que j'etais perpexle au debut , je ne regrette pas cet outil!</p>
-                        <p class="author-wrap"><a href="#" class="author-img" style="background-image: url(images/person1.jpg);"></a> <a href="#" class="author">by Dave Miller</a></p>
+                        <p class="author-wrap"><a href="#" class="author-img" style="background-image: url({{ asset('images/person1.jpg') }});"></a> <a href="#" class="author">by Dave Miller</a></p>
                     </article>
                 </div>
                 <div class="col-md-4 animate-box">
@@ -316,7 +316,7 @@
                         <h2>Un Must Have pour les startups!!</h2>
                         <p class="admin"><span>juin 12, 2018</span></p>
                         <p>Sans cette outil mon entreprise aurait echouer</p>
-                        <p class="author-wrap"><a href="#" class="author-img" style="background-image: url(images/person2.jpg);"></a> <a href="#" class="author">by john Doe</a></p>
+                        <p class="author-wrap"><a href="#" class="author-img" style="background-image: url({{ asset('images/person2.jpg') }});"></a> <a href="#" class="author">by john Doe</a></p>
                     </article>
                 </div>
                 <div class="col-md-4 animate-box">

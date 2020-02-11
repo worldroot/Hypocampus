@@ -1,0 +1,35 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+    <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post" novalidate>
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+        <fieldset class="form-group position-relative has-icon-left">
+            <input type="text" class="form-control round" id="username" name="_username" placeholder="Your Username" required value="{{ last_username }}" autocomplete="username" >
+            <div class="form-control-position">
+                <i class="ft-user"></i>
+            </div>
+        </fieldset>
+        <fieldset class="form-group position-relative has-icon-left">
+            <input type="password" class="form-control round" id="password" name="_password" placeholder="Enter Password" required autocomplete="current-password" >
+            <div class="form-control-position">
+                <i class="ft-lock"></i>
+            </div>
+        </fieldset>
+        <div class="form-group row">
+            <div class="col-md-6 col-12 text-center text-sm-left">
+
+            </div>
+            <div class="col-md-6 col-12 float-sm-left text-center text-sm-right"><a href="recover-password.html" class="card-link">Forgot Password?</a></div>
+        </div>
+        <div class="form-group text-center">
+
+            <a href="{{ path('fos_user_security_login') }}">
+            <button type="submit" id="_submit" name="_submit" value="{{ 'layout.login'|trans({}, 'FOSUserBundle') }}" class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1">Login</button>
+            </a>
+        </div>
+
+    </form>
+{% endblock fos_user_content %}
