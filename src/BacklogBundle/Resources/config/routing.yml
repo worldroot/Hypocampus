@@ -27,13 +27,13 @@ index_ProjectBacklog:
     defaults: { _controller: BacklogBundle:Default:IndexProjectBacklog }
 
 add_BacklogTask:
-    path:     /ProjectBacklog/view/task/add
+    path:     /ProjectBacklog/view/{id}/task/add
     defaults: { _controller: BacklogBundle:Default:AddBacklogTask }
 
 delete_BacklogTask:
-    path:     /ProjectBacklog/view/task/remove/{id}
+    path:     /ProjectBacklog/view/{id_b}/task/remove/{id}
     defaults: { _controller: BacklogBundle:Default:RemoveBacklogTask }
 
 update_BacklogTask:
-    path:     /ProjectBacklog/view/task/update/{id}
+    path:     /ProjectBacklog/view/{id_b}/task/update/{id}
     defaults: { _controller: BacklogBundle:Default:UpdateBacklogTask }

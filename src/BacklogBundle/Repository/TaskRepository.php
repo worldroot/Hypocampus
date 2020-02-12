@@ -10,4 +10,10 @@ namespace BacklogBundle\Repository;
  */
 class TaskRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function backlogTasks($id){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT c FROM BacklogBundle:Task c WHERE c.backlog ='$id' ");
+        return $query->getResult();
+    }
 }

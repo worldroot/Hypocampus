@@ -55,14 +55,14 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Ajouter une Tache </h4>
+                        <h4 class="card-title">Ajouter un Backlog </h4>
                         <a class="heading-elements-toggle">
                             <i class="fa fa-ellipsis-v font-medium-3"></i>
                         </a>
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
                                 <li>
-                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >New test</a>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >Retour</a>
                                 </li>
                             </ul>
                         </div>
@@ -78,7 +78,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"> Tache</h4>
+                                    <h4 class="card-title"> Backlog</h4>
                                 </div>
                                 <div class="card-block">
                                     <div class="card-body">
@@ -90,72 +90,38 @@
                                                 <label for="donationinput7" class="sr-only">Project</label>
 
                                                 <div class="card-header">
-                                                    <h4 class="card-title">Task</h4>
+                                                    <h4 class="card-title">Project</h4>
                                                 </div>
                                                 <fieldset class="form-group">
                                                     <div class="form-group">
-                                                        <label for="timesheetinput2"><i class="la la-briefcase"></i> Titre</label>
+                                                        <label for="timesheetinput2"><i class="la la-briefcase"></i>   Project Name</label>
                                                         <div class="position-relative has-icon-left">
-                                                            {{ form_widget(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                            {{ form_widget(form.project, { 'attr' : { 'class' : 'form-control' } }) }}
 
                                                         </div>
                                                     </div>
                                                 </fieldset>
 
-                                                <h5 class="mt-2">Description Fonctionnele </h5>
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Points To Do</h4>
+                                                </div>
                                                 <fieldset class="form-group">
-
-                                                    <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Simple Textarea"
-                                                    {{ form_widget(form.descriptionFonctionnel, { 'attr' : { 'class' : 'form-control' } }) }}
-                                                    </textarea>
-                                                </fieldset>
-
-                                                <h5 class="mt-2">Description Technique </h5>
-                                                <fieldset class="form-group">
-                                                    <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Simple Textarea"
-                                                    {{ form_widget(form.descriptionTechnique, { 'attr' : { 'class' : 'form-control' } }) }}
-                                                    </textarea>
+                                                    <input type="text" class="form-control" id="readonlyInput" readonly="readonly" value="0"  {{ form_widget(form.pointsToDo) }}
                                                 </fieldset>
 
                                                 <div class="card-header">
-                                                    <h4 class="card-title">State</h4>
+                                                    <h4 class="card-title">Points In Progress</h4>
                                                 </div>
                                                 <fieldset class="form-group">
-                                                    {{ form_widget(form.state) }}
+                                                    <input type="text" class="form-control" id="readonlyInput" readonly="readonly" value="0"  {{ form_widget(form.pointsInProgress) }}
                                                 </fieldset>
 
                                                 <div class="card-header">
-                                                    <h4 class="card-title">Priority</h4>
+                                                    <h4 class="card-title">Points Done</h4>
                                                 </div>
                                                 <fieldset class="form-group">
-                                                    <input type="number" class="form-control"    {{ form_widget(form.priority) }}
+                                                    <input type="text" class="form-control" id="readonlyInput" readonly="readonly" value="0"  {{ form_widget(form.pointsDone) }}
                                                 </fieldset>
-
-                                                <div class="card-header">
-                                                    <h4 class="card-title">Story Points</h4>
-                                                </div>
-                                                <fieldset class="form-group">
-                                                    <input type="number" class="form-control"    {{ form_widget(form.storyPoints) }}
-                                                </fieldset>
-
-                                                <div class="card-header">
-                                                    <h4 class="card-title">Backlog</h4>
-                                                </div>
-                                                <div class="position-relative has-icon-left">
-
-                                                    {{ form_widget(form.backlog, { 'attr' : { 'class' : 'form-control' ,'type' : 'date' } }) }}
-                                                </div>
-
-
-                                                <label for="timesheetinput5"> <i class="ft-clock"></i> Start Date</label>
-                                                <div class="position-relative has-icon-left">
-                                                    {{ form_widget(form.createdDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
-                                                </div>
-
-                                                <label for="timesheetinput5"> <i class="ft-clock"></i> End Date</label>
-                                                <div class="position-relative has-icon-left">
-                                                    {{ form_widget(form.finishedDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
-                                                </div>
                                             </div>
 
                                         </div>

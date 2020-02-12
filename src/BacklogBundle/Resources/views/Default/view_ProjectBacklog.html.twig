@@ -27,7 +27,7 @@
                 <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
                 </li>
             </ul>
-        </div><a class="btn btn-danger btn-block btn-glow btn-upgrade-pro mx-1" href="https://themeselection.com/products/chameleon-admin-modern-bootstrap-webapp-dashboard-html-template-ui-kit/" target="_blank">Download PRO!</a>
+        </div>
         <div class="navigation-background"></div>
     </div>
 {% endblock %}
@@ -91,7 +91,7 @@
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <p class="card-text">
-                                        <a href="{{ path('add_BacklogTask') }}"><button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" >Add a new task</button></a>
+                                        <a href="{{ path('add_BacklogTask',{'id':backlog.id}) }}"><button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" >Add a new task</button></a>
                                     </p>
                                 </div>
                                 <div class="table-responsive">
@@ -120,16 +120,13 @@
                                                     <td>{{ task.state }}</td>
                                                     <td>{{ task.priority }}</td>
                                                     <td>{{ task.storyPoints }}</td>
-                                                    <td> <a href="{{ path('delete_BacklogTask',{'id':task.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a> </td>
-                                                    <td>  <a href="{{ path('update_BacklogTask',{'id':task.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a> </td>
+                                                    <td> <a href="{{ path('delete_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a> </td>
+                                                    <td>  <a href="{{ path('update_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a> </td>
                                                 </tr>
 
                                             {% endfor %}
 
                                         {% else %}
-                                            <div class="form-group">
-                                                <a href="{{ path('add_BacklogTask') }}"><button type="button" class="btn mr-1 mb-1 btn-danger btn-lg" >Add a new task</button></a>
-                                            </div>
 
                                         {% endif %}
                                         </tbody>
