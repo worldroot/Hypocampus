@@ -1,0 +1,4 @@
+services:
+#    backlog.example:
+#        class: BacklogBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
