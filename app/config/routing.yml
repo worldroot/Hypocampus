@@ -1,3 +1,7 @@
+backlog:
+    resource: "@BacklogBundle/Resources/config/routing.yml"
+    prefix:   /backlog
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
