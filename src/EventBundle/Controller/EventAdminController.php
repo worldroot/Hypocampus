@@ -67,7 +67,7 @@ class EventAdminController extends Controller
 
     public function searcheventsAction()
     {
-        return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
+        return $this->render('@Participant/EventAdmin/searchevents.html.twig', array(
             // ...
         ));
     }

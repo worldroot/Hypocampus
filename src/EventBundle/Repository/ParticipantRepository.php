@@ -13,7 +13,18 @@ class ParticipantRepository extends \Doctrine\ORM\EntityRepository
     public function findType($input)
     {
         $query=$this->getEntityManager()->createQuery("SELECT f FROM EventBundle:Participant f 
-WHERE f.choix='$input'");
+        WHERE f.choix='$input'");
+        return $query->getResult();
+    }
+
+
+    public function findNomp($input)
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT f FROM EventBundle:Participant f 
+        WHERE f.nomp LIKE '%$input%' 
+        or f.prenomp LIKE '%$input%' 
+        or f.email LIKE '%$input%'");
+
         return $query->getResult();
     }
 }

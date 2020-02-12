@@ -27,49 +27,38 @@
             </div>
 
             <!-- PUT BODY HERE -->
+            <div class="card-header">
+                <div class="col-12"><h4 class="card-title">List des events </h4></div>
+            </div>
             <div class="content-body">
                 <div class="row match-height">
+                <section id="decks">
+                    <div class="row">
+                                <div class="card-deck">
+                                {% for i in tabs %}
+                                    <div class="col-6">
+                                    <div class="pull-up">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ i.titreEvent }}</span></h5>
+                                                    <a href="{{path('deleteevents',{'idev':i.idev})}}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a>
+                                                    <a href="{{path('update_events',{'idev':i.idev})}}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a>
+                                                    <br>
+                                                    <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ i.TypeEvent }}</span></h6>
+                                                    <h6 class="text-bold-600 mt-1"> Numero: <span class="blue-grey">{{ i.numeroEvent }}</span></h6>
 
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="card-header"><h3>List d'evenements</h3></div>
-                            <div id="product-summary" class="media-list position-relative">
-                                <div class="table-responsive">
-                                    <table class="table table-padded table-xl mb-0" id="product-summary-table">
-                                        <thead>
-                                        <tr>
-
-                                            <th class="border-top-0">Titre</th>
-                                            <th class="border-top-0">Numero</th>
-                                            <th class="border-top-0">Type</th>
-                                            <th ></th>
-                                            <th ></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for i in tabs %}
-                                            <tr>
-
-                                                <td class="text-truncate">{{ i.titreEvent }}</td>
-                                                <td class="text-truncate">{{ i.numeroEvent }}</td>
-                                                <td class="text-truncate">{{ i.typeEvent }}</td>
-                                                <td class="text-truncat mr-1">
-                                                    <a href="{{path('deleteevents',{'idev':i.idev})}}">
-                                                        <button class="btn btn-sm btn-outline-danger round" type="submit">Supprimer</button>
-                                                    </a>
-                                                </td>
-                                                <td class="text-truncat mr-1">
-                                                    <a href="{{path('update_events',{'idev':i.idev})}}">
-                                                        <button class="btn btn-sm btn-outline-success round" type="submit">Modifier</button>
-                                                    </a>
-                                                </td>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                {% endfor %}
+                                </div>
+                    </div>
+                </section>
+                </div>
 
 
 
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
 
                                 </div>
 

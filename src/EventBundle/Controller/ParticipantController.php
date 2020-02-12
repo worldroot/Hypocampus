@@ -2,20 +2,21 @@
 
 namespace EventBundle\Controller;
 
-use EventBundle\Entity\Event;
-use EventBundle\Entity\EventsAdmin;
+
 use EventBundle\Entity\Participant;
 use EventBundle\Form\ParticipantType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class EventController extends Controller
+use Symfony\Component\HttpFoundation\Response;
+
+class ParticipantController extends Controller
 {
     public function ReadeventAction()
     {
         $em=$this->getDoctrine();
         $tab=$em->getRepository(Participant::class)->findAll();
-        return $this->render('@Event/Event/readevent.html.twig', array(
+        return $this->render('@Event/Participant/readevent.html.twig', array(
             'tabs'=>$tab
             // ...
         ));
@@ -54,11 +55,12 @@ class EventController extends Controller
             $em->persist($club);
             $em->flush();
             echo "<script>alert('Ajouté avec succès')</script>";
+            return $this->redirectToRoute('_addevent');
 
 
         }
 
-        return $this->render('@Event/Event/addevent.html.twig', array(
+        return $this->render('@Event/Participant/addevent.html.twig', array(
             'form'=>$form->createView()
         ));
     }
@@ -92,16 +94,30 @@ class EventController extends Controller
             return $this->redirectToRoute('_readevent');
         }
 
-        return $this->render('@Event/Event/addevent.html.twig', array(
+        return $this->render('@Event/Participant/addevent.html.twig', array(
             'form'=>$form->createView()
         ));
     }
 
 
-    public function SearcheventAction()
+    public function SearcheventAction(Request $request)
     {
-        return $this->render('EventBundle:Event:searchevent.html.twig', array(
-            // ...
+
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(Participant::class)->findAll();
+
+        $input=$request->get('nomp');
+        if(isset($input))
+        {
+            $formation = $em->getRepository(Participant::class)->findNomp($input);
+
+            return $this->render('@Event/Participant/searchevent.html.twig', array(
+                'formations' => $formation
+            ));
+        }
+
+        return $this->render('@Event/Participant/searchevent.html.twig', array(
+            'formations'=>$tab
         ));
     }
 

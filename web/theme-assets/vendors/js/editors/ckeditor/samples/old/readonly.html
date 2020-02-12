@@ -21,7 +21,7 @@ For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
 			// Show this "on" button.
 			document.getElementById( 'readOnlyOn' ).style.display = '';
 
-			// Event fired when the readOnly property changes.
+			// Participant fired when the readOnly property changes.
 			editor.on( 'readOnly', function() {
 				document.getElementById( 'readOnlyOn' ).style.display = this.readOnly ? 'none' : '';
 				document.getElementById( 'readOnlyOff' ).style.display = this.readOnly ? '' : 'none';
