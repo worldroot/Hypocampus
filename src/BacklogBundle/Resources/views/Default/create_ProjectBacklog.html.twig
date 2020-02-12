@@ -35,59 +35,125 @@
     </div>
 {% endblock %}
 
+
 {% block body %}
 
 
-
-<div class="app-content content">
-    <div class="content-wrapper">
-        <div class="content-wrapper-before"></div>
-        <div class="content-header row">
-        </div>
-        <div class="content-body">
-
-            <div class="content-wrapper-before"></div>
+    <div class="app-content content align-content-center">
+        <div class="content-wrapper ">
             <div class="content-header row">
-
-                {{ form_start(form) }}
-                <table>
-                    <tr>
-                        <td><label>Reference:</label></td>
-                        <td> {{ form_widget(form.ref) }}</td>
-
-                    </tr>
-                    <tr>
-                        <td><label>Titre:</label></td>
-                        <td> {{ form_widget(form.titre) }}</td>
-
-                    </tr>
-                    <tr>
-                        <td><label>Date Debut:</label></td>
-                        <td> {{ form_widget(form.dateDebut) }}</td>
-                    </tr>
-                    <tr>
-                        <td><label>Date Fin:</label></td>
-                        <td> {{ form_widget(form.dateFin) }}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><label>Nombre Participation:</label></td>
-                        <td> {{ form_widget(form.nbrParticipant) }}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><label>Nom club:</label></td>
-                        <td> {{ form_widget(form.club) }}</td>
-                        <td></td>
-                    </tr>
-
-                </table>
-                {{ form_end(form) }}
-
             </div>
+            <div class="content-body"><!-- Chart -->
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <p>
+
+
+                </p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Ajoutere un Backlog </h4>
+                        <a class="heading-elements-toggle">
+                            <i class="fa fa-ellipsis-v font-medium-3"></i>
+                        </a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >New sprint</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            <!-- PUT BODY HERE -->
+            <div class="content-body text-center">
+                <div class="row match-height">
+                    <div class="col-xl-4 col-lg-6 col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title"> Backlog</h4>
+                            </div>
+                            <div class="card-block">
+                                <div class="card-body">
+
+                                    <div class="form-body">
+                                        {{ form_start(form) }}
+
+                                        <div class="form-group">
+                                            <label for="donationinput7" class="sr-only">Project</label>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">Project</h4>
+                                            </div>
+                                            <fieldset class="form-group">
+                                                <div class="form-group">
+                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>   Project Name</label>
+                                                    <div class="position-relative has-icon-left">
+                                                        {{ form_widget(form.project, { 'attr' : { 'class' : 'form-control' } }) }}
+
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">Points To Do</h4>
+                                            </div>
+                                            <fieldset class="form-group">
+                                                <input type="text" class="form-control" id="readonlyInput" readonly="readonly" value="0"  {{ form_widget(form.pointsToDo) }}
+                                            </fieldset>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">Points In Progress</h4>
+                                            </div>
+                                            <fieldset class="form-group">
+                                                <input type="text" class="form-control" id="readonlyInput" readonly="readonly" value="0"  {{ form_widget(form.pointsInProgress) }}
+                                            </fieldset>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">Points Done</h4>
+                                            </div>
+                                            <fieldset class="form-group">
+                                                <input type="text" class="form-control" id="readonlyInput" readonly="readonly" value="0"  {{ form_widget(form.pointsDone) }}
+                                            </fieldset>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-actions center">
+                                        <button class="btn btn-primary" {{ form_widget(form.valider) }}  </button>
+                                    </div>
+
+
+                                    {{ form_end(form) }}
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
-    {%endblock%}
+<!--/ END BODY -->
+    </div>
+    </div>
+    </div>
+
+
+
+
+        {%endblock%}
+
     {% block footer %}
 
 {% endblock %}

@@ -42,9 +42,39 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-wrapper-before"></div>
-            <div class="content-header row">
-            </div>
+
             <div class="content-body">
+
+                <div class="content-header ">
+                    <h4 class="card-title" id="basic-layout-icons">Créer un Projet</h4>
+                    <a class="heading-elements-toggle">
+                        <i class="la la-ellipsis-v font-medium-3"></i>
+                    </a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li>
+                                <a data-action="collapse">
+                                    <i class="ft-minus"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-action="reload">
+                                    <i class="ft-rotate-cw"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-action="expand">
+                                    <i class="ft-maximize"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a data-action="close">
+                                    <i class="ft-x"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
                 <div class="content-wrapper-before"></div>
                 <div class="content-header row">
@@ -70,9 +100,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Project Backlog</h4>
-                                    <h6 class="card-subtitle text-muted">Basic Card With Header & Footer</h6>
+                                    <h6 class="card-subtitle text-muted"></h6>
                                 </div>
-                                <img class="" src="theme-assets/images/carousel/22.jpg" alt="Card image cap">
+                                <img class="" src="{{ asset('images/book-lightbulb.svg') }}" alt="Card image cap">
                                 <div class="card-body">
                                     <p class="card-text">Le backlog du project globale ou vous aurez une vue globale sur toutes les fonctionnalitées et taches.</p>
                                     <div class="form-group">
@@ -98,7 +128,7 @@
                                     <h4 class="card-title">Sprint Backlog</h4>
                                     <h6 class="card-subtitle text-muted"> </h6>
                                 </div>
-                                <img class="" src="theme-assets/images/carousel/23.jpg" alt="Card image cap">
+                                <img class="" src="{{ asset('images/building-blocks.svg') }}" alt="Card image cap">
                                 <div class="card-body">
                                     <p class="card-text">Le backlog relié au Sprint ou vous aurez une vue spécifique sur les taches a faire pour vous et votre équipe.</p>
                                     <div class="form-group">
