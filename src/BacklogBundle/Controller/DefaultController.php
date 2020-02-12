@@ -21,6 +21,19 @@ class DefaultController extends Controller
         return $this->render('@Backlog/Default/backlog_nav.html.twig');
     }
 
+    public function IndexProjectBacklogAction(){
+
+        $em = $this->getDoctrine();
+        $tab = $em->getRepository(Backlog::class)->findAll();
+
+
+        return $this->render('@Backlog/Default/backlog_index.html.twig', array(
+            'backlogs'=> $tab
+            // ...
+        ));
+
+    }
+
     public function create_ProjectBacklogAction(Request $request)
     {
         $backlog = new Backlog();
@@ -47,11 +60,11 @@ class DefaultController extends Controller
 
 
 
-    public function view_ProjectBacklogAction()
+    public function view_ProjectBacklogAction($id)
     {
 
         $em = $this->getDoctrine();
-        $tab = $em->getRepository(Backlog::class)->findAll();
+        $tab = $em->getRepository(Backlog::class)->find($id);
         $tab2 = $em->getRepository(Task::class)->findAll();
 
 

@@ -19,7 +19,7 @@
                 </li>
                 <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
                 </li>
-                <li class=" active nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
+                <li class=" nav-item active"><a href="{{ path('backlog_nav_homepage') }}"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
                 </li>
                 <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
                 </li>
@@ -107,8 +107,9 @@
                                     <p class="card-text">Le backlog du project globale ou vous aurez une vue globale sur toutes les fonctionnalitées et taches.</p>
                                     <div class="form-group">
                                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                                            <a href="ProjectBacklog/view"><button type="button" class="btn mr-1 mb-1 btn-success btn-sm">Consulter</button></a>
-                                            <a href="ProjectBacklog/new"> <button type="button" class="btn mr-1 mb-1 btn-danger btn-sm">Créer</button></a>
+                                            <a href="{{ path('index_ProjectBacklog') }}"><button type="button" class="btn mr-1 mb-1 btn-success btn-sm">Index</button></a>
+
+                                            <a href="{{ path('create_ProjectBacklog') }}"> <button type="button" class="btn mr-1 mb-1 btn-danger btn-sm">Créer</button></a>
                                         </div>
                                     </div>
                                 </div>

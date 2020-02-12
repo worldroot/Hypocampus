@@ -11,8 +11,20 @@ create_ProjectBacklog:
     defaults: { _controller: BacklogBundle:Default:create_ProjectBacklog }
 
 view_ProjectBacklog:
-    path:     /ProjectBacklog/view
+    path:     /ProjectBacklog/view/{id}
     defaults: { _controller: BacklogBundle:Default:view_ProjectBacklog }
+
+delete_ProjectBacklog:
+    path:     /ProjectBacklog/remove/{id}
+    defaults: { _controller: BacklogBundle:Default:DeleteProjectBacklog }
+
+update_ProjectBacklog:
+    path:     /ProjectBacklog/update/{id}
+    defaults: { _controller: BacklogBundle:Default:UpdateProjectBacklog }
+
+index_ProjectBacklog:
+    path:     /ProjectBacklog/index
+    defaults: { _controller: BacklogBundle:Default:IndexProjectBacklog }
 
 add_BacklogTask:
     path:     /ProjectBacklog/view/task/add

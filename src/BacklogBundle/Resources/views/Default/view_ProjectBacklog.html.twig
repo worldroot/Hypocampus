@@ -52,16 +52,16 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Backlog du {{   backlog[0].project.name }}  </h4>
+                        <h4 class="card-title">Backlog du {{   backlog.project.name }}  </h4>
                         <a class="heading-elements-toggle">
                             <i class="fa fa-ellipsis-v font-medium-3"></i>
                         </a>
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
                                 <li>
-                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >Points Done {{ backlog[0].pointsDone  }} </a>
-                                    <a class="btn btn-sm btn-info box-shadow-2 round btn-min-width pull-right"  >Points In Progress {{  backlog[0].pointsInProgress }} </a>
-                                    <a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right"  >Points To Do {{ backlog[0].pointsToDo }}  </a>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >Points Done {{ backlog.pointsDone  }} </a>
+                                    <a class="btn btn-sm btn-info box-shadow-2 round btn-min-width pull-right"  >Points In Progress {{  backlog.pointsInProgress }} </a>
+                                    <a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right"  >Points To Do {{ backlog.pointsToDo }}  </a>
                                 </li>
                             </ul>
                         </div>
