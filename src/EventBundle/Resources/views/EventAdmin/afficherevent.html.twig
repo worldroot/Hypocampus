@@ -11,9 +11,19 @@
         </div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a href="{{path('addevent')}}"><i class="ft-book"></i><span class="menu-title" data-i18n="">Ajout Evenement</span></a>
+                <li class=" nav-item"><a href="#"><i class="ft-star"></i><span class="menu-title" data-i18n="">Evenements</span></a>
+                    <ul class="menu-content">
+                        <li class="menu-item"><a href="{{path('addevent')}}">Ajout Evenement</a>
+                        </li>
+                    </ul>
                 </li>
-                <li class=" nav-item"><a href="{{path('_readevent')}}"><i class="ft-book"></i><span class="menu-title" data-i18n="">List Participants</span></a>
+                <li class=" nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title" data-i18n="">Participant</span></a>
+                    <ul class="menu-content">
+                        <li class="menu-item"><a href="{{path('_readevent')}}">List Participants</a>
+                        </li>
+                        <li class="menu-item"><a href="{{path('_searchevent')}}">Search Participants</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
