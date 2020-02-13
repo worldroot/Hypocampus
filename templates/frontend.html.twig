@@ -372,42 +372,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3 text-center animate-box">
-                    <div class="pricing">
-                        <h2 class="pricing-heading">Starter</h2>
-                        <div class="price"><sup class="currency">$</sup>9<small>par mois</small></div>
-                        <p>Nbr de Projets: 1 <br>
-                        Nbr d'utilisateur: 5</p>
-                        <p><a href="#" class="btn btn-primary">Select Plan</a></p>
+                {% for i in tarifs %}
+                    <div class="col-md-3 text-center animate-box">
+                        <div class="pricing">
+                            <h2 class="pricing-heading">{{ i.name }}</h2>
+                            <div class="price"><sup class="currency">$</sup>{{ i.value }}<small>par mois</small></div>
+                            <p>Nbr de Projets: {{ i.projectnbr }} <br>
+                                Nbr d'utilisateur: {{ i.usernbr }}</p>
+                            <p><a href="#" class="btn btn-primary">Select Plan</a></p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 text-center animate-box">
-                    <div class="pricing">
-                        <h2 class="pricing-heading">Basic</h2>
-                        <div class="price"><sup class="currency">$</sup>27<small>par mois</small></div>
-                        <p>Nbr de Projets: 5 <br>
-                            Nbr d'utilisateur: 30</p>
-                        <p><a href="#" class="btn btn-primary">Select Plan</a></p>
-                    </div>
-                </div>
-                <div class="col-md-3 text-center animate-box">
-                    <div class="pricing">
-                        <h2 class="pricing-heading">Pro</h2>
-                        <div class="price"><sup class="currency">$</sup>74<small>par mois</small></div>
-                        <p>Nbr de Projets: 10 <br>
-                            Nbr d'utilisateur: *</p>
-                        <p><a href="#" class="btn btn-primary">Select Plan</a></p>
-                    </div>
-                </div>
-                <div class="col-md-3 text-center animate-box">
-                    <div class="pricing">
-                        <h2 class="pricing-heading">Unlimited</h2>
-                        <div class="price"><sup class="currency">$</sup>140<small>par mois</small></div>
-                        <p>Nbr de Projets: * <br>
-                            Nbr d'utilisateur: *</p>
-                        <p><a href="#" class="btn btn-primary">Select Plan</a></p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

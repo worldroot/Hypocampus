@@ -1,0 +1,19 @@
+subscription_homepage:
+    path:     /
+    defaults: { _controller: SubscriptionBundle:Default:index }
+
+readtarif:
+    path:     /readtarif
+    defaults: { _controller: SubscriptionBundle:Tarif:readtarif }
+
+createtarif:
+    path:     /createtarif
+    defaults: { _controller: SubscriptionBundle:Tarif:createtarif }
+
+deletetarif:
+    path:     /deletetarif/{id}
+    defaults: { _controller: SubscriptionBundle:Tarif:deletetarif }
+
+updatetarif:
+    path:     /updatetarif/{id}
+    defaults: { _controller: SubscriptionBundle:Tarif:updatetarif }
