@@ -17,3 +17,19 @@ deletetarif:
 updatetarif:
     path:     /updatetarif/{id}
     defaults: { _controller: SubscriptionBundle:Tarif:updatetarif }
+
+readsub:
+    path:     /readsub
+    defaults: { _controller: SubscriptionBundle:Subscription:readsub }
+
+createsub:
+    path:     /createsub
+    defaults: { _controller: SubscriptionBundle:Subscription:createsub }
+
+deletesub:
+    path:     /deletesub/{id}
+    defaults: { _controller: SubscriptionBundle:Subscription:deletesub }
+
+updatesub:
+    path:     /upadatesub/{id}
+    defaults: { _controller: SubscriptionBundle:Subscription:upadatesub }
