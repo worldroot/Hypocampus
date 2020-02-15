@@ -74,7 +74,7 @@ class ParticipantController extends Controller
         $cnx->remove($d);
         $cnx->flush();
         echo "<script>alert('Suppression succeed')</script>";
-        return $this->redirectToRoute('_readevent');
+        return $this->redirectToRoute('_searchevent');
     }
 
 
@@ -91,7 +91,7 @@ class ParticipantController extends Controller
         if( ($form->isSubmitted()) & ($form->isValid()) ){
 
             $em->flush();
-            return $this->redirectToRoute('_readevent');
+            return $this->redirectToRoute('_searchevent');
         }
 
         return $this->render('@Event/Participant/addevent.html.twig', array(

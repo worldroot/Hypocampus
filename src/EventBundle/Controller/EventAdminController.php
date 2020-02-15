@@ -65,10 +65,23 @@ class EventAdminController extends Controller
         return $this->redirectToRoute('afficherevent');
     }
 
-    public function searcheventsAction()
+    public function searcheventsAction(Request $request)
     {
-        return $this->render('@Participant/EventAdmin/searchevents.html.twig', array(
-            // ...
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(EventsAdmin::class)->findAll();
+
+        $input=$request->get('TitreEvent');
+        if(isset($input))
+        {
+            $formation = $em->getRepository(EventsAdmin::class)->findTitre($input);
+
+            return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
+                'formations' => $formation
+            ));
+        }
+
+        return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
+            'formations'=>$tab
         ));
     }
 
