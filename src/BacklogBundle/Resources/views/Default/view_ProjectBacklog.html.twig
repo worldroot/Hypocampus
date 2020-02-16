@@ -52,7 +52,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Backlog du {{   backlog.project.name }}  </h4>
+                        <h4 class="card-title">Backlog du {{ backlog.project.name }}  </h4>
                         <a class="heading-elements-toggle">
                             <i class="fa fa-ellipsis-v font-medium-3"></i>
                         </a>
@@ -114,7 +114,7 @@
 
                                                 <tr>
                                                     <th scope="row">{{ task.id }}</th>
-                                                    <td>{{ task.title }}</td>
+                                                    <td> <a href="{{ path('view_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}">{{ task.title }}</a></td>
                                                     <td>{{ task.descriptionFonctionnel }}</td>
                                                     <td>{{ task.descriptionTechnique }}</td>
                                                     <td>{{ task.state }}</td>

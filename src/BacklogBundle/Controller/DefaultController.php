@@ -219,6 +219,18 @@ class DefaultController extends Controller
 
     }
 
+    public function ViewBacklogTaskAction($id)
+    {
+
+        $em = $this->getDoctrine();
+        $tab2 = $em->getRepository(Task::class)->backlogTasks($id);
+
+
+        return $this->render('@Backlog/Default/task_show.html.twig', array(
+            'tasks' => $tab2
+            // ...
+        ));
+    }
 
 
 }

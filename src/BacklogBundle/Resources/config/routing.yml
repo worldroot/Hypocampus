@@ -37,3 +37,7 @@ delete_BacklogTask:
 update_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/update/{id}
     defaults: { _controller: BacklogBundle:Default:UpdateBacklogTask }
+
+view_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/task/view/{id}
+    defaults: { _controller: BacklogBundle:Default:ViewBacklogTask }

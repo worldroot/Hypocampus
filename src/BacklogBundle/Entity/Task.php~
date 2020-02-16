@@ -71,9 +71,9 @@ class Task
     private $state;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="priority", type="string", length=255)
+     * @ORM\Column(name="priority", type="integer")
      */
     private $priority;
 
@@ -265,7 +265,7 @@ class Task
     /**
      * Set priority
      *
-     * @param string $priority
+     * @param int $priority
      *
      * @return Task
      */
@@ -279,11 +279,34 @@ class Task
     /**
      * Get priority
      *
-     * @return string
+     * @return int
      */
     public function getPriority()
     {
         return $this->priority;
     }
-}
 
+    /**
+     * Set backlog
+     *
+     * @param \BacklogBundle\Entity\Backlog $backlog
+     *
+     * @return Task
+     */
+    public function setBacklog(\BacklogBundle\Entity\Backlog $backlog = null)
+    {
+        $this->backlog = $backlog;
+
+        return $this;
+    }
+
+    /**
+     * Get backlog
+     *
+     * @return \BacklogBundle\Entity\Backlog
+     */
+    public function getBacklog()
+    {
+        return $this->backlog;
+    }
+}
