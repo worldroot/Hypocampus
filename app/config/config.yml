@@ -4,7 +4,6 @@ imports:
     - { resource: services.yml }
     - { resource: "@UserBundle/Resources/config/services.yml" }
     - { resource: "@SubscriptionBundle/Resources/config/services.yml" }
-
     - { resource: "@BacklogBundle/Resources/config/services.yml" }
 
 

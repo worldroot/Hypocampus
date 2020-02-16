@@ -18,14 +18,10 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new AppBundle\AppBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
+            new BacklogBundle\BacklogBundle(),
             new SubscriptionBundle\SubscriptionBundle(),
         ];
-
-            new UserBundle\UserBundle(),
-        ];
-            new BacklogBundle\BacklogBundle(),
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
