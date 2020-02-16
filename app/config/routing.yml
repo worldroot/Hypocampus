@@ -1,3 +1,7 @@
+subscription:
+    resource: "@SubscriptionBundle/Resources/config/routing.yml"
+    prefix:   /subscription
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /user

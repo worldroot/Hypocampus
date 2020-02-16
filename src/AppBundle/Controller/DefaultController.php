@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use SubscriptionBundle\Entity\Tarif;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,10 +14,9 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('frontend.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(Tarif::class)->findAll();
+        return $this->render('frontend.html.twig',['tarifs' => $tab ]);
     }
 
 }
