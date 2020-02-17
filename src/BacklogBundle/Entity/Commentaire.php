@@ -28,10 +28,23 @@ class Commentaire
     private $description;
 
     /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="date_creation", type="date")
+     */
+    private $date_creation;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Task")
      * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
      */
     private $task;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * Get id
@@ -91,4 +104,52 @@ class Commentaire
         return $this->task;
     }
 
+
+    /**
+     * Set user
+     *
+     * @param \AppBuundle\Entity\User $user
+     *
+     * @return Commentaire
+     */
+    public function setUser(\AppBuundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBuundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Commentaire
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->date_creation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->date_creation;
+    }
 }
