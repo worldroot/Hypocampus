@@ -1,0 +1,190 @@
+
+
+
+{% extends 'backend.html.twig' %}
+{% block sidenavbar %}
+    <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="theme-assets/images/backgrounds/02.jpg">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('theme-assets/images/logo/hypocampus.png') }}"/>
+                        <h3 class="brand-text">Hypocampus</h3></a></li>
+                <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+            </ul>
+        </div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+                </li>
+                <li class=" nav-item"><a href="/rapport"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Rapport</span></a>
+                </li>
+                <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
+                </li>
+                <li class=" nav-item active"><a href="{{ path('backlog_nav_homepage') }}"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
+                </li>
+                <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
+                </li>
+                <li class=" nav-item"><a href="tables.html"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
+                </li>
+                <li class=" nav-item"><a href="form-elements.html"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Ressources</span></a>
+                </li>
+                <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navigation-background"></div>
+    </div>
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="app-content content align-content-center align-self-center ">
+        <div class="content-wrapper align-self-center ">
+            <div class="content-header row">
+            </div>
+            <div class="content-body align-self-center"><!-- Chart -->
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <p>
+
+
+                </p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Ajouter une Tache </h4>
+                        <a class="heading-elements-toggle">
+                            <i class="fa fa-ellipsis-v font-medium-3"></i>
+                        </a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('index_ProjectBacklog') }}" >Retour</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- PUT BODY HERE -->
+                <div class="content-body text-center align-self-center">
+                    <div class="row match-height align-items-center align-self-center">
+                        <div class="col-6  ">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"> Tache</h4>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body">
+
+                                        <div class="form-body">
+                                            {{ form_start(form) }}
+
+                                            <div class="form-group">
+                                                <label for="donationinput7" class="sr-only">Project</label>
+
+                                                <fieldset class="form-group">
+                                                    <div class="form-group">
+                                                        <h5 class="mt-2">Titre</h5>
+                                                        <div class="position-relative has-icon-left">
+                                                            {{ form_widget(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
+
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <h5 class="mt-2">Description Fonctionnele </h5>
+                                                <fieldset class="form-group">
+
+                                                    <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Votre description Fonctionnele de la tache"
+                                                             {{ form_widget(form.descriptionFonctionnel, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                    </textarea>
+                                                </fieldset>
+
+                                                <h5 class="mt-2">Description Technique </h5>
+                                                <fieldset class="form-group">
+                                                    <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Votre description Technique de la tache"
+                                                             {{ form_widget(form.descriptionTechnique, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                    </textarea>
+                                                </fieldset>
+
+                                                <div class="card-header">
+                                                    <h4 class="card-title">State</h4>
+                                                </div>
+                                                <fieldset class="form-group">
+                                                    {{ form_widget(form.state) }}
+                                                </fieldset>
+
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Priority</h4>
+                                                </div>
+                                                <fieldset class="form-group">
+                                                    <input type="number" class="form-control"    {{ form_widget(form.priority) }}
+                                                </fieldset>
+
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Story Points</h4>
+                                                </div>
+                                                <fieldset class="form-group">
+                                                    <input type="number" class="form-control"    {{ form_widget(form.storyPoints) }}
+                                                </fieldset>
+
+                                                <div class="card-header">
+                                                    <h4 class="card-title">Backlog</h4>
+                                                </div>
+                                                    <div class="position-relative has-icon-left">
+
+                                                        {{ form_widget(form.backlog, { 'attr' : { 'class' : 'form-control' ,'type' : 'date' } }) }}
+                                                    </div>
+
+
+                                                <label for="timesheetinput5"> <i class="ft-clock"></i> Start Date</label>
+                                                <div class="position-relative has-icon-left">
+                                                    {{ form_widget(form.createdDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
+                                                </div>
+
+                                                <label for="timesheetinput5"> <i class="ft-clock"></i> End Date</label>
+                                                <div class="position-relative has-icon-left">
+                                                    {{ form_widget(form.finishedDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-actions center">
+                                            <button class="btn btn-primary" {{ form_widget(form.valider) }}  </button>
+                                        </div>
+
+
+                                        {{ form_end(form) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!--/ END BODY -->
+    </div>
+    </div>
+    </div>
+
+
+
+
+{%endblock%}
+
+    {% block footer %}
+
+    {% endblock %}
