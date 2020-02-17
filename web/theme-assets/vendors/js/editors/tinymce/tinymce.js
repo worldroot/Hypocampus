@@ -1153,7 +1153,7 @@ define("tinymce/dom/EventUtils", [
 		 * Executes all event handler callbacks for a specific event.
 		 *
 		 * @private
-		 * @param {Event} evt Event object.
+		 * @param {Event} evt Participant object.
 		 * @param {String} id Expando id value to look for.
 		 */
 		function executeHandlers(evt, id) {
@@ -1315,7 +1315,7 @@ define("tinymce/dom/EventUtils", [
 		 * @param {Object} target Target node/window or custom object.
 		 * @param {String} names Optional event name to unbind.
 		 * @param {function} callback Optional callback function to unbind.
-		 * @return {EventUtils} Event utils instance.
+		 * @return {EventUtils} Participant utils instance.
 		 */
 		self.unbind = function(target, names, callback) {
 			var id, callbackList, i, ci, name, eventMap;
@@ -1402,9 +1402,9 @@ define("tinymce/dom/EventUtils", [
 		 *
 		 * @method fire
 		 * @param {Object} target Target node/window or custom object.
-		 * @param {String} name Event name to fire.
+		 * @param {String} name Participant name to fire.
 		 * @param {Object} args Optional arguments to send to the observers.
-		 * @return {EventUtils} Event utils instance.
+		 * @return {EventUtils} Participant utils instance.
 		 */
 		self.fire = function(target, name, args) {
 			var id;
@@ -1439,7 +1439,7 @@ define("tinymce/dom/EventUtils", [
 		 *
 		 * @method clean
 		 * @param {Object} target Target node/window object.
-		 * @return {EventUtils} Event utils instance.
+		 * @return {EventUtils} Participant utils instance.
 		 */
 		self.clean = function(target) {
 			var i, children, unbind = self.unbind;
@@ -4174,7 +4174,7 @@ define("tinymce/util/Tools", [
  * - Utility functions
  * - DOM traversial
  * - DOM manipulation
- * - Event binding
+ * - Participant binding
  *
  * This is not currently implemented:
  * - Dimension
@@ -9167,7 +9167,7 @@ define("tinymce/dom/DOMUtils", [
 		 *
 		 * @method unbind
 		 * @param {Element/Document/Window/Array} target Target element to unbind events on.
-		 * @param {String} name Event handler name, for example: "click"
+		 * @param {String} name Participant handler name, for example: "click"
 		 * @param {function} func Function to remove.
 		 * @return {bool/Array} Bool state of true if the handler was removed, or an array of states if multiple input elements
 		 * were passed in.
@@ -9207,8 +9207,8 @@ define("tinymce/dom/DOMUtils", [
 		 * @method fire
 		 * @param {Node/Document/Window} target Target element or object to fire event on.
 		 * @param {String} name Name of the event to fire.
-		 * @param {Object} evt Event object to send.
-		 * @return {Event} Event object.
+		 * @param {Object} evt Participant object to send.
+		 * @return {Event} Participant object.
 		 */
 		fire: function(target, name, evt) {
 			return this.events.fire(target, name, evt);
@@ -11583,7 +11583,7 @@ define("tinymce/html/Schema", [
 		// Attributes present on all elements
 		globalAttributes = split("id accesskey class dir lang style tabindex title");
 
-		// Event attributes can be opt-in/opt-out
+		// Participant attributes can be opt-in/opt-out
 		/*eventAttributes = split("onabort onblur oncancel oncanplay oncanplaythrough onchange onclick onclose oncontextmenu oncuechange " +
 				"ondblclick ondrag ondragend ondragenter ondragleave ondragover ondragstart ondrop ondurationchange onemptied onended " +
 				"onerror onfocus oninput oninvalid onkeydown onkeypress onkeyup onload onloadeddata onloadedmetadata onloadstart " +
@@ -21990,7 +21990,7 @@ define("tinymce/EnterKey", [
 
 			rng = selection.getRng(true);
 
-			// Event is blocked by some other handler for example the lists plugin
+			// Participant is blocked by some other handler for example the lists plugin
 			if (evt.isDefaultPrevented()) {
 				return;
 			}
@@ -24810,8 +24810,8 @@ define("tinymce/util/EventDispatcher", [
 		 *
 		 * @method fire
 		 * @param {String} name Name of the event to fire.
-		 * @param {Object?} args Event arguments.
-		 * @return {Object} Event args instance passed in.
+		 * @param {Object?} args Participant arguments.
+		 * @return {Object} Participant args instance passed in.
 		 * @example
 		 * instance.fire('event', {...});
 		 */
@@ -24885,7 +24885,7 @@ define("tinymce/util/EventDispatcher", [
 		 * Binds an event listener to a specific event by name.
 		 *
 		 * @method on
-		 * @param {String} name Event name or space separated list of events to bind.
+		 * @param {String} name Participant name or space separated list of events to bind.
 		 * @param {callback} callback Callback to be executed when the event occurs.
 		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
 		 * @return {Object} Current class instance.
@@ -25005,7 +25005,7 @@ define("tinymce/util/EventDispatcher", [
 		 * and automatically unbind the event once the callback fires.
 		 *
 		 * @method once
-		 * @param {String} name Event name or space separated list of events to bind.
+		 * @param {String} name Participant name or space separated list of events to bind.
 		 * @param {callback} callback Callback to be executed when the event occurs.
 		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
 		 * @return {Object} Current class instance.
@@ -25176,9 +25176,9 @@ define("tinymce/util/Observable", [
 		 *
 		 * @method fire
 		 * @param {String} name Name of the event to fire.
-		 * @param {Object?} args Event arguments.
+		 * @param {Object?} args Participant arguments.
 		 * @param {Boolean?} bubble True/false if the event is to be bubbled.
-		 * @return {Object} Event args instance passed in.
+		 * @return {Object} Participant args instance passed in.
 		 * @example
 		 * instance.fire('event', {...});
 		 */
@@ -25208,7 +25208,7 @@ define("tinymce/util/Observable", [
 		 * Binds an event listener to a specific event by name.
 		 *
 		 * @method on
-		 * @param {String} name Event name or space separated list of events to bind.
+		 * @param {String} name Participant name or space separated list of events to bind.
 		 * @param {callback} callback Callback to be executed when the event occurs.
 		 * @param {Boolean} first Optional flag if the event should be prepended. Use this with care.
 		 * @return {Object} Current class instance.
@@ -27991,7 +27991,7 @@ define("tinymce/ui/Control", [
 				eventRootCtrl = parents[i]._eventsRoot;
 			}
 
-			// Event root wasn't found the use the root control
+			// Participant root wasn't found the use the root control
 			if (!eventRootCtrl) {
 				eventRootCtrl = parents[parents.length - 1] || eventCtrl;
 			}
@@ -30553,7 +30553,7 @@ define("tinymce/ui/Window", [
 		 * Fires a submit event with the serialized form.
 		 *
 		 * @method submit
-		 * @return {Object} Event arguments object.
+		 * @return {Object} Participant arguments object.
 		 */
 		submit: function() {
 			return this.fire('submit', {data: this.toJSON()});
@@ -31836,7 +31836,7 @@ define("tinymce/util/Quirks", [
 		 * Returns true/false if the event is prevented or not.
 		 *
 		 * @private
-		 * @param {Event} e Event object.
+		 * @param {Event} e Participant object.
 		 * @return {Boolean} true/false if the event is prevented or not.
 		 */
 		function isDefaultPrevented(e) {
@@ -31849,7 +31849,7 @@ define("tinymce/util/Quirks", [
 		 * The editor's selected content is encoded into this url so drag and drop between editors will work.
 		 *
 		 * @private
-		 * @param {DragEvent} e Event object
+		 * @param {DragEvent} e Participant object
 		 */
 		function setMceInternalContent(e) {
 			var selectionHtml, internalContent;
@@ -31875,7 +31875,7 @@ define("tinymce/util/Quirks", [
 		 * The editor's selected content is encoded into this url so drag and drop between editors will work.
 		 *
 		 * @private
-		 * @param {DragEvent} e Event object
+		 * @param {DragEvent} e Participant object
 		 * @returns {String} mce-internal content
 		 */
 		function getMceInternalContent(e) {
@@ -33799,7 +33799,7 @@ define("tinymce/Mode", [], function() {
 			});
 		}
 
-		// Event is NOT preventable
+		// Participant is NOT preventable
 		editor.fire('SwitchMode', {mode: mode});
 	}
 
@@ -36619,7 +36619,7 @@ define("tinymce/SelectionOverrides", [
 /**
  * Include the base event class documentation.
  *
- * @include ../../../tools/docs/tinymce.Event.js
+ * @include ../../../tools/docs/tinymce.Participant.js
  */
 
 /**
@@ -39704,7 +39704,7 @@ define("tinymce/EditorManager", [
 			 * Fires when an editor is added to the EditorManager collection.
 			 *
 			 * @event AddEditor
-			 * @param {Object} e Event arguments.
+			 * @param {Object} e Participant arguments.
 			 */
 			self.fire('AddEditor', {editor: editor});
 
@@ -39790,7 +39790,7 @@ define("tinymce/EditorManager", [
 			 * Fires when an editor is removed from EditorManager collection.
 			 *
 			 * @event RemoveEditor
-			 * @param {Object} e Event arguments.
+			 * @param {Object} e Participant arguments.
 			 */
 			if (removeEditorFromList(editor)) {
 				self.fire('RemoveEditor', {editor: editor});
@@ -42768,7 +42768,7 @@ define("tinymce/ui/Form", [
 		 * Fires a submit event with the serialized form.
 		 *
 		 * @method submit
-		 * @return {Object} Event arguments object.
+		 * @return {Object} Participant arguments object.
 		 */
 		submit: function() {
 			return this.fire('submit', {data: this.toJSON()});

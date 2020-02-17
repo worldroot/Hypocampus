@@ -1,0 +1,45 @@
+event_homepage:
+    path:     /
+    defaults: { _controller: EventBundle:Default:index }
+
+_addevent:
+    path:     /P/Addevent
+    defaults: { _controller: EventBundle:Participant:Addevent }
+
+_updatevent:
+    path:     /P/Updatevent/{nomp}
+    defaults: { _controller: EventBundle:Participant:Updatevent }
+
+_readevent:
+    path:     /P/Readevent
+    defaults: { _controller: EventBundle:Participant:Readevent }
+
+_deletevent:
+    path:     /P/Deletevent/{nomp}
+    defaults: { _controller: EventBundle:Participant:Deletevent }
+
+_searchevent:
+    path:     /P/Searchevent
+    defaults: { _controller: EventBundle:Participant:Searchevent }
+
+
+
+addevent:
+    path:     /addeventA
+    defaults: { _controller: EventBundle:EventAdmin:addevent }
+
+afficherevent:
+    path:     /afficherevent
+    defaults: { _controller: EventBundle:EventAdmin:afficherevent }
+
+update_events:
+    path:     /updateEvents/{idev}
+    defaults: { _controller: EventBundle:EventAdmin:updateEvents }
+
+deleteevents:
+    path:     /deleteevents/{idev}
+    defaults: { _controller: EventBundle:EventAdmin:deleteevents }
+
+searchevents:
+    path:     /searchevents
+    defaults: { _controller: EventBundle:EventAdmin:searchevents }

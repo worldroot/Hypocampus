@@ -284,7 +284,7 @@ define("tinymce/pasteplugin/Clipboard", [
 		/**
 		 * Gets various content types out of a datatransfer object.
 		 *
-		 * @param {DataTransfer} dataTransfer Event fired on paste.
+		 * @param {DataTransfer} dataTransfer Participant fired on paste.
 		 * @return {Object} Object with mime types and data for those mime types.
 		 */
 		function getDataTransferItems(dataTransfer) {
@@ -316,7 +316,7 @@ define("tinymce/pasteplugin/Clipboard", [
 		 * Gets various content types out of the Clipboard API. It will also get the
 		 * plain text using older IE and WebKit API:s.
 		 *
-		 * @param {ClipboardEvent} clipboardEvent Event fired on paste.
+		 * @param {ClipboardEvent} clipboardEvent Participant fired on paste.
 		 * @return {Object} Object with mime types and data for those mime types.
 		 */
 		function getClipboardContent(clipboardEvent) {

@@ -1,3 +1,8 @@
+
+event:
+    resource: "@EventBundle/Resources/config/routing.yml"
+    prefix:   /event
+
 subscription:
     resource: "@SubscriptionBundle/Resources/config/routing.yml"
     prefix:   /subscription
