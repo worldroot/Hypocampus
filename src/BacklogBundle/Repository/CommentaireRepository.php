@@ -10,4 +10,10 @@ namespace BacklogBundle\Repository;
  */
 class CommentaireRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function CommentairesTask($id){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT c FROM BacklogBundle:Commentaire c WHERE c.task ='$id' ");
+        return $query->getResult();
+    }
 }

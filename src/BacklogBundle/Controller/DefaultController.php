@@ -3,14 +3,47 @@
 namespace BacklogBundle\Controller;
 
 use BacklogBundle\Entity\Backlog;
+use BacklogBundle\Entity\Commentaire;
 use BacklogBundle\Entity\Task;
 use BacklogBundle\Form\BacklogType;
+use BacklogBundle\Form\CommentaireType;
 use BacklogBundle\Form\TaskType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
+
+    public function CreateTaskCommentaireAction(Request $request,$id_b, $id){
+
+
+
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $form = $form->handleRequest($request);
+        if(($form->isSubmitted()) & ($form->isValid()))
+        {
+            //4.A Création d'un objet doctrine
+            $em = $this->getDoctrine()->getManager();
+
+            $commentaire->setDateCreation(new \DateTime('now'));
+            $user = $this->getUser();
+            $commentaire->setUser($user);
+            //4.B persister les données dans orm
+            $em->persist($commentaire);
+            //5.A sauv les données dans la bd
+            $em->flush();
+            //6 redirect to route
+            return $this->redirectToRoute('view_BacklogTask',['id_b' => $id_b, 'id'=> $id]);
+        }
+
+        return $this->render('@Backlog/Default/create_Task_Commentaire.html.twig', array(
+            'form' => $form->createView()
+        ));
+
+
+
+    }
     public function backlog_sprint_indexAction()
     {
         return $this->render('@Backlog/Default/backlog_sprint_index.html.twig');
@@ -117,8 +150,6 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-
-
         //1. prendre  l' objet
         $task = $em->getRepository(Task::class)->find($id);
 
@@ -193,8 +224,8 @@ class DefaultController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $task = $em->getRepository(Backlog::class)->find($id);
-        $form = $this->createForm(BacklogType::class, $task);
+        $backlog = $em->getRepository(Backlog::class)->find($id);
+        $form = $this->createForm(BacklogType::class, $backlog);
         $form = $form->handleRequest($request);
 
 
@@ -223,13 +254,61 @@ class DefaultController extends Controller
     {
 
         $em = $this->getDoctrine();
-        $tab2 = $em->getRepository(Task::class)->backlogTasks($id);
+        $tab2 = $em->getRepository(Task::class)->find($id);
+        $commentaires = $em->getRepository(Commentaire::class)->commentairesTask($id);
 
 
-        return $this->render('@Backlog/Default/task_show.html.twig', array(
-            'tasks' => $tab2
+        return $this->render('@Backlog/Default/task_show2.html.twig', array(
+            'task' => $tab2,
+            'commentaires' => $commentaires
             // ...
         ));
+    }
+
+    public function UpdateTaskCommentaireAction($id_b, $id, $id_c, Request $request)
+    {
+
+
+        $em = $this->getDoctrine()->getManager();
+        $com = $em->getRepository(Commentaire::class)->find($id_c);
+        $form = $this->createForm(CommentaireType::class, $com);
+        $form = $form->handleRequest($request);
+
+
+        if(($form->isSubmitted()) & ($form->isValid()))
+        {
+
+            $em->flush();
+
+            $tab = $em->getRepository(Backlog::class)->findAll();
+            $tab2 = $em->getRepository(Task::class)->findAll();
+
+            return $this->redirectToRoute('view_BacklogTask',['id_b' => $id_b, 'id' => $id]);
+
+
+        }
+
+        return $this->render('@Backlog/Default/update_Task_Commentaire.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    public function DeleteTaskCommentaireAction($id_b, $id, $id_c)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+
+
+        //1. prendre  l' objet
+        $commentaire = $em->getRepository(Commentaire::class)->find($id_c);
+
+
+        $em->remove($commentaire);
+        $em->flush();
+
+        return $this->redirectToRoute('view_BacklogTask',['id_b' => $id_b, 'id' => $id]);
+
     }
 
 

@@ -1,0 +1,188 @@
+{% extends 'backend.html.twig' %}
+{% block head %}
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
+    <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
+    <meta name="author" content="ThemeSelect">
+    <title>Dashboard - Chameleon Admin - Modern Bootstrap 4 WebApp & Dashboard HTML Template + UI Kit</title>
+    <link rel="apple-touch-icon" href="{{ asset('theme-assets/images/ico/apple-icon-120.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('theme-assets/images/ico/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
+    <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/vendors/css/vendors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/vendors/css/forms/toggle/switchery.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/plugins/forms/switch.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/core/colors/palette-switch.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/vendors/css/charts/chartist.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset("theme-assets/vendors/css/charts/chartist-plugin-tooltip.css") }}">
+    <!-- END: Vendor CSS-->
+
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/vendors.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/vendors/css/charts/chartist.css') }}">
+    <!-- END VENDOR CSS-->
+
+    <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/bootstrap-extended.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/colors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/components.min.css') }}">
+    <!-- END: Theme CSS-->
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/colors/palette-gradient.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/pages/chat-application.css') }}">
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/dashboard-analytics.min.css">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN CHAMELEON  CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/app-lite.css') }}">
+    <!-- END CHAMELEON  CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/core/menu/menu-types/vertical-menu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/core/colors/palette-gradient.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('theme-assets/css/pages/dashboard-ecommerce.css') }}">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <!-- END Custom CSS-->
+
+{% endblock %}
+
+
+{% block sidenavbar %}
+    <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="theme-assets/images/backgrounds/02.jpg">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('theme-assets/images/logo/hypocampus.png') }}"/>
+                        <h3 class="brand-text">Hypocampus</h3></a></li>
+                <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+            </ul>
+        </div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+                </li>
+                <li class=" nav-item"><a href="/rapport"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Rapport</span></a>
+                </li>
+                <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
+                </li>
+                <li class=" nav-item active"><a href="{{ path('backlog_nav_homepage') }}"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
+                </li>
+                <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
+                </li>
+                <li class=" nav-item"><a href="tables.html"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
+                </li>
+                <li class=" nav-item"><a href="form-elements.html"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Ressources</span></a>
+                </li>
+                <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navigation-background"></div>
+    </div>
+{% endblock %}
+
+
+
+{% block body %}
+
+
+<div class="app-content content align-content-center">
+    <div class="content-wrapper ">
+        <div class="content-header row">
+        </div>
+        <div class="content-body"><!-- Chart -->
+            <div class="col-12">    </div>
+            <div class="col-12">    </div>
+            <div class="col-12">    </div>
+            <div class="col-12">    </div>
+            <p>
+
+
+            </p>
+
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Liste des Commentaires </h4>
+                    <a class="heading-elements-toggle">
+                        <i class="fa fa-ellipsis-v font-medium-3"></i>
+                    </a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li>
+                                <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('create_commentaire',{'id_b':task.backlog.id, 'id':task.id}) }}">New commentaire</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Tabs with Icons start -->
+                <section id="tabs-with-icons">
+                    <div class="row">
+                        <div class="col-12 mt-3 mb-1">
+                            <h4 class="text-uppercase">Tache : {{ task.title }}</h4>
+                            <p>Listes des commentaires concernant la tache.</p>
+                        </div>
+                    </div>
+                    <div class="row match-height">
+                        {% for com in commentaires %}
+                        <div class="col-xl-6 col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Commentaire id: {{ com.id }}</h4>
+                                    <a href="{{ path('delete_commentaire',{'id_b':task.backlog.id, 'id':task.id, 'id_c':com.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a>
+                                    <a href="{{ path('update_commentaire',{'id_b':task.backlog.id, 'id':task.id, 'id_c':com.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a>
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <ul class="nav nav-tabs">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="baseIcon-tab1" data-toggle="tab" aria-controls="tabIcon1" href="#tabIcon1{{ com.id }}" aria-expanded="true"><i class="ft-aperture"></i> Description</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="baseIcon-tab2" data-toggle="tab" aria-controls="tabIcon2" href="#tabIcon2{{ com.id }}" aria-expanded="false"><i class="ft-bell"></i> User</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="baseIcon-tab3" data-toggle="tab" aria-controls="tabIcon3" href="#tabIcon3{{ com.id }}" aria-expanded="false"><i class="ft-compass"></i> Date Creation</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content px-1 pt-1">
+                                            <div role="tabpanel" class="tab-pane active" id="tabIcon1{{ com.id }}" aria-expanded="true" aria-labelledby="baseIcon-tab1">
+                                                <p>{{ com.description }}</p>
+                                            </div>
+                                            <div class="tab-pane" id="tabIcon2{{ com.id }}" aria-labelledby="baseIcon-tab2">
+                                                <p>{{ com.user.username }}</p>
+                                            </div>
+                                            <div class="tab-pane" id="tabIcon3{{ com.id }}" aria-labelledby="baseIcon-tab3">
+                                                <p>{{ com.dateCreation | date }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor%}
+                    </div>
+                </section>
+                <!-- Tabs with Icons end -->
+
+
+
+        </div>
+    </div>
+</div>
+
+    {%endblock%}
+
+    {% block footer %}
+
+    {% endblock %}
+

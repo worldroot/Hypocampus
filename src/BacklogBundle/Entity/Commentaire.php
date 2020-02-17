@@ -108,11 +108,11 @@ class Commentaire
     /**
      * Set user
      *
-     * @param \AppBuundle\Entity\User $user
+     * @param \AppBundle\Entity\User $user
      *
      * @return Commentaire
      */
-    public function setUser(\AppBuundle\Entity\User $user = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -122,7 +122,7 @@ class Commentaire
     /**
      * Get user
      *
-     * @return \AppBuundle\Entity\User
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {
