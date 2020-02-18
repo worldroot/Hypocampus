@@ -98,17 +98,17 @@
                                                 <fieldset class="form-group">
 
                                                     <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Votre description"
-                                                    {{ form_widget(form.description, { 'attr' : { 'class' : 'form-control' } }) }}>
+                                                    {{ form_widget(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
                                                     </textarea>
                                                 </fieldset>
 
                                                 <fieldset class="form-group">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                                        {{ form_widget(form.imageFile, { 'attr' : { 'class' : '' } }) }}
+
+                                                        {{ form_widget(form.imageFile, { 'attr' : { 'class' : 'custom-file-input' } }) }}
 
                                                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                                        {{ form_label(form.imagefile, 'My Custom Task Label') }}
+                                                        {{ form_label(form.imageFile, 'Ajouter votre fichier') }}
 
                                                     </div>
                                                 </fieldset>
