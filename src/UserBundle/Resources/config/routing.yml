@@ -4,3 +4,6 @@ user_homepage:
 register:
     path:     /Register
     defaults: { _controller: UserBundle:Default:register }
+home:
+    path:     /home
+    defaults: { _controller: UserBundle:Security:redirect }
