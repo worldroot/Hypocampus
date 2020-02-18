@@ -168,7 +168,10 @@
                                                 <p>{{ com.dateCreation | date }}</p>
                                             </div>
                                             <div class="tab-pane" id="tabIcon4{{ com.id }}" aria-labelledby="baseIcon-tab3">
-                                                <img src="{{ vich_uploader_asset(com, 'imageFile') }}" alt="{{ com.imageName }}" />
+                                                <img src="{{ asset(vich_uploader_asset(com, 'imageFile', 'BacklogBundle\\Entity\\Commentaire')) }}" alt="{{ com.imageName }}" />
+
+                                                <button type="button" class="btn btn-info btn-min-width mr-1 mb-1"><a href="{{ asset('uploads/commentaires/files/' ~ com.imageName) }}">View File</a> <i class="ft-link-2"></i></button>
+
                                             </div>
                                         </div>
                                     </div>
