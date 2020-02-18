@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CommentaireType extends AbstractType
 {
@@ -22,6 +23,7 @@ class CommentaireType extends AbstractType
                 'choice_label'=>'title',
                 'multiple'=>false
             ))
+            ->add('imageFile', VichImageType::class)
             ->add('valider',SubmitType::class);
     }/**
      * {@inheritdoc}

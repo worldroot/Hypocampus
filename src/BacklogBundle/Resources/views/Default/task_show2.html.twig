@@ -153,6 +153,9 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="baseIcon-tab3" data-toggle="tab" aria-controls="tabIcon3" href="#tabIcon3{{ com.id }}" aria-expanded="false"><i class="ft-compass"></i> Date Creation</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="baseIcon-tab3" data-toggle="tab" aria-controls="tabIcon3" href="#tabIcon4{{ com.id }}" aria-expanded="false"><i class="ft-compass"></i> File</a>
+                                            </li>
                                         </ul>
                                         <div class="tab-content px-1 pt-1">
                                             <div role="tabpanel" class="tab-pane active" id="tabIcon1{{ com.id }}" aria-expanded="true" aria-labelledby="baseIcon-tab1">
@@ -163,6 +166,9 @@
                                             </div>
                                             <div class="tab-pane" id="tabIcon3{{ com.id }}" aria-labelledby="baseIcon-tab3">
                                                 <p>{{ com.dateCreation | date }}</p>
+                                            </div>
+                                            <div class="tab-pane" id="tabIcon4{{ com.id }}" aria-labelledby="baseIcon-tab3">
+                                                <img src="{{ vich_uploader_asset(com, 'imageFile') }}" alt="{{ com.imageName }}" />
                                             </div>
                                         </div>
                                     </div>
