@@ -29,7 +29,6 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="card-body">
-
                                             <div class="form-body">
                                                 {{ form_start(form) }}
                                                 <div class="form-group">
@@ -55,14 +54,11 @@
                                                 </div>
 
                                                 <div class="form-group" aria-required="true">
-                                                    <label for="donationinput7" class="sr-only">Choix</label>
+                                                    <label for="donationinput7" class="sr-only"></label>
                                                     <center>{{ form_widget(form.captcha, { 'attr' : { 'class' : 'form-control round' } }) }}</center>
                                                 </div>
-
-
-
-
                                             </div>
+
                                             <div class="form-actions center">
                                                 <button class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1" {{ form_widget(form.valider) }}  </button>
                                             </div>

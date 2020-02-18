@@ -85,4 +85,26 @@ class EventAdminController extends Controller
         ));
     }
 
+    public function ViewparticipantAction(Request $request)
+    {
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(EventsAdmin::class)->findAll();
+
+        $input=$request->get('TitreEvent');
+        if(isset($input))
+        {
+            $formation = $em->getRepository(EventsAdmin::class)->findType($input);
+
+            return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
+                'formations' => $formation
+            ));
+        }
+
+        return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
+            'formations'=>$tab
+        ));
+    }
+
+
+
 }
