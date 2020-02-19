@@ -16,4 +16,10 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery("SELECT c FROM BacklogBundle:Task c WHERE c.backlog ='$id' ");
         return $query->getResult();
     }
+
+    public function backlogArchives($id){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT c FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.archive = 1 ");
+        return $query->getResult();
+    }
 }

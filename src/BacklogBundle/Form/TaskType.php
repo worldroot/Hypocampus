@@ -2,6 +2,7 @@
 
 namespace BacklogBundle\Form;
 
+use AppBundle\Entity\User;
 use BacklogBundle\Entity\Backlog;
 use BacklogBundle\Entity\Task;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,6 +27,11 @@ class TaskType extends AbstractType
                     'In Progress' => "In Progress",
                     'Done' => "Done",
                 ),
+            ))
+            ->add('user',EntityType::class,array(
+                'class'=>User::class,
+                'choice_label'=>'username',
+                'multiple'=>false
             ))
             ->add('priority')
             ->add('valider',SubmitType::class);

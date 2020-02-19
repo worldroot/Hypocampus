@@ -135,7 +135,7 @@
 
                     <div class="card">
                         <div class="card-header p-1">
-                            <h4 class="card-title float-left">Tache {{ task.title }} - <span class="blue-grey lighten-2 font-small-3 mb-0">{{ task.createdDate | date }} - {{ task.finishedDate | date }}</span></h4>
+                            <h4 class="card-title float-left">Tache #{{ task.id}} -{{ task.title }} - <span class="blue-grey lighten-2 font-small-3 mb-0">{{ task.createdDate | date }} - {{ task.finishedDate | date }}</span></h4>
                             <span class="badge badge-pill badge-info float-right m-0">
                                 {{ task.state }}
                             </span>
@@ -144,20 +144,20 @@
                             <div class="card-footer text-center p-1">
                                 <div class="row">
                                     <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
-                                        <p class="blue-grey lighten-2 mb-0">Tasks</p>
-                                        <p class="font-medium-5 text-bold-400">26</p>
+                                        <p class="blue-grey lighten-2 mb-0">Descrip. Fonctionelle</p>
+                                        <p class="font-medium-5 text-bold-400">{{ task.descriptionFonctionnel }}</p>
                                     </div>
                                     <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
-                                        <p class="blue-grey lighten-2 mb-0">Completed</p>
-                                        <p class="font-medium-5 text-bold-400">58%</p>
+                                        <p class="blue-grey lighten-2 mb-0">Descrip. Technique</p>
+                                        <p class="font-medium-5 text-bold-400">{{ task.descriptionTechnique }}</p>
                                     </div>
                                     <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
-                                        <p class="blue-grey lighten-2 mb-0">Pending</p>
-                                        <p class="font-medium-5 text-bold-400">42%</p>
+                                        <p class="blue-grey lighten-2 mb-0">Priority</p>
+                                        <p class="font-medium-5 text-bold-400">{{ task.priority }}</p>
                                     </div>
                                     <div class="col-md-3 col-12 text-center">
-                                        <p class="blue-grey lighten-2 mb-0">Version</p>
-                                        <p class="font-medium-5 text-bold-400">4.5</p>
+                                        <p class="blue-grey lighten-2 mb-0">Story Points</p>
+                                        <p class="font-medium-5 text-bold-400">{{ task.storyPoints }}</p>
                                     </div>
                                 </div>
                                 <hr>

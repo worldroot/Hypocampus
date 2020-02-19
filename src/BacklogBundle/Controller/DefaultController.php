@@ -100,11 +100,13 @@ class DefaultController extends Controller
         $em = $this->getDoctrine();
         $tab = $em->getRepository(Backlog::class)->find($id);
         $tab2 = $em->getRepository(Task::class)->backlogTasks($id);
+        $archives = $em->getRepository(Task::class)->backlogArchives($id);
 
 
         return $this->render('@Backlog/Default/view_ProjectBacklog.html.twig', array(
             'backlog'=> $tab,
-            'tasks' => $tab2
+            'tasks' => $tab2,
+            'archives' => $archives
             // ...
         ));
 
@@ -125,6 +127,7 @@ class DefaultController extends Controller
             $task->setCreatedDate($date);
             $backlog= $em->getRepository(Backlog::class)->find($id);
             $task->setBacklog($backlog);
+            $task->setArchive(0);
             $em->persist($task);
 
 
