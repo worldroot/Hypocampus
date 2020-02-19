@@ -1,0 +1,55 @@
+backlog_sprint_homepage:
+    path:     /
+    defaults: { _controller: BacklogBundle:Default:backlog_sprint_index }
+
+backlog_nav_homepage:
+    path:     /backlog_nav
+    defaults: { _controller: BacklogBundle:Default:backlog_nav }
+
+create_ProjectBacklog:
+    path:     /ProjectBacklog/new
+    defaults: { _controller: BacklogBundle:Default:create_ProjectBacklog }
+
+view_ProjectBacklog:
+    path:     /ProjectBacklog/view/{id}
+    defaults: { _controller: BacklogBundle:Default:view_ProjectBacklog }
+
+delete_ProjectBacklog:
+    path:     /ProjectBacklog/remove/{id}
+    defaults: { _controller: BacklogBundle:Default:DeleteProjectBacklog }
+
+update_ProjectBacklog:
+    path:     /ProjectBacklog/update/{id}
+    defaults: { _controller: BacklogBundle:Default:UpdateProjectBacklog }
+
+index_ProjectBacklog:
+    path:     /ProjectBacklog/index
+    defaults: { _controller: BacklogBundle:Default:IndexProjectBacklog }
+
+add_BacklogTask:
+    path:     /ProjectBacklog/view/{id}/task/add
+    defaults: { _controller: BacklogBundle:Default:AddBacklogTask }
+
+delete_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/task/remove/{id}
+    defaults: { _controller: BacklogBundle:Default:RemoveBacklogTask }
+
+update_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/task/update/{id}
+    defaults: { _controller: BacklogBundle:Default:UpdateBacklogTask }
+
+view_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/task/view/{id}
+    defaults: { _controller: BacklogBundle:Default:ViewBacklogTask }
+
+create_commentaire:
+    path:     /ProjectBacklog/view/{id_b}/task/view/{id}/commentaire/add
+    defaults: { _controller: BacklogBundle:Default:CreateTaskCommentaire }
+
+update_commentaire:
+    path:     /ProjectBacklog/view/{id_b}/task/view/{id}/commentaire/update/{id_c}
+    defaults: { _controller: BacklogBundle:Default:UpdateTaskCommentaire }
+
+delete_commentaire:
+    path:     /ProjectBacklog/view/{id_b}/task/view/{id}/commentaire/delete/{id_c}
+    defaults: { _controller: BacklogBundle:Default:DeleteTaskCommentaire }

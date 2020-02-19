@@ -1,0 +1,152 @@
+{% extends 'backend.html.twig' %}
+{% block sidenavbar %}
+    <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="theme-assets/images/backgrounds/02.jpg">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('theme-assets/images/logo/hypocampus.png') }}"/>
+                        <h3 class="brand-text">Hypocampus</h3></a></li>
+                <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+            </ul>
+        </div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+                </li>
+                <li class=" nav-item"><a href="/rapport"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Rapport</span></a>
+                </li>
+                <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
+                </li>
+                <li class=" nav-item active"><a href="{{ path('backlog_nav_homepage') }}"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
+                </li>
+                <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
+                </li>
+                <li class=" nav-item"><a href="tables.html"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
+                </li>
+                <li class=" nav-item"><a href="form-elements.html"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Ressources</span></a>
+                </li>
+                <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navigation-background"></div>
+    </div>
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="app-content content align-content-center">
+        <div class="content-wrapper ">
+            <div class="content-header row">
+            </div>
+            <div class="content-body"><!-- Chart -->
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <p>
+
+
+                </p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Backlog du {{ backlog.project.name }}  </h4>
+                        <a class="heading-elements-toggle">
+                            <i class="fa fa-ellipsis-v font-medium-3"></i>
+                        </a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >Points Done {{ backlog.pointsDone  }} </a>
+                                    <a class="btn btn-sm btn-info box-shadow-2 round btn-min-width pull-right"  >Points In Progress {{  backlog.pointsInProgress }} </a>
+                                    <a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right"  >Points To Do {{ backlog.pointsToDo }}  </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Bordered table start -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Taches</h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3">  </i></a>
+
+
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        <a href="{{ path('add_BacklogTask',{'id':backlog.id}) }}"><button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" >Add a new task</button></a>
+                                    </p>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id='table' class="table dataTable zero-configuration table-bordered mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Descrip.Fonct.</th>
+                                            <th>Descrip.Tech.</th>
+                                            <th>State</th>
+                                            <th>Priority</th>
+                                            <th>Story Points</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% if tasks is not empty %}
+                                            {% for task in tasks %}
+
+                                                <tr>
+                                                    <th scope="row">{{ task.id }}</th>
+                                                    <td> <a href="{{ path('view_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}">{{ task.title }}</a></td>
+                                                    <td>{{ task.descriptionFonctionnel }}</td>
+                                                    <td>{{ task.descriptionTechnique }}</td>
+                                                    <td>{{ task.state }}</td>
+                                                    <td>{{ task.priority }}</td>
+                                                    <td>{{ task.storyPoints }}</td>
+                                                    <td> <a href="{{ path('delete_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a> </td>
+                                                    <td>  <a href="{{ path('update_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a> </td>
+                                                </tr>
+
+                                            {% endfor %}
+
+                                        {% else %}
+
+                                        {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Bordered table end -->
+
+    </div>
+    </div>
+    </div>
+
+
+
+
+{%endblock%}
+
+    {% block footer %}
+
+    {% endblock %}

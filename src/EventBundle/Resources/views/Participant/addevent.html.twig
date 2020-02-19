@@ -1,0 +1,89 @@
+{% extends 'backend.html.twig' %}
+
+    {% block topnavbar %}
+
+    {% endblock %}
+
+    {% block sidenavbar %}
+
+    {% endblock %}
+
+
+    {% block body %}
+<body class="vertical-layout vertical-menu 1-column  bg-full-screen-image blank-page blank-page" data-open="click"
+      data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="1-column">
+        <div class="">
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+
+                <!-- PUT BODY HERE -->
+                <div class="content-body">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="col-lg-4 col-md-6 col-10 box-shadow-2 p-0">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="font-large-1  text-center">
+                                        Inscription Participant
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body">
+
+                                            <div class="form-body">
+                                                {{ form_start(form) }}
+                                                <div class="form-group">
+                                                    <label for="donationinput1" class="sr-only">First Name</label>
+                                                    <input type="text"  class="form-control round" placeholder="Nom"  {{ form_widget(form.nomp) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="donationinput2" class="sr-only">Last Name</label>
+                                                    <input type="text"  class="form-control round" placeholder="Prenom"  {{ form_widget(form.prenomp) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="donationinput3" class="sr-only">E-mail</label>
+                                                    <input type="email"  class="form-control round" placeholder="E-mail"  {{ form_widget(form.email) }}
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="donationinput4" class="sr-only">Password</label>
+                                                    <input type="password" class="form-control round" placeholder="Password"  {{ form_widget(form.passwordp) }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="donationinput7" class="sr-only">Choix</label>
+                                                    {{ form_widget(form.choix, { 'attr' : { 'class' : 'form-control round' } }) }}
+                                                </div>
+
+                                            </div>
+                                            <div class="form-actions center">
+                                                <button class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1" {{ form_widget(form.valider) }}  </button>
+                                            </div>
+
+
+                                            {{ form_end(form) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <!--/ END BODY -->
+            </div>
+        </div>
+        </div>
+
+</body>
+    {% endblock %}
+
+
+    {% block footer %}
+
+    {% endblock %}
+
