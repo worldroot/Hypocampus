@@ -23,7 +23,7 @@ class ParticipantType extends AbstractType
                 ->add('passwordp')
                 ->add('choix',EntityType::class, array(
                 'class'=>EventsAdmin::class,
-                'choice_label'=>'TypeEvent',
+                'choice_label'=>'TitreEvent',
                 'multiple'=>false))
                 ->add('captcha', CaptchaType::class, array(
                     'width' => 200,

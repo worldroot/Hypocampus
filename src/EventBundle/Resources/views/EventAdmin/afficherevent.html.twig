@@ -19,7 +19,7 @@
                 </li>
                 <li class=" nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title" data-i18n="">Participant</span></a>
                     <ul class="menu-content">
-                        <li class="menu-item"><a href="{{path('_searchevent')}}">List Participants</a>
+                        <li class="menu-item"><a href="{{path('searchp')}}">List Participants</a>
                         </li>
                     </ul>
                 </li>
@@ -44,17 +44,17 @@
                     <div class="row">
                                 <div class="card-deck">
                                 {% for i in tabs %}
-                                    <div class="col-6">
+                                    <div class="col-4">
                                     <div class="pull-up">
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ i.titreEvent }}</span></h5>
-                                                    <a href="{{path('deleteevents',{'idev':i.idev})}}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a>
-                                                    <a href="{{path('update_events',{'idev':i.idev})}}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a>
+                                                    <a href="{{path('deleteevents',{'idev':i.idev})}}"><span class="btn btn-outline-danger btn-min-width box-shadow-2 mr-1 "><i class="ft-x"></i></span></a>
+                                                    <a href="{{path('update_events',{'idev':i.idev})}}"><span class="btn btn-outline-success btn-min-width box-shadow-2 mr-1"><i class="ft-edit-2"></i></span></a>
                                                     <br>
                                                     <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ i.TypeEvent }}</span></h6>
                                                     <h6 class="text-bold-600 mt-1"> Numero: <span class="blue-grey">{{ i.numeroEvent }}</span></h6>
-
+                                                    <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ i.dateEvent|date('Y-m-d') }}</span></h6>
                                             </div>
                                         </div>
                                     </div>

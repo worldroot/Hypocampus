@@ -27,4 +27,19 @@ class ParticipantRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    /*public function findchoix()
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT f.choix FROM EventBundle:Participant f ");
+        return $query->getResult();
+    }*/
+
+
+    public function tri()
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT * from EventBundle:EventsAdmin ORDER BY nomp ASC");
+        return $query->getResult();
+    }
+
+
 }

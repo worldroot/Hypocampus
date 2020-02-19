@@ -54,6 +54,11 @@
                                                 <input  class="form-control" placeholder="Type"  {{ form_widget(form.typeEvent) }}
                                             </div>
 
+                                            <div class="form-group">
+                                                <label for="donationinput7" class="sr-only">Date d'event</label>
+                                                {{ form_widget(form.dateEvent, { 'attr' : { 'class' : 'form-control date-inputmask' } }) }}
+                                            </div>
+
                                         </div>
                                         <div class="form-actions center">
                                             <button class="btn btn-primary" {{ form_widget(form.valider) }}  </button>

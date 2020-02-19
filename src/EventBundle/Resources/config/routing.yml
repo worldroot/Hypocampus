@@ -2,9 +2,9 @@ event_homepage:
     path:     /
     defaults: { _controller: EventBundle:Default:index }
 
-_addevent:
-    path:     /P/Addevent
-    defaults: { _controller: EventBundle:Participant:Addevent }
+addp:
+    path:     /P/Addp
+    defaults: { _controller: EventBundle:Participant:Addp }
 
 _updatevent:
     path:     /P/Updatevent/{nomp}
@@ -18,13 +18,17 @@ _deletevent:
     path:     /P/Deletevent/{nomp}
     defaults: { _controller: EventBundle:Participant:Deletevent }
 
-_searchevent:
-    path:     /P/Searchevent
-    defaults: { _controller: EventBundle:Participant:Searchevent }
+searchp:
+    path:     /P/Searchp
+    defaults: { _controller: EventBundle:Participant:Searchp }
 
 viewparticipant:
     path:     /P/view
     defaults: { _controller: EventBundle:EventAdmin:Viewparticipant }
+
+triep:
+    path:     /P/Triep
+    defaults: { _controller: EventBundle:Participant:Triep }
 
 
 

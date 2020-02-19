@@ -22,7 +22,7 @@ class ParticipantController extends Controller
         ));
     }
 
-    public function AddeventAction(Request $request)
+    public function AddpAction(Request $request)
     {
         $club = new Participant();
         $form = $this->createForm(ParticipantType::class, $club);
@@ -55,12 +55,12 @@ class ParticipantController extends Controller
             $em->persist($club);
             $em->flush();
             echo "<script>alert('Ajouté avec succès')</script>";
-            return $this->redirectToRoute('_addevent');
+            return $this->redirectToRoute('addp');
 
 
         }
 
-        return $this->render('@Event/Participant/addevent.html.twig', array(
+        return $this->render('@Event/Participant/addp.html.twig', array(
             'form'=>$form->createView()
         ));
     }
@@ -74,7 +74,7 @@ class ParticipantController extends Controller
         $cnx->remove($d);
         $cnx->flush();
         echo "<script>alert('Suppression succeed')</script>";
-        return $this->redirectToRoute('_searchevent');
+        return $this->redirectToRoute('searchp');
     }
 
 
@@ -91,16 +91,16 @@ class ParticipantController extends Controller
         if( ($form->isSubmitted()) & ($form->isValid()) ){
 
             $em->flush();
-            return $this->redirectToRoute('_searchevent');
+            return $this->redirectToRoute('searchp');
         }
 
-        return $this->render('@Event/Participant/addevent.html.twig', array(
+        return $this->render('@Event/Participant/addp.html.twig', array(
             'form'=>$form->createView()
         ));
     }
 
 
-    public function SearcheventAction(Request $request)
+    public function SearchpAction(Request $request)
     {
 
         $em=$this->getDoctrine();
@@ -111,14 +111,28 @@ class ParticipantController extends Controller
         {
             $formation = $em->getRepository(Participant::class)->findNomp($input);
 
-            return $this->render('@Event/Participant/searchevent.html.twig', array(
+            return $this->render('@Event/Participant/searchp.html.twig', array(
                 'formations' => $formation
             ));
         }
 
-        return $this->render('@Event/Participant/searchevent.html.twig', array(
+        return $this->render('@Event/Participant/searchp.html.twig', array(
             'formations'=>$tab
         ));
     }
+
+
+    public function TriepAction()
+    {
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(Participant::class)->tri();
+        return $this->render('@Event/Participant/searchp.html.twig', array(
+            'tabs'=>$tab
+            // ...
+        ));
+    }
+
+
+
 
 }
