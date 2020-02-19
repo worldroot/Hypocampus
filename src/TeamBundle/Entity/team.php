@@ -79,7 +79,7 @@ class team
      */
     public function setDateofcreation($dateofcreation)
     {
-        $this->dateofcreation = new \DateTime($dateofcreation);
+        $this->dateofcreation = $dateofcreation;
 
         return $this;
     }

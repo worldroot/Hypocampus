@@ -46,8 +46,9 @@ class teamController extends Controller
         //Save?
         if ($request->isMethod('POST')) {
             //Mettre a jour
+            $dateofcreation = \DateTime::createFromFormat('Y-m-d', $request->get('dateofcreation'));
             $team->setTeamname($request->get('teamname'));
-            $team->setDateofcreation($request->get('dateofcreation'));
+            $team->setDateofcreation($dateofcreation);
 
             $em->persist($team);
             $em->flush();

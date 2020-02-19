@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                             <div class="card" style="height: 798px;">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-colored-form-control">Create Team</h4>
+                                    <h4 class="card-title" id="basic-layout-colored-form-control">Update meeting</h4>
                                     <a class="heading-elements-toggle">
                                         <i class="la la-ellipsis-v font-medium-3"></i>
                                     </a>
@@ -67,6 +67,19 @@
                                             <label for="contactinput5">Duree</label>
                                             <input type="text" class="form-control" placeholder="duration"  name="duration" value="{{ form.duration }}">
 
+                                        </div>
+
+
+
+
+                                        <div class="form-group">
+                                            <label for="contactinput5">Team</label>
+                                            <select name="team" class="form-control">
+                                                {% for i in team %}
+                                                <option {% if i.id == form.team.id  %} selected {% endif %} value="{{ i.id }}">
+                                                    {{ i.teamname }}
+                                                </option>
+                                                {% endfor %}
                                         </div>
 
                                     </div>

@@ -24,7 +24,7 @@
                     <div class="col-md-6">
                         <div class="card" style="height: 798px;">
                             <div class="card-header">
-                                <h4 class="card-title" id="basic-layout-colored-form-control">Create Team</h4>
+                                <h4 class="card-title" id="basic-layout-colored-form-control">Create Meeting</h4>
                                 <a class="heading-elements-toggle">
                                     <i class="la la-ellipsis-v font-medium-3"></i>
                                 </a>
@@ -70,8 +70,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="contactinput5">duree</label>
+                                        <label for="contactinput5">Duration</label>
                                         {{ form_widget(form.duration, { 'attr' : { 'class' : 'form-control' } }) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contactinput5">Team</label>
+                                        {{ form_widget(form.team, { 'attr' : { 'class' : 'form-control' } }) }}
                                     </div>
 
                                 </div>

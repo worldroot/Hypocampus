@@ -17,3 +17,6 @@ update_meeting:
 delete_meeting:
     path:     /deleteMeeting/{id}
     defaults: { _controller: MeetingBundle:Meeting:deleteMeeting }
+pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: MeetingBundle:Meeting:pdf }

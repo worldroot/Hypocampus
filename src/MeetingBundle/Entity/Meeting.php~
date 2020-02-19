@@ -36,7 +36,7 @@ class Meeting
     private $duration;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TeamBundle\Entity\team")
+     * @ORM\ManyToOne(targetEntity="team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
      */
     private $team;
@@ -99,28 +99,5 @@ class Meeting
     {
         return $this->duration;
     }
-
-    /**
-     * Set team
-     *
-     * @param \TeamBundle\Entity\team $team
-     *
-     * @return Meeting
-     */
-    public function setTeam(\TeamBundle\Entity\team $team )
-    {
-        $this->team = $team;
-
-        return $this;
-    }
-
-    /**
-     * Get team
-     *
-     * @return \TeamBundle\Entity\team
-     */
-    public function getTeam()
-    {
-        return $this->team;
-    }
 }
+

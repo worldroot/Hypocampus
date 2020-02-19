@@ -54,10 +54,12 @@
                                             <th scope="row">{{ i.id }}</th>
                                             <td>{{ i.teamname }}</td>
                                             <td>{{ i.dateofcreation |date("m/d/Y")  }}</td>
-                                            <td><a href="{{ path('updateteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">I</button></a>  </td>
+                                            <td><a href="{{ path('updateteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">update</button></a>  </td>
                                             <td><a href="{{ path('deleteteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Delete</button></a>  </td>
                                         </tr>
+
                                        {% endfor %}
+                                        <a href="{{ path('createteam') }}"><button type="button" class="btn btn-success btn-min-width mr-1 mb-1">ajouter</button></a>
                                         </tbody>
                                     </table>
                                 </div>
