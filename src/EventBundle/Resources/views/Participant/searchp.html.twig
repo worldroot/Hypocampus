@@ -113,7 +113,7 @@
                                                 <td class="text-truncate">{{ i.prenomp }}</td>
                                                 <td class="text-truncate">{{ i.email }}</td>
                                                 <td class="text-truncate">{{ i.passwordp }}</td>
-                                                <td class="text-truncate">{{ i.choix.TypeEvent }}</td>
+                                                <td class="text-truncate">{{ i.choix.TitreEvent }}</td>
                                                 <td class="text-truncat mr-1">
                                                     <a href="{{path('_deletevent',{'nomp':i.nomp})}}">
                                                         <button class="btn btn-sm btn-outline-danger round" type="submit">Supprimer</button>
@@ -124,14 +124,6 @@
                                                         <button class="btn btn-sm btn-outline-success round" type="submit">Modifier</button>
                                                     </a>
                                                 </td>
-                                                <td class="text-truncat mr-1">
-                                                    <a href="{{path('triep',{'nomp':i.nomp})}}">
-                                                        <button class="btn btn-sm btn-outline-success round" type="submit">Trier</button>
-                                                    </a>
-                                                </td>
-
-
-
                                             </tr>
                                         {% endfor %}
                                         </tbody>

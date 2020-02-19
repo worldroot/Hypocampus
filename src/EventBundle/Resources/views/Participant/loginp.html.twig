@@ -1,0 +1,87 @@
+{% extends 'backend.html.twig' %}
+
+    {% block topnavbar %}
+
+    {% endblock %}
+
+    {% block sidenavbar %}
+
+    {% endblock %}
+
+
+    {% block body %}
+        <body class="vertical-layout vertical-menu 1-column  bg-full-screen-image blank-page blank-page" data-open="click"
+              data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="1-column">
+        <div class="">
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+
+                <!-- PUT BODY HERE -->
+                <div class="content-body">
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <div class="col-lg-4 col-md-6 col-10 box-shadow-2 p-0">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="font-large-1  text-center">
+                                        Login Participant
+                                    </div>
+                                </div>
+                                <form>
+                                <div class="card-block">
+                                    <div class="card-body">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label for="donationinput3" class="sr-only">E-mail</label>
+                                                <input type="email"  class="form-control round" placeholder="E-mail" name="email">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="donationinput4" class="sr-only">Password</label>
+                                                <input type="password" class="form-control round" placeholder="Password" name="passwird" >
+                                            </div>
+                                            <div class="form-group" aria-required="true">
+                                                <label for="donationinput7" class="sr-only"></label>
+                                                <center></center>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-actions center">
+                                            <button type="submit" class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1" > login </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
+                                        <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-2 "><span>Ou s'inscrire comme Participant</span></p>
+                                        <div class="text-center">
+                                            <a href="{{path('addp')}}"><button class="btn btn-outline-danger btn-min-width box-shadow-2 mr-1"> sign up </button></a>
+
+                                        </div>
+
+                                        <p class="card-subtitle text-muted text-right font-small-3 mx-2 my-1"></p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!--/ END BODY -->
+        </div>
+        </div>
+        </div>
+
+        </body>
+    {% endblock %}
+
+
+    {% block footer %}
+
+    {% endblock %}
+

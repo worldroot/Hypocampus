@@ -3,6 +3,7 @@
 namespace EventBundle\Controller;
 
 
+use EventBundle\Entity\EventsAdmin;
 use EventBundle\Entity\Participant;
 use EventBundle\Form\ParticipantType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,37 +32,55 @@ class ParticipantController extends Controller
         if (($form->isSubmitted()) & ($form->isValid())) {
 
             $em = $this->getDoctrine()->getManager();
-
-/*
-                        $club->setChoix($request->get('typeEvent'));
-
-                        if($club->getChoix()=="Cours")
-                        {
-                            $choix=$em->getRepository(EventsAdmin::class)->findType("Cours");
-                            $club->setChoix($choix[0]);
-                        }
-                        if($club->getChoix()=="Workshop")
-                        {
-                            $choix=$em->getRepository(EventsAdmin::class)->findType("Workshop");
-                            $club->setChoix($choix[0]);
-                        }
-                        if($club->getChoix()=="Formation")
-                        {
-                            $choix=$em->getRepository(EventsAdmin::class)->findType("Formation");
-                            $club->setChoix($choix[0]);
-                        }
-*/
-
             $em->persist($club);
             $em->flush();
             echo "<script>alert('Ajouté avec succès')</script>";
-            return $this->redirectToRoute('addp');
+            $choix = $em->getRepository(EventsAdmin::class)->find($club->getChoix()->getIdev());
+
+            return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
+                'formations' => $choix
+            ));
+
 
 
         }
 
         return $this->render('@Event/Participant/addp.html.twig', array(
             'form'=>$form->createView()
+        ));
+    }
+
+    public function LoginpAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $email = $request->query->get('email');
+        $pwid = $request->query->get('passwird');
+
+        $particpants = $em->getRepository(Participant::class)->findParticipant($email);
+
+        foreach($particpants as $pa) {
+            $participant = $pa;
+
+            if($participant->getPasswordp() == $pwid)
+            {
+                $choix = $em->getRepository(EventsAdmin::class)->find($participant->getChoix()->getIdev());
+
+                return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
+                    'formations' => $choix
+                ));
+            }
+
+            else
+            {
+                echo "<script>alert('Vérifier e-mail ou mot de passe !')</script>";
+            }
+            // break loop after first iteration
+            break;
+        }
+
+        return $this->render('@Event/Participant/loginp.html.twig', array(
+
+            // ...
         ));
     }
 
@@ -131,6 +150,8 @@ class ParticipantController extends Controller
             // ...
         ));
     }
+
+
 
 
 

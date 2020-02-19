@@ -92,7 +92,6 @@ class EventAdminController extends Controller
         $em = $this->getDoctrine();
 
         $choix = $em->getRepository(EventsAdmin::class)->findAll();
-        //$type=$em->getRepository(EventsAdmin::class)->findcwf($choix);
 
         $input = $request->get('TypeEvent');
         if (isset($input)) {

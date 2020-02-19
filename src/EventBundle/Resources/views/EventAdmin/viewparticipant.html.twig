@@ -31,21 +31,41 @@
                     <section id="decks">
                         <div class="row">
                             <div class="card-deck">
-                                {% for i in formations %}
-                                    <div class="col-6">
+                                {% if formations.titreEvent is defined %}
+                                    <div class="col-12">
                                         <div class="pull-up">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ i.titreEvent }}</span></h5>
+                                                    <div class="col-12">
+                                                    <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ formations.titreEvent }}</span></h5>
                                                     <br>
-                                                    <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ i.TypeEvent }}</span></h6>
-                                                    <h6 class="text-bold-600 mt-1"> Numero: <span class="blue-grey">{{ i.numeroEvent }}</span></h6>
-
+                                                    <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ formations.TypeEvent }}</span></h6>
+                                                    <h6 class="text-bold-600 mt-1"> Numero: <span class="blue-grey">{{ formations.numeroEvent }}</span></h6>
+                                                    <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ formations.dateEvent }}</span></h6>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                {% endfor %}
+                                {% else %}
+                                    {% for i in formations %}
+                                        <div class="col-12">
+                                            <div class="pull-up">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="col-12">
+                                                        <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ i.titreEvent }}</span></h5>
+                                                        <br>
+                                                        <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ i.TypeEvent }}</span></h6>
+                                                        <h6 class="text-bold-600 mt-1"> Numero: <span class="blue-grey">{{ i.numeroEvent }}</span></h6>
+                                                        <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ i.dateEvent }}</span></h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
                     </section>

@@ -1,6 +1,7 @@
 <?php
 
 namespace EventBundle\Repository;
+use EventBundle\Entity\Participant;
 
 /**
  * ParticipantRepository
@@ -28,18 +29,25 @@ class ParticipantRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
-    /*public function findchoix()
-    {
-        $query=$this->getEntityManager()->createQuery("SELECT f.choix FROM EventBundle:Participant f ");
-        return $query->getResult();
-    }*/
-
 
     public function tri()
     {
         $query=$this->getEntityManager()->createQuery("SELECT * from EventBundle:EventsAdmin ORDER BY nomp ASC");
         return $query->getResult();
     }
+
+    public function findParticipant($email)
+    {
+        $query=$this->getEntityManager()->createQuery("select c from EventBundle:Participant c where c.email ='$email'");
+        return $query->getResult();
+    }
+
+
+    /*public function findchoix()
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT f.choix FROM EventBundle:Participant f ");
+        return $query->getResult();
+    }*/
 
 
 }
