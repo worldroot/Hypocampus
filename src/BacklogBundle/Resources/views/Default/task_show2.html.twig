@@ -136,6 +136,9 @@
                     <div class="card">
                         <div class="card-header p-1">
                             <h4 class="card-title float-left">Tache #{{ task.id}} -{{ task.title }} - <span class="blue-grey lighten-2 font-small-3 mb-0">{{ task.createdDate | date }} - {{ task.finishedDate | date }}</span></h4>
+                            <span class="badge badge-pill badge-success float-right m-0">
+                                {{ task.user }}
+                            </span>
                             <span class="badge badge-pill badge-info float-right m-0">
                                 {{ task.state }}
                             </span>
@@ -161,7 +164,6 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <span class="text-muted"><a href="#" class="danger darken-2">Project X</a> Statistics</span>
                             </div>
                         </div>
                     </div>

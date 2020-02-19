@@ -201,7 +201,7 @@
                                                     </td>
                                                     <td> <a href="{{ path('delete_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a>
                                                     <a href="{{ path('update_BacklogTask',{'id_b':backlog.id, 'id':task.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a> </td>
-                                                    <td><button type="button" class="btn btn-outline-info mr-1"><i class="ft-book"></i></button> </td>
+                                                    <td><a href="{{ path('archiver_BacklogTask',{'id_b':task.backlog.id, 'id':task.id, 'archive': 1}) }}"><button type="button" class="btn btn-outline-info mr-1"><i class="ft-book"></i></button>  </a></td>
                                                 </tr>
 
                                             {% endfor %}
@@ -243,7 +243,7 @@
                                         <th>Priority</th>
                                         <th>Story Points</th>
                                         <th>Responsable</th>
-                                        <th>Archiver</th>
+                                        <th>Désarchiver</th>
 
 
                                     </tr>
@@ -274,7 +274,11 @@
                                                     <div class="badge badge-glow badge-pill badge-info">{{ task.user.username }}</div>
                                                 </td>
 
-                                                <td><button type="button" class="btn btn-outline-info mr-1"><i class="ft-book"></i></button> </td>
+                                                <td><a href=" {{ path('archiver_BacklogTask',{'id_b':task.backlog.id, 'id':task.id, 'archive': 0}) }}">
+                                                        <button type="button" class="btn btn-outline-danger btn-min-width box-shadow-5 mr-1 mb-1"><i class="ft-alert-octagon"></i>
+                                                        </button>
+                                                    </a>
+                                                </td>
                                             </tr>
 
                                         {% endfor %}

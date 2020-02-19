@@ -92,6 +92,18 @@ class DefaultController extends Controller
 
     }
 
+    public function ArchiverBacklogTaskAction($id_b, $id, Request $request, $archive){
+
+        $em = $this->getDoctrine()->getManager();
+        $task = $em->getRepository(Task::class)->find($id);
+
+        $task->setArchive($archive);
+        $em->flush();
+        return $this->redirectToRoute('view_ProjectBacklog',['id' => $id_b]);
+
+
+    }
+
 
 
     public function view_ProjectBacklogAction($id)
