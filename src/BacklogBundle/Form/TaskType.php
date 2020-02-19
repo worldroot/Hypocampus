@@ -18,7 +18,8 @@ class TaskType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('descriptionFonctionnel')->add('descriptionTechnique')->add('storyPoints')->add('createdDate')->add('finishedDate')
+        $builder->add('title')->add('descriptionFonctionnel')->add('descriptionTechnique')->add('storyPoints')
+            ->add('finishedDate')
             ->add('state', ChoiceType::class, array(
                 'choices'  => array(
                     'To Do' => "To Do",
@@ -27,11 +28,6 @@ class TaskType extends AbstractType
                 ),
             ))
             ->add('priority')
-            ->add('backlog',EntityType::class,array(
-                'class'=>Backlog::class,
-                'choice_label'=>'id',
-                'multiple'=>false
-            ))
             ->add('valider',SubmitType::class);
         ;
     }/**

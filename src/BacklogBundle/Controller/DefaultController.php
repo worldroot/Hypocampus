@@ -8,6 +8,7 @@ use BacklogBundle\Entity\Task;
 use BacklogBundle\Form\BacklogType;
 use BacklogBundle\Form\CommentaireType;
 use BacklogBundle\Form\TaskType;
+use Cassandra\Date;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -111,7 +112,7 @@ class DefaultController extends Controller
 
     public function AddBacklogTaskAction(Request $request, $id)
     {
-        $todo=0;
+
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
         $form = $form->handleRequest($request);
@@ -120,18 +121,32 @@ class DefaultController extends Controller
             //4.A Création d'un objet doctrine
             $em = $this->getDoctrine()->getManager();
             //4.B persister les données dans orm
+            $date =new \DateTime('now');
+            $task->setCreatedDate($date);
+            $backlog= $em->getRepository(Backlog::class)->find($id);
+            $task->setBacklog($backlog);
             $em->persist($task);
-            //5.A sauv les données dans la bd
-            $em->flush();
-            $tab = $em->getRepository(Backlog::class)->find($id);
-            $tab2 = $em->getRepository(Task::class)->backlogTasks($id);
 
-            for($i = 0; $i < count($tab2); ++$i) {
-                $todo += $tab2[$i]->getStoryPoints();
+
+
+            if ( $task->getState() == 'To Do')
+            {
+                $backlog->setPointsToDo($backlog->getPointsToDo() + $task->getStoryPoints());
+
+            }elseif ($task->getState() == 'In Progress'){
+                $backlog->setPointsInProgress($backlog->getPointsInProgress() + $task->getStoryPoints());
+
+            }else{
+                $backlog->setPointsDone($backlog->getPointsDone() + $task->getStoryPoints());
+
             }
 
-            $form = $em->getRepository(Backlog::class)->find($tab->getId());
-            $form->setPointsToDo($form->getPointsToDo() + $todo);
+
+
+
+
+            //5.A sauv les données dans la bd
+
             $em->flush();
 
             //6 redirect to route
@@ -153,9 +168,20 @@ class DefaultController extends Controller
         //1. prendre  l' objet
         $task = $em->getRepository(Task::class)->find($id);
 
-        $tab = $em->getRepository(Backlog::class)->find($id_b);
-        $form = $em->getRepository(Backlog::class)->find($tab->getId());
-        $form->setPointsToDo($form->getPointsToDo() - $task->getStoryPoints());
+        $backlog = $em->getRepository(Backlog::class)->find($id_b);
+
+        if ( $task->getState() == 'To Do')
+        {
+            $backlog->setPointsToDo($backlog->getPointsToDo() - $task->getStoryPoints());
+
+        }elseif ($task->getState() == 'In Progress'){
+            $backlog->setPointsInProgress($backlog->getPointsInProgress() - $task->getStoryPoints());
+
+        }else{
+            $backlog->setPointsDone($backlog->getPointsDone() - $task->getStoryPoints());
+
+        }
+
 
         $em->remove($task);
         $em->flush();
@@ -193,6 +219,23 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $task = $em->getRepository(Task::class)->find($id);
+
+        $backlog = $em->getRepository(Backlog::class)->find($id_b);
+
+
+        if ( $task->getState() == 'To Do')
+        {
+            $backlog->setPointsToDo($backlog->getPointsToDo() - $task->getStoryPoints());
+
+        }elseif ($task->getState() == 'In Progress'){
+            $backlog->setPointsInProgress($backlog->getPointsInProgress() - $task->getStoryPoints());
+
+        }else{
+            $backlog->setPointsDone($backlog->getPointsDone() - $task->getStoryPoints());
+
+        }
+
+
         $form = $this->createForm(TaskType::class, $task);
         $form = $form->handleRequest($request);
 
@@ -203,10 +246,23 @@ class DefaultController extends Controller
         if(($form->isSubmitted()) & ($form->isValid()))
         {
 
+            if ( $task->getState() == 'To Do')
+            {
+                $backlog->setPointsToDo($backlog->getPointsToDo() + $task->getStoryPoints());
+
+            }elseif ($task->getState() == 'In Progress'){
+                $backlog->setPointsInProgress($backlog->getPointsInProgress() + $task->getStoryPoints());
+
+            }else{
+                $backlog->setPointsDone($backlog->getPointsDone() + $task->getStoryPoints());
+
+            }
+
+
+
+
             $em->flush();
 
-            $tab = $em->getRepository(Backlog::class)->findAll();
-            $tab2 = $em->getRepository(Task::class)->findAll();
 
             return $this->redirectToRoute('view_ProjectBacklog',['id' => $id_b]);
 

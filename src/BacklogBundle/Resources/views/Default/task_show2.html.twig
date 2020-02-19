@@ -132,6 +132,41 @@
                             <p>Listes des commentaires concernant la tache.</p>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-header p-1">
+                            <h4 class="card-title float-left">Tache {{ task.title }} - <span class="blue-grey lighten-2 font-small-3 mb-0">{{ task.createdDate | date }} - {{ task.finishedDate | date }}</span></h4>
+                            <span class="badge badge-pill badge-info float-right m-0">
+                                {{ task.state }}
+                            </span>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-footer text-center p-1">
+                                <div class="row">
+                                    <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                                        <p class="blue-grey lighten-2 mb-0">Tasks</p>
+                                        <p class="font-medium-5 text-bold-400">26</p>
+                                    </div>
+                                    <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                                        <p class="blue-grey lighten-2 mb-0">Completed</p>
+                                        <p class="font-medium-5 text-bold-400">58%</p>
+                                    </div>
+                                    <div class="col-md-3 col-12 border-right-blue-grey border-right-lighten-5 text-center">
+                                        <p class="blue-grey lighten-2 mb-0">Pending</p>
+                                        <p class="font-medium-5 text-bold-400">42%</p>
+                                    </div>
+                                    <div class="col-md-3 col-12 text-center">
+                                        <p class="blue-grey lighten-2 mb-0">Version</p>
+                                        <p class="font-medium-5 text-bold-400">4.5</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <span class="text-muted"><a href="#" class="danger darken-2">Project X</a> Statistics</span>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row match-height">
                         {% for com in commentaires %}
                         <div class="col-xl-6 col-lg-12">
@@ -159,7 +194,7 @@
                                         </ul>
                                         <div class="tab-content px-1 pt-1">
                                             <div role="tabpanel" class="tab-pane active" id="tabIcon1{{ com.id }}" aria-expanded="true" aria-labelledby="baseIcon-tab1">
-                                                <p>{{ com.description }}</p>
+                                                <p class="lead">{{ com.description }}</p>
                                             </div>
                                             <div class="tab-pane" id="tabIcon2{{ com.id }}" aria-labelledby="baseIcon-tab2">
                                                 <p>{{ com.user.username }}</p>
