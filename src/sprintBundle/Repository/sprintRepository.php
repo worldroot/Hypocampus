@@ -10,4 +10,90 @@ namespace sprintBundle\Repository;
  */
 class sprintRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function search($colour)
+    {
+
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT * FROM toys WHERE box='$colour' ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+    public function getProgress($search)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT COUNT(*) as Progress FROM sprint where  	projets_id=$search AND etat=1 ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+    public function getProgressC($search)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT COUNT(*) as ProgressC FROM sprint where  	projets_id=$search");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+
+    public function scarra()
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT * from task");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+
+    public function scarra__($id,$etat)
+    {
+        $etat_ = "------";
+        if($etat == 999)
+        {
+            $etat_ = "TODO";
+        }
+        elseif ($etat == 888)
+        {
+            $etat_ = "DOING";
+        }
+        elseif ($etat == 777)
+        {
+            $etat_ = "DONE";
+        }
+
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("update task set etat='$etat_' where id=$id");
+        $statement->execute();
+
+        return true;
+    }
+    public function getTodo($search)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT COUNT(*) as Todo FROM task where  	sprint_id=$search AND etat='TODO' ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+    public function getDone($search)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT COUNT(*) as Done FROM task where  	sprint_id=$search AND etat='DONE' ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
 }

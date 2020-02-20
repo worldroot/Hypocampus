@@ -52,6 +52,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Liste des projets </h4>
+
                         <a class="heading-elements-toggle">
                             <i class="fa fa-ellipsis-v font-medium-3"></i>
                         </a>
@@ -59,59 +60,102 @@
                             <ul class="list-inline mb-0">
                                 <li>
                                     <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('createprojet') }}">New project</a>
+                                    <input type="submit" value="Search" id="submit" hidden>
+
+
+                                </li>
+                                <li class="nav-item dropdown navbar-search"><a class="nav-link dropdown-toggle hide" data-toggle="dropdown"  aria-expanded="false"><i class="ficon ft-search"></i></a>
+                                    <ul class="dropdown-menu">
+                                        <li class="arrow_box">
+                                            <form>
+                                                <div class="input-group search-box">
+                                                    <div class="position-relative has-icon-right full-width">
+                                                        <input type="text" id="recherche"name="projetName"class="form-control round pull-right" placeholder="Rounded Input"required>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
                     </div>
-
                 </div>
 
-                <div class="row">
-    {% for i in projets %}
+
+                <div class="row" id="tableau1" >
 
 
-        <div class="col-xl-4 col-lg-6 col-md-12">
-            <div class="card pull-up">
-                <div class="card-header">
+                    {% for i in pagination %}
 
-                    <a href="{{ path('deleteprojet',{'id':i.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a>
-                    <a href="{{ path('updateprojet',{'id':i.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a>
-                    <h4 class="card-title float-left ">{{ i.projetName }} :      </h4><a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
-                    <span class="badge badge-pill badge-info float-left  ">In Progress</span>
+                        <div class="col-xl-4 col-lg-6 col-md-12" id="tableau2">
+                            <samp class="col-xl-4 col-lg-6 col-md-12">
+                                <br>
+                            <div class="card pull-up">
+                                <div class="card-header">
 
-                </div>
-                <div class="card-content collapse show">
-                    <div class="card-body pt-0 pb-1">
-                        <h6 class="text-muted font-small-3"> Completed Task : 4/10</h6>
-                        <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                            <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                                    <a href="{{ path('deleteprojet',{'id':i.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a>
+                                    <a href="{{ path('updateprojet',{'id':i.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a>
+                                    <h4 class="card-title float-left ">{{ i.projetName }} :      </h4><a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
-                        <div class="media d-flex">
-                            <div class="align-self-center">
-                                <h6 class="text-bold-600 mt-2"> Client: <span class="info">{{ i.owner }}</span></h6>
-                                <h6 class="text-bold-600 mt-1"> startDate: <span class="blue-grey">{{ i.startDate |date }}</span></h6>
-                                <h6 class="text-bold-600 mt-1"> Deadline: <span class="blue-grey">{{ i.endDate |date }}</span></h6>
-                                <h6 class="text-bold-600 mt-1"> Description: <span class="blue-grey">{{ i.description  }}</span></h6>
+                                    <span class="badge badge-pill badge-info float-left  ">In Progress</span>
+
+                                </div>
+                                <div class="card-content collapse show">
+                                    <div class="card-body pt-0 pb-1">
+                                        <h6 class="text-muted font-small-3"> Completed Task : 4/10</h6>
+                                        <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
+                                            <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+
+                                        <div class="media d-flex">
+                                            <div class="align-self-center">
+                                                <h6 class="text-bold-600 mt-2"> Nom de l'entreprise: <span class="info">{{ i.owner }}</span></h6>
+                                                <h6 class="text-bold-600 mt-1"> startDate: <span class="blue-grey">{{ i.startDate |date('Y-m-d') }}</span></h6>
+                                                <h6 class="text-bold-600 mt-1"> Deadline: <span class="blue-grey">{{ i.endDate |date('Y-m-d') }}</span></h6>
+                                                <h6 class="text-bold-600 mt-1"> Description: <span class="blue-grey">{{ i.description  }}</span></h6>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
 
                             </div>
 
+                            </samp>
                         </div>
-                    </div>
+
+
+
+                    {% endfor %}
+
 
                 </div>
-
-            </div>
-
-        </div>
-
-
-
-    {% endfor %}
+                <div class="paginate_button page-item previous disabled pull-right">
+                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="{{ asset('jquery-min.js') }}"></script>
+    <script>
+        $(function () {
+            $("#recherche").keyup(function () {
+                $.ajax({
+                    url : "{{ path('afficherprojet') }}",
+                    data : { 'projet_name' : $(this).val() }
+                }).done(function (response) {
+                    var tableau = $(response).find("samp");
+                    $('#tableau1').empty();
+                    $('#tableau1').append(tableau);
+                });
+            });
+        })
+    </script>
 {% endblock %}

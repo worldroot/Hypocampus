@@ -194,28 +194,5 @@ class projets
     {
         return $this->description;
     }
-
-    /**
-     * Set history
-     *
-     * @param integer $history
-     *
-     * @return projets
-     */
-    public function setHistory($history)
-    {
-        $this->history = $history;
-
-        return $this;
-    }
-
-    /**
-     * Get history
-     *
-     * @return integer
-     */
-    public function getHistory()
-    {
-        return $this->history;
-    }
 }
+

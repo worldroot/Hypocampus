@@ -17,3 +17,6 @@ updateprojet:
 afficherprojet:
     path:     /afficherprojet
     defaults: { _controller: projetsBundle:projets:afficherprojet }
+Historyprojet:
+    path:     /Historyprojet
+    defaults: { _controller: projetsBundle:projets:Historyprojets }
