@@ -1,3 +1,7 @@
+entreprise:
+    resource: "@EntrepriseBundle/Resources/config/routing.yml"
+    prefix:   /entreprise
+
 subscription:
     resource: "@SubscriptionBundle/Resources/config/routing.yml"
     prefix:   /subscription

@@ -8,31 +8,19 @@
                 <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
             </ul>
         </div>
-        {% if is_granted("ROLE_SUPER_ADMIN") %}
-        {% elseif is_granted("ROLE_SCRUM_MASTER") %}
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
                 </li>
-                <li class=" nav-item"><a href="/rapport"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Rapport</span></a>
+                <li class=" nav-item"><a href="{{ path('read') }}"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Entreprises</span></a>
                 </li>
-                <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
+                <li class=" active"><a href="{{ path('readsub') }}"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Abonnements</span></a>
                 </li>
-                <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
-                </li>
-                <li class="active"><a href="index.html"><i  class="ft-box"></i><span class="menu-title" data-i18n="">Projets</span></a>
-                </li>
-                <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
-                </li>
-                <li class=" nav-item"><a href="tables.html"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
-                </li>
-                <li class=" nav-item"><a href="form-elements.html"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Ressources</span></a>
+                <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Comptes</span></a>
                 </li>
                 <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
                 </li>
             </ul>
-            {% elseif is_granted("ROLE_DEVELOPER") %}
-            {% endif %}
         </div>
         <div class="navigation-background"></div>
     </div>
@@ -62,10 +50,15 @@
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
                                 <li>
-                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('createsub') }}">New Subscription</a>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('createsub') }}">Add Subscription</a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('readtarif') }}">See Type</a>
                                 </li>
                             </ul>
+
                         </div>
+
                     </div>
 
                 </div>
@@ -94,7 +87,7 @@
 
                                         <div class="media d-flex">
                                             <div class="align-self-center">
-                                                <h6 class="text-bold-600 mt-1"> Tarif: <span class="info">{{ i.tarif.name }}</span></h6>
+                                                <h6 class="text-bold-600 mt-1"> Type: <span class="info">{{ i.tarif.name }}</span></h6>
 
                                                 <h6 class="text-bold-600 mt-1"> Active: <span class="info">{% if i.active == 0 %} Disable {% else %} Enable {% endif %}</span></h6>
 
