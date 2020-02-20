@@ -1,0 +1,22 @@
+projets_homepage:
+    path:     /
+    defaults: { _controller: projetsBundle:Default:index }
+
+createprojet:
+    path:     /createprojet
+    defaults: { _controller: projetsBundle:projets:createprojet }
+
+deleteprojet:
+    path:     /deleteprojet/{id}
+    defaults: { _controller: projetsBundle:projets:deleteprojet }
+
+updateprojet:
+    path:     /updateprojet/{id}
+    defaults: { _controller: projetsBundle:projets:updateprojet }
+
+afficherprojet:
+    path:     /afficherprojet
+    defaults: { _controller: projetsBundle:projets:afficherprojet }
+Historyprojet:
+    path:     /Historyprojet
+    defaults: { _controller: projetsBundle:projets:Historyprojets }

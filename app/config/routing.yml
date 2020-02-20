@@ -1,3 +1,10 @@
+sprint:
+    resource: "@sprintBundle/Resources/config/routing.yml"
+    prefix:   /sprint
+
+projets:
+    resource: "@projetsBundle/Resources/config/routing.yml"
+    prefix:   /projets
 
 event:
     resource: "@EventBundle/Resources/config/routing.yml"

@@ -1,0 +1,194 @@
+{% extends 'backend.html.twig' %}
+{% block sidenavbar %}
+    <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="theme-assets/images/backgrounds/02.jpg">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav flex-row">
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('theme-assets/images/logo/hypocampus.png') }}"/>
+                        <h3 class="brand-text">Hypocampus</h3></a></li>
+                <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+            </ul>
+        </div>
+        <div class="main-menu-content">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+                </li>
+                <li class=" nav-item"><a href="/rapport"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Rapport</span></a>
+                </li>
+                <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
+                </li>
+                <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
+                </li>
+                <li class="active"><a href="index.html"><i  class="ft-box"></i><span class="menu-title" data-i18n="">Projets</span></a>
+                </li>
+                <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
+                </li>
+                <li class=" nav-item"><a href="tables.html"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
+                </li>
+                <li class=" nav-item"><a href="form-elements.html"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Ressources</span></a>
+                </li>
+                <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
+                </li>
+            </ul>
+        </div><a class="btn btn-danger btn-block btn-glow btn-upgrade-pro mx-1" href="https://themeselection.com/products/chameleon-admin-modern-bootstrap-webapp-dashboard-html-template-ui-kit/" target="_blank">Download PRO!</a>
+        <div class="navigation-background"></div>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <div class="content-body"><!-- Chart -->
+                <div class="col">
+                    <div class="card" >
+
+                        <div class="card-header">
+                            <h4 class="card-title" id="basic-layout-icons">Créer un Projet</h4>
+                            <a class="heading-elements-toggle">
+                                <i class="la la-ellipsis-v font-medium-3"></i>
+                            </a>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li>
+                                        <a data-action="collapse">
+                                            <i class="ft-minus"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-action="reload">
+                                            <i class="ft-rotate-cw"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-action="expand">
+                                            <i class="ft-maximize"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-action="close">
+                                            <i class="ft-x"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form_start(form) }}
+
+                                                <div class="form-group">
+                                                    <div class="form-control-position">
+
+                                                    </div>
+                                                    <label for="timesheetinput1"><i class="ft-user"></i>  Employee Name</label>
+
+                                                    <div class="position-relative has-icon-left">
+                                                        {{ form_widget(form.owner, { 'attr' : { 'class' : 'form-control' ,'type' : 'date' } }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>   Project Name</label>
+                                                    <div class="position-relative has-icon-left">
+                                                        {{ form_widget(form.projetName, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="timesheetinput5"> <i class="ft-clock"></i> Start Date</label>
+                                                    <div class="position-relative has-icon-left">
+                                                        {{ form_widget(form.startDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="timesheetinput6"><i class="ft-clock"></i> End Date</label>
+                                                    <div class="position-relative has-icon-left">
+                                                        {{ form_widget(form.endDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="timesheetinput2"><i class="ft-message-square"></i>   Description</label>
+                                                    <div class="position-relative has-icon-left">
+                                                        {{ form_widget(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-actions right">
+                                        <a href="{{ path('afficherprojet') }}">
+                                        <button type="button" onclick="compar()" class="btn btn-danger round btn-min-width ">
+                                            <i class="ft-x"></i>Annuler
+                                        </button>
+                                        </a>
+                                        {{ form_widget(form.ajouter, { 'attr' : { 'class' : 'btn btn-bg-gradient-x-blue-green round  pull-right' } }) }}
+                                    </div>
+                                    {{ form_end(form) }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+    function compar(sdate1,sdate2)
+    {
+
+        var date1 = new Date();
+        date1.setFullYear(sdate1.substr(6,4));
+        date1.setMonth(sdate1.substr(3,2));
+        date1.setDate(sdate1.substr(0,2));
+        date1.setHours(0);
+        date1.setMinutes(0);
+        date1.setSeconds(0);
+        date1.setMilliseconds(0);
+        var d1=date1.getTime();
+
+        var date2 = new Date();
+        date2.setFullYear(sdate2.substr(6,4));
+        date2.setMonth(sdate2.substr(3,2));
+        date2.setDate(sdate2.substr(0,2));
+        date2.setHours(0);
+        date2.setMinutes(0);
+        date2.setSeconds(0);
+        date2.setMilliseconds(0);
+        var d2=date2.getTime()
+
+//(date fin) sdate2 > sdate1 (date de début) afficher un message d'erreur
+        if(d1>d2)
+        {
+            alert('Vous avez sélectionnez une date incorrect!!')
+        }
+        else
+        {
+            alert('Correct')
+        }
+
+    }
+    }
+</script>
+{% endblock %}
