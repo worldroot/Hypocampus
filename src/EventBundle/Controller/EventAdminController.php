@@ -31,7 +31,7 @@ class EventAdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($club);
             $em->flush();
-            return $this->redirectToRoute('afficherevent');
+            return $this->redirectToRoute('searchevents');
 
 
         }
@@ -50,7 +50,7 @@ class EventAdminController extends Controller
         if( ($form->isSubmitted()) & ($form->isValid()) ){
 
             $em->flush();
-            return $this->redirectToRoute('afficherevent');
+            return $this->redirectToRoute('searchevents');
         }
         return $this->render('@Event/EventAdmin/addevent.html.twig', array(
             'form'=>$form->createView()
@@ -64,7 +64,7 @@ class EventAdminController extends Controller
         $cnx->remove($d);
         $cnx->flush();
         echo "<script>alert('Suppression succeed')</script>";
-        return $this->redirectToRoute('afficherevent');
+        return $this->redirectToRoute('searchevents');
     }
 
     public function searcheventsAction(Request $request)
