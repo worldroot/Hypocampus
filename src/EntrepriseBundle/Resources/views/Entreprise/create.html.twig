@@ -12,9 +12,9 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
                 </li>
-                <li class=" nav-item"><a href="{{ path('read') }}"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Entreprises</span></a>
+                <li class=" active"><a href="{{ path('read') }}"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Entreprises</span></a>
                 </li>
-                <li class=" active"><a href="{{ path('readsub') }}"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Abonnements</span></a>
+                <li class=" nav-item"><a href="{{ path('readsub') }}"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Abonnements</span></a>
                 </li>
                 <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Comptes</span></a>
                 </li>
@@ -35,7 +35,7 @@
                     <div class="card" >
 
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-icons">Créer Subscription</h4>
+                            <h4 class="card-title" id="basic-layout-icons">Créer Entreprise</h4>
                             <a class="heading-elements-toggle">
                                 <i class="la la-ellipsis-v font-medium-3"></i>
                             </a>
@@ -75,7 +75,7 @@
                                                 <div class="form-control-position">
 
                                                 </div>
-                                                <label for="timesheetinput1"><i class="ft-user"></i>  Subscription </label>
+                                                <label for="timesheetinput1"><i class="ft-user"></i>  Entreprise </label>
 
                                                 <div class="position-relative has-icon-left">
                                                     {{ form_widget(form.name, { 'attr' : { 'class' : 'form-control' } }) }}
@@ -84,9 +84,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="timesheetinput2"><i class="la la-briefcase"></i>   Type </label>
+                                                <label for="timesheetinput2"><i class="la la-briefcase"></i>   Email </label>
                                                 <div class="position-relative has-icon-left">
-                                                    {{ form_widget(form.tarif, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                    {{ form_widget(form.email, { 'attr' : { 'class' : 'form-control' } , 'type' : 'email' }) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -101,15 +101,7 @@
                                             <div class="form-group">
                                                 <label for="timesheetinput5"> <i class="ft-clock"></i> Date</label>
                                                 <div class="position-relative has-icon-left">
-                                                    {{ form_widget(form.date, {'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="timesheetinput2"><i class="la la-briefcase"></i>   Active </label>
-                                                <div class="position-relative has-icon-left">
-                                                    {{ form_widget(form.active, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                    {{ form_widget(form.createdate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +112,7 @@
                                 </div>
 
                                 <div class="form-actions right">
-                                    <a href="{{ path('readsub') }}">
+                                    <a href="{{ path('read') }}">
                                         <button type="button" class="btn btn-danger round btn-min-width ">
                                             <i class="ft-x"></i>Annuler
                                         </button>

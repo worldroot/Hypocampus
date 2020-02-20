@@ -12,9 +12,9 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
                 </li>
-                <li class=" nav-item"><a href="{{ path('read') }}"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Entreprises</span></a>
+                <li class=" active"><a href="{{ path('read') }}"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Entreprises</span></a>
                 </li>
-                <li class=" active"><a href="{{ path('readsub') }}"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Abonnements</span></a>
+                <li class=" nav-item"><a href="{{ path('readsub') }}"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Abonnements</span></a>
                 </li>
                 <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Comptes</span></a>
                 </li>
@@ -34,7 +34,7 @@
                     <div class="card" >
 
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-icons">Modifier Type</h4>
+                            <h4 class="card-title" id="basic-layout-icons">Modifier Tarif</h4>
                             <a class="heading-elements-toggle">
                                 <i class="la la-ellipsis-v font-medium-3"></i>
                             </a>
@@ -74,17 +74,17 @@
                                                     <div class="form-control-position">
 
                                                     </div>
-                                                    <label for="timesheetinput1"><i class="ft-user"></i>  Name</label>
+                                                    <label for="timesheetinput1"><i class="ft-user"></i>  Entrepeise</label>
                                                     <div class="position-relative has-icon-left">
-                                                        <input type="text"  class="form-control" placeholder="Name" name="name" value="{{ tarif.name }}">
+                                                        <input type="text"  class="form-control" placeholder="Name" name="name" value="{{ ep.name }}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>  Prix </label>
+                                                    <label for="timesheetinput2"><i class="la la-briefcase"></i>  Email </label>
                                                     <div class="position-relative has-icon-left">
-                                                        <input type="number" id="timesheetinput2" class="form-control" placeholder="Prix" name="prix" value="{{ tarif.value }}">
+                                                        <input type="email" id="timesheetinput2" class="form-control" placeholder="Email" name="email" value="{{ ep.email  }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -97,17 +97,9 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="timesheetinput5"> <i class="ft-clock"></i> Nbr de Projets</label>
+                                                    <label for="timesheetinput5"> <i class="ft-clock"></i> Date</label>
                                                     <div class="position-relative has-icon-left">
-                                                        <input type="number" class="form-control" placeholder="Nbr de Projets"  name="projectnbr" value="{{ tarif.projectnbr  }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="timesheetinput6"><i class="ft-clock"></i>  Nbr d'utilisateur </label>
-                                                    <div class="position-relative has-icon-left">
-                                                        <input type="number" class="form-control" placeholder=" Nbr d'utilisateur" name="usernbr" value="{{ tarif.usernbr }}">
+                                                        <input type="date" class="form-control" placeholder="date"  name="date" value="{{ ep.createdate | date('Y-m-d') }}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,7 +110,7 @@
                                     </div>
 
                                     <div class="form-actions right">
-                                        <a href="{{ path('readtarif') }}">
+                                        <a href="{{ path('read') }}">
                                             <button type="button" class="btn btn-danger round btn-min-width ">
                                                 <i class="ft-x"></i> Annuler
                                             </button>
