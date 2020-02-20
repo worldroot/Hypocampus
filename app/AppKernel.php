@@ -30,7 +30,6 @@ class AppKernel extends Kernel
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
-            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
 
         ];
 
