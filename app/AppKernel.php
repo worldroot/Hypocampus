@@ -16,7 +16,18 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new AppBundle\AppBundle(),
+            new EventBundle\EventBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
+            new BacklogBundle\BacklogBundle(),
+            new SubscriptionBundle\SubscriptionBundle(),
+            new projetsBundle\projetsBundle(),
+            new sprintBundle\sprintBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

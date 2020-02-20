@@ -1,0 +1,6 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+register:
+    path:     /Register
+    defaults: { _controller: UserBundle:Default:register }
