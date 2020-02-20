@@ -112,11 +112,35 @@ class EventAdminController extends Controller
      public function StatAction()
     {
         $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['Task', 'Hours per Day'],
+                ['Work',     11],
+                ['Eat',      2],
+                ['Commute',  2],
+                ['Watch TV', 2],
+                ['Sleep',    7]
+            ]
+        );
+        $pieChart->getOptions()->setTitle('My Daily Activities');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+        return $this->render('@Event/EventAdmin/afficherevent.html.twig', array(
+            'piechart' => $pieChart
+        ));
+
+        /*
+        $pieChart = new PieChart();
         $em= $this->getDoctrine();
         $classes = $em->getRepository(EventsAdmin::class)->findAll();
         $totalEvent=0;
         foreach($classes as $classe) {
-            $totalEvent=$totalEvent+$classe->getNbEtudiants();
+            $totalEvent=$totalEvent+$classe->getTypeEvent();
         }
 
         $data= array();
@@ -146,11 +170,8 @@ class EventAdminController extends Controller
 
 
         return $this->render('@Graphe\Default\index.html.twig', array('piechart' => $pieChart));
+        */
     }
-
-
-
-
 
 
 

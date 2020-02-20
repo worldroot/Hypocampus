@@ -17,7 +17,7 @@ class ParticipantController extends Controller
     {
         $em=$this->getDoctrine();
         $tab=$em->getRepository(Participant::class)->findAll();
-        return $this->render('@Event/Participant/readevent.html.twig', array(
+        return $this->render('@Event/Participant/searchp.html.twig', array(
             'tabs'=>$tab
             // ...
         ));

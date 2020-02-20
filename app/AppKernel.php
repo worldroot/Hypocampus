@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new BacklogBundle\BacklogBundle(),
             new SubscriptionBundle\SubscriptionBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
 
         ];
 
