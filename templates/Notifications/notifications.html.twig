@@ -1,0 +1,21 @@
+{% for item in notificationList %}
+<a href="javascript:void(0)">
+    {{ item.seen }}
+    <div class="media">
+        <div class="media-left align-self-center"><i class="ft-share info font-medium-4 mt-2"></i></div>
+        <div class="media-body">
+            <h6 class="media-heading info">{{ item.notification.subject }}</h6>
+            <p class="notification-text font-small-3 text-muted text-bold-600">{{ item.notification.message }}</p>
+            <a href="/ProjetPi/Hypocampus/web/app_dev.php/backlog{{ item.notification.link }}"> <p class="notification-text font-small-3 text-muted text-bold-600">{{ item.notification.link }}</p></a>
+            <small>
+                <time class="media-meta text-muted" datetime="2015-06-11T18:29:20+08:00">{{ item.notification.date | date }}</time>
+            </small>
+            <a href="/ProjetPi/Hypocampus/web/app_dev.php/backlog/ProjectBacklog{{ item.notification.link }}/transit/{{ item.id }}/{{ item.notification.id }}">
+                <button type="submit">Mark as seen</button>
+            </a>
+
+
+        </div>
+    </div>
+</a>
+{% endfor %}

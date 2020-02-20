@@ -216,7 +216,7 @@ require.register("ftlabs~fastclick@v0.6.11", function (exports, module) {
  */
 
 /*jslint browser:true, node:true*/
-/*global define, Event, Node*/
+/*global define, Participant, Node*/
 
 
 /**
@@ -332,7 +332,7 @@ function FastClick(layer) {
 	layer.addEventListener('touchend', this.onTouchEnd, false);
 	layer.addEventListener('touchcancel', this.onTouchCancel, false);
 
-	// Hack is required for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+	// Hack is required for browsers that don't support Participant#stopImmediatePropagation (e.g. Android 2)
 	// which is how FastClick normally stops click events bubbling to callbacks registered on the FastClick
 	// layer when they are cancelled.
 	if (!Event.prototype.stopImmediatePropagation) {
@@ -846,7 +846,7 @@ FastClick.prototype.onMouse = function(event) {
 			event.stopImmediatePropagation();
 		} else {
 
-			// Part of the hack for browsers that don't support Event#stopImmediatePropagation (e.g. Android 2)
+			// Part of the hack for browsers that don't support Participant#stopImmediatePropagation (e.g. Android 2)
 			event.propagationStopped = true;
 		}
 

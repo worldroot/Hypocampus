@@ -1,0 +1,84 @@
+{% extends 'backend.html.twig' %}
+
+    {% block sidenavbar %}
+        <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="theme-assets/images/backgrounds/02.jpg">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav flex-row">
+                    <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('theme-assets/images/logo/hypocampus.png') }}"/>
+                            <h3 class="brand-text">Hypocampus</h3></a></li>
+                    <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+                </ul>
+            </div>
+            <div class="main-menu-content">
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item"><a href="#"><i class="ft-star"></i><span class="menu-title" data-i18n="">Evenements</span></a>
+                        <ul class="menu-content">
+                            <li class="menu-item"><a href="{{path('afficherevent')}}">List Events</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block body %}
+        <div class="app-content content">
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+
+                <!-- PUT BODY HERE -->
+                <div class="content-body">
+                    <div class="row match-height">
+                        <div class="col-xl-4 col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Ajout d'event</h4>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body">
+
+                                        <div class="form-body">
+                                            {{ form_start(form) }}
+                                            <div class="form-group">
+                                                <label for="donationinput1" class="sr-only">Titre d'event</label>
+                                                <input type="text"  class="form-control" placeholder="Titre"  {{ form_widget(form.titreEvent) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="donationinput2" class="sr-only">Numero d'event</label>
+                                                <input type="text"  class="form-control" placeholder="Numero"  {{ form_widget(form.numeroEvent) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="donationinput7" class="sr-only">Type d'event</label>
+                                                <input  class="form-control" placeholder="Type"  {{ form_widget(form.typeEvent) }}
+                                            </div>
+
+                                        </div>
+                                        <div class="form-actions center">
+                                            <button class="btn btn-primary" {{ form_widget(form.valider) }}  </button>
+                                        </div>
+
+
+                                        {{ form_end(form) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!--/ END BODY -->
+        </div>
+        </div>
+        </div>
+
+
+    {% endblock %}
+
