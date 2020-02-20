@@ -1,0 +1,25 @@
+sprint_homepage:
+    path:     /
+    defaults: { _controller: sprintBundle:Default:index }
+
+createsprint:
+    path:     /createsprint
+    defaults: { _controller: sprintBundle:sprint:createsprint }
+
+affichersprint:
+    path:     /affichersprint
+    defaults: { _controller: sprintBundle:sprint:affichersprint }
+
+updatesprint:
+    path:     /updatesprint/{id}
+    defaults: { _controller: sprintBundle:sprint:updatesprint }
+
+deletesprint:
+    path:     /deletesprint/{id}
+    defaults: { _controller: sprintBundle:sprint:deletesprint }
+DRAG_DROP:
+    path:     /DRAG_DROP
+    defaults: { _controller: sprintBundle:sprint:DRAG_DROP }
+stat_sprint:
+    path:     /stat_sprint
+    defaults: { _controller: sprintBundle:sprint:statsprint }

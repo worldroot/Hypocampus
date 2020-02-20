@@ -2,7 +2,10 @@
 
 namespace UserBundle\Controller;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Security;
+
 
 class DefaultController extends Controller
 {
