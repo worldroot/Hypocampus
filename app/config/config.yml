@@ -6,7 +6,6 @@ imports:
     - { resource: "@EntrepriseBundle/Resources/config/services.yml" }
     - { resource: "@SubscriptionBundle/Resources/config/services.yml" }
     - { resource: "@EventBundle/Resources/config/services.yml" }
-    - { resource: "@SubscriptionBundle/Resources/config/services.yml" }
     - { resource: "@BacklogBundle/Resources/config/services.yml" }
     - { resource: "@projetsBundle/Resources/config/services.yml" }
     - { resource: "@sprintBundle/Resources/config/services.yml" }

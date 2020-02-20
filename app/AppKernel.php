@@ -26,7 +26,6 @@ class AppKernel extends Kernel
             new EventBundle\EventBundle(),
             new BacklogBundle\BacklogBundle(),
             new projetsBundle\projetsBundle(),
-            new SubscriptionBundle\SubscriptionBundle(),
             new sprintBundle\sprintBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
