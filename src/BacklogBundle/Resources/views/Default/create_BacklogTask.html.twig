@@ -148,7 +148,7 @@
 
                                                 <div class="form-group">
                                                     {{ form_label(form.finishedDate, 'Choisir la date estimer du fin de la tache') }}
-                                                    {{ form_widget(form.finishedDate,  { 'attr' : { 'class' : 'form-control date-inputmask', 'id' :'date-mask' }}) }}
+                                                    {{ form_widget(form.finishedDate,  { 'attr' : { 'class' : 'form-control date-inputmask', 'id' :'date-mask datetimepicker1', 'type': 'date', 'min': '20-02-2020' }}) }}
                                                 </div>
                                         </div>
 
@@ -173,6 +173,12 @@
         <!--/ END BODY -->
 
         </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
 
     </div>
 

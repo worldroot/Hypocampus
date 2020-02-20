@@ -117,6 +117,8 @@
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
                             <li>
+                                <a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right" href="{{ path('view_ProjectBacklog',{'id':task.backlog.id}) }}" >Retour</a>
+
                                 <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('create_commentaire',{'id_b':task.backlog.id, 'id':task.id}) }}">New commentaire</a>
                             </li>
                         </ul>

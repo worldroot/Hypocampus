@@ -1,12 +1,14 @@
 {% extends 'backend.html.twig' %}
 {% block topnavbar %}
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>//impotation de jequery
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
     <script language="JavaScript" src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
+
+
 
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
@@ -39,6 +41,31 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
+
+                        <li class="dropdown dropdown-notification nav-item show">
+                            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" aria-expanded="true">
+                                <i class="ficon ft-bell bell-shake" id="notification-navbar-link"></i>
+                                <span class="badge badge-pill badge-sm badge-danger badge-up badge-glow">{{ mgilet_notification_unseen_count(app.user) }}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right show">
+                                <div class="arrow_box_right">
+                                    <li class="dropdown-menu-header">
+                                        <h6 class="dropdown-header m-0"><span class="grey darken-2">Notifications</span></h6>
+                                    </li>
+                                    <li class="scrollable-container media-list w-100 ps">
+                                            {{ mgilet_notification_render(app.user,{ 'template': 'Notifications/notifications.html.twig', 'seen': false  }) }}
+                                    </li>
+                                    <li class="dropdown-menu-footer"><a class="dropdown-item info text-right pr-1" href="javascript:void(0)">Read all</a></li>
+                                </div>
+                            </ul>
+                        </li>
+
+
+
+
+
+
+
                         <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-mail">             </i></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="arrow_box_right"><a class="dropdown-item" href="#"><i class="ft-book"></i> Read Mail</a><a class="dropdown-item" href="#"><i class="ft-bookmark"></i> Read Later</a><a class="dropdown-item" href="#"><i class="ft-check-square"></i> Mark all Read       </a></div>
@@ -290,6 +317,7 @@
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <!-- Bordered table end -->
@@ -297,7 +325,6 @@
     </div>
     </div>
     </div>
-
 
     <script>
         $(document).ready(function(){
@@ -318,6 +345,8 @@
                 });
             });
         });
+    </script>
+    <script>
     </script>
 
 {%endblock%}

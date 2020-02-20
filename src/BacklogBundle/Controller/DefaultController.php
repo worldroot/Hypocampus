@@ -124,6 +124,24 @@ class DefaultController extends Controller
 
     }
 
+    public function TransitNotificationAction($id_b,$id, $notifiable, $notification){
+        //$manager = $this->get('mgilet.notification');
+        //$notif = $manager->getNotification($id_n);
+        //$notif->markAsSeen($this->getUser(),$notif);
+       // return $this->redirectToRoute('view_BacklogTask',['id_b' => $id_b, 'id' => $id]);
+
+        $manager = $this->get('mgilet.notification');
+        $manager->markAsSeen(
+            $this->getUser(),
+            $manager->getNotification($notification),
+            true
+        );
+        return $this->redirectToRoute('view_BacklogTask',['id_b' => $id_b, 'id' => $id]);
+
+
+
+    }
+
     public function AddBacklogTaskAction(Request $request, $id)
     {
 
@@ -140,7 +158,13 @@ class DefaultController extends Controller
             $backlog= $em->getRepository(Backlog::class)->find($id);
             $task->setBacklog($backlog);
             $task->setArchive(0);
+
+
+
+
             $em->persist($task);
+
+
 
 
 
@@ -163,6 +187,15 @@ class DefaultController extends Controller
             //5.A sauv les données dans la bd
 
             $em->flush();
+            if ( $task->getUser() != null){
+
+                $manager = $this->get('mgilet.notification');
+                $notif = $manager->createNotification('Une Tache A Vous!!');
+                $notif->setMessage("La tache : ".$task->getTitle()." vous est affecter");
+                $notif->setLink('/view/'.$backlog->getId().'/task/view/'.$task->getId());
+                $manager->addNotification(array($this->getUser()), $notif, true);
+
+            }
 
             //6 redirect to route
             return $this->redirectToRoute('view_ProjectBacklog',['id' => $id]);
@@ -257,7 +290,6 @@ class DefaultController extends Controller
 
 
 
-
         if(($form->isSubmitted()) & ($form->isValid()))
         {
 
@@ -270,6 +302,16 @@ class DefaultController extends Controller
 
             }else{
                 $backlog->setPointsDone($backlog->getPointsDone() + $task->getStoryPoints());
+
+            }
+
+            if ( $task->getUser() != null){
+
+                $manager = $this->get('mgilet.notification');
+                $notif = $manager->createNotification('Une Tache Pour Vous!!');
+                $notif->setMessage("La tache".$task->getTitle()."vous est affecter");
+                $notif->setLink('/view/'.$id_b.'/task/view/'.$task->getId());
+                $manager->addNotification(array($this->getUser()), $notif, true);
 
             }
 
