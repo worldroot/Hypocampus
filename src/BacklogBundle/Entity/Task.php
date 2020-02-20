@@ -52,14 +52,14 @@ class Task
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_date", type="datetime")
+     * @ORM\Column(name="created_date", type="date")
      */
     private $createdDate;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="finished_date", type="datetime")
+     * @ORM\Column(name="finished_date", type="date")
      */
     private $finishedDate;
 
@@ -78,10 +78,47 @@ class Task
     private $priority;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="archive", type="integer")
+     */
+    private $archive;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Backlog")
      * @ORM\JoinColumn(name="backlog_id", referencedColumnName="id")
      */
     private $backlog;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Task
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 
 
     /**
@@ -309,4 +346,21 @@ class Task
     {
         return $this->backlog;
     }
+
+    /**
+     * @return int
+     */
+    public function getArchive()
+    {
+        return $this->archive;
+    }
+
+    /**
+     * @param int $archive
+     */
+    public function setArchive($archive)
+    {
+        $this->archive = $archive;
+    }
+
 }

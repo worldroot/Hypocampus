@@ -12,19 +12,11 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="nav-item"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
                 </li>
-                <li class=" nav-item"><a href="/rapport"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Rapport</span></a>
+                <li class=" nav-item"><a href="{{ path('read') }}"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Entreprises</span></a>
                 </li>
-                <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
+                <li class=" active"><a href="{{ path('readsub') }}"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Abonnements</span></a>
                 </li>
-                <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
-                </li>
-                <li class="active"><a href="index.html"><i  class="ft-box"></i><span class="menu-title" data-i18n="">Projets</span></a>
-                </li>
-                <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
-                </li>
-                <li class=" nav-item"><a href="tables.html"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
-                </li>
-                <li class=" nav-item"><a href="form-elements.html"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Ressources</span></a>
+                <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Comptes</span></a>
                 </li>
                 <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
                 </li>
@@ -43,7 +35,7 @@
                     <div class="card" >
 
                         <div class="card-header">
-                            <h4 class="card-title" id="basic-layout-icons">Créer Tarif</h4>
+                            <h4 class="card-title" id="basic-layout-icons">Créer Type</h4>
                             <a class="heading-elements-toggle">
                                 <i class="la la-ellipsis-v font-medium-3"></i>
                             </a>
@@ -83,7 +75,7 @@
                                                 <div class="form-control-position">
 
                                                 </div>
-                                                <label for="timesheetinput1"><i class="ft-user"></i>  Tarif </label>
+                                                <label for="timesheetinput1"><i class="ft-user"></i>  Type </label>
 
                                                 <div class="position-relative has-icon-left">
                                                     {{ form_widget(form.name, { 'attr' : { 'class' : 'form-control' } }) }}

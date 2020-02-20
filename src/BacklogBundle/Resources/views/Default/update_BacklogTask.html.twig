@@ -39,11 +39,11 @@
 {% block body %}
 
 
-    <div class="app-content content align-content-center">
-        <div class="content-wrapper ">
+    <div class="app-content content align-content-center align-self-center ">
+        <div class="content-wrapper align-self-center ">
             <div class="content-header row">
             </div>
-            <div class="content-body"><!-- Chart -->
+            <div class="content-body align-self-center"><!-- Chart -->
                 <div class="col-12">    </div>
                 <div class="col-12">    </div>
                 <div class="col-12">    </div>
@@ -62,7 +62,7 @@
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
                                 <li>
-                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >New test</a>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('index_ProjectBacklog') }}" >Retour</a>
                                 </li>
                             </ul>
                         </div>
@@ -73,12 +73,12 @@
 
 
                 <!-- PUT BODY HERE -->
-                <div class="content-body text-center">
-                    <div class="row match-height">
-                        <div class="col-xl-4 col-lg-6 col-md-12">
+                <div class="content-body text-center align-self-center">
+                    <div class="row match-height align-items-center align-self-center">
+                        <div class="col-6  ">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title"> Tache</h4>
+                                    <h4 class="card-title"> Modifier Tache</h4>
                                 </div>
                                 <div class="card-block">
                                     <div class="card-body">
@@ -86,82 +86,78 @@
                                         <div class="form-body">
                                             {{ form_start(form) }}
 
+
+                                            <label for="donationinput7" class="sr-only">Project</label>
+
+
                                             <div class="form-group">
-                                                <label for="donationinput7" class="sr-only">Project</label>
-
-                                                <div class="card-header">
-                                                    <h4 class="card-title">Task</h4>
-                                                </div>
-                                                <fieldset class="form-group">
-                                                    <div class="form-group">
-                                                        <label for="timesheetinput2"><i class="la la-briefcase"></i> Titre</label>
-                                                        <div class="position-relative has-icon-left">
-                                                            {{ form_widget(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
-
-                                                        </div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <h5 class="mt-2">Description Fonctionnele </h5>
-                                                <fieldset class="form-group">
-
-                                                    <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Simple Textarea"
-                                                    {{ form_widget(form.descriptionFonctionnel, { 'attr' : { 'class' : 'form-control' } }) }}
-                                                    </textarea>
-                                                </fieldset>
-
-                                                <h5 class="mt-2">Description Technique </h5>
-                                                <fieldset class="form-group">
-                                                    <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Simple Textarea"
-                                                    {{ form_widget(form.descriptionTechnique, { 'attr' : { 'class' : 'form-control' } }) }}
-                                                    </textarea>
-                                                </fieldset>
-
-                                                <div class="card-header">
-                                                    <h4 class="card-title">State</h4>
-                                                </div>
-                                                <fieldset class="form-group">
-                                                    {{ form_widget(form.state) }}
-                                                </fieldset>
-
-                                                <div class="card-header">
-                                                    <h4 class="card-title">Priority</h4>
-                                                </div>
-                                                <fieldset class="form-group">
-                                                    <input type="number" class="form-control"    {{ form_widget(form.priority) }}
-                                                </fieldset>
-
-                                                <div class="card-header">
-                                                    <h4 class="card-title">Story Points</h4>
-                                                </div>
-                                                <fieldset class="form-group">
-                                                    <input type="number" class="form-control"    {{ form_widget(form.storyPoints) }}
-                                                </fieldset>
-
-                                                <div class="card-header">
-                                                    <h4 class="card-title">Backlog</h4>
-                                                </div>
+                                                <h5 class="mt-2">Titre</h5>
                                                 <div class="position-relative has-icon-left">
+                                                    {{ form_widget(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
 
-                                                    {{ form_widget(form.backlog, { 'attr' : { 'class' : 'form-control' ,'type' : 'date' } }) }}
-                                                </div>
-
-
-                                                <label for="timesheetinput5"> <i class="ft-clock"></i> Start Date</label>
-                                                <div class="position-relative has-icon-left">
-                                                    {{ form_widget(form.createdDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
-                                                </div>
-
-                                                <label for="timesheetinput5"> <i class="ft-clock"></i> End Date</label>
-                                                <div class="position-relative has-icon-left">
-                                                    {{ form_widget(form.finishedDate, { 'attr' : { 'class' : 'form-control onincomplete-inputmask' } }) }}
                                                 </div>
                                             </div>
 
+                                            <h5 class="mt-2">Description Fonctionnele </h5>
+                                            <div class="form-group">
+
+                                                <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Votre description Fonctionnele de la tache"
+                                                {{ form_widget(form.descriptionFonctionnel, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                </textarea>
+                                            </div>
+
+                                            <h5 class="mt-2">Description Technique </h5>
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="placeTextarea" rows="3" placeholder="Votre description Technique de la tache"
+                                                {{ form_widget(form.descriptionTechnique, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                </textarea>
+                                            </div>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">State</h4>
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_widget(form.state,{ 'attr' : { 'class' : 'form-control rounded' }}) }}
+                                            </div>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">Priority</h4>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" class="form-control"    {{ form_widget(form.priority) }}
+                                            </div>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">Story Points</h4>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number" class="form-control"    {{ form_widget(form.storyPoints) }}
+                                            </div>
+
+
+                                            <div class="card-header">
+                                                <h4 class="card-title">Affecter un User</h4>
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_widget(form.user,{ 'attr' : { 'class' : 'form-control rounded' }}) }}
+                                            </div>
+
+                                            <div class="card-header">
+                                                <h4 class="card-title"> <i class="ft-clock"></i>End Date</h4>
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_label(form.finishedDate, 'Choisir la date estimer du fin de la tache') }}
+                                                {{ form_widget(form.finishedDate,  { 'attr' : { 'class' : 'form-control date-inputmask', 'id' :'date-mask' }}) }}
+                                            </div>
                                         </div>
+
+
+
                                         <div class="form-actions center">
                                             <button class="btn btn-primary" {{ form_widget(form.valider) }}  </button>
                                         </div>
+
 
 
                                         {{ form_end(form) }}
@@ -173,18 +169,12 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
+            <!--/ END BODY -->
+
         </div>
-        <!--/ END BODY -->
-    </div>
-    </div>
-    </div>
 
-
-
+    </div>
 
 {%endblock%}
 
