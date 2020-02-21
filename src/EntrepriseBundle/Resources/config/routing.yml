@@ -1,0 +1,19 @@
+entreprise_homepage:
+    path:     /
+    defaults: { _controller: EntrepriseBundle:Default:index }
+
+create:
+    path:     /create
+    defaults: { _controller: EntrepriseBundle:Entreprise:create }
+
+read:
+    path:     /read
+    defaults: { _controller: EntrepriseBundle:Entreprise:read }
+
+update:
+    path:     /update/{id}
+    defaults: { _controller: EntrepriseBundle:Entreprise:update }
+
+delete:
+    path:     /delete/{id}
+    defaults: { _controller: EntrepriseBundle:Entreprise:delete }
