@@ -25,7 +25,7 @@ class MeetingController extends Controller
              $message = $client->message()->send([
                  'to' => '+21693991868',
                  'from' => 'Reunion',
-                 'text' => 'Reunion urgent '
+                 'text' => 'Reunion urgente '
              ]);*/
             return $this->redirectToRoute('read_meeting');
         }
