@@ -25,7 +25,6 @@ class AppKernel extends Kernel
             new EntrepriseBundle\EntrepriseBundle(),
             new EventBundle\EventBundle(),
             new BacklogBundle\BacklogBundle(),
-            new SubscriptionBundle\SubscriptionBundle(),
             new TeamBundle\TeamBundle(),
             new MeetingBundle\MeetingBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
