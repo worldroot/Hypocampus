@@ -42,6 +42,14 @@ view_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/view/{id}
     defaults: { _controller: BacklogBundle:Default:ViewBacklogTask }
 
+TransitNotification:
+    path:     /ProjectBacklog/view/{id_b}/task/view/{id}/transit/{notifiable}/{notification}
+    defaults: { _controller: BacklogBundle:Default:TransitNotification }
+
+archiver_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/{id}/{archive}
+    defaults: { _controller: BacklogBundle:Default:ArchiverBacklogTask }
+
 create_commentaire:
     path:     /ProjectBacklog/view/{id_b}/task/view/{id}/commentaire/add
     defaults: { _controller: BacklogBundle:Default:CreateTaskCommentaire }

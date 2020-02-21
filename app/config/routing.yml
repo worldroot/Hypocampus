@@ -1,3 +1,14 @@
+entreprise:
+    resource: "@EntrepriseBundle/Resources/config/routing.yml"
+    prefix:   /entreprise
+
+sprint:
+    resource: "@sprintBundle/Resources/config/routing.yml"
+    prefix:   /sprint
+
+projets:
+    resource: "@projetsBundle/Resources/config/routing.yml"
+    prefix:   /projets
 
 event:
     resource: "@EventBundle/Resources/config/routing.yml"
@@ -29,3 +40,7 @@ team:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+mgilet_notification:
+    resource: "@MgiletNotificationBundle/Controller/"
+    prefix: /notifications

@@ -39,7 +39,7 @@ class Commentaire
 
     /**
      * @ORM\ManyToOne(targetEntity="Task")
-     * @ORM\JoinColumn(name="task_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="task_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $task;
 

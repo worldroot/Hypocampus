@@ -2,6 +2,7 @@
 
 namespace BacklogBundle\Form;
 
+use AppBundle\Entity\User;
 use BacklogBundle\Entity\Backlog;
 use BacklogBundle\Entity\Task;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -18,7 +19,8 @@ class TaskType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title')->add('descriptionFonctionnel')->add('descriptionTechnique')->add('storyPoints')->add('createdDate')->add('finishedDate')
+        $builder->add('title')->add('descriptionFonctionnel')->add('descriptionTechnique')->add('storyPoints')
+            ->add('finishedDate')
             ->add('state', ChoiceType::class, array(
                 'choices'  => array(
                     'To Do' => "To Do",
@@ -26,12 +28,12 @@ class TaskType extends AbstractType
                     'Done' => "Done",
                 ),
             ))
-            ->add('priority')
-            ->add('backlog',EntityType::class,array(
-                'class'=>Backlog::class,
-                'choice_label'=>'id',
+            ->add('user',EntityType::class,array(
+                'class'=>User::class,
+                'choice_label'=>'username',
                 'multiple'=>false
             ))
+            ->add('priority')
             ->add('valider',SubmitType::class);
         ;
     }/**

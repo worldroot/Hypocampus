@@ -83,15 +83,14 @@
                                         <div class="form-body">
                                             {{ form_start(form) }}
 
-                                            <div class="form-group">
-
 
                                                 <div class="card-header">
                                                     <h4 class="card-title">Task</h4>
                                                 </div>
-                                                <fieldset class="form-group">
-                                                    {{ form_widget(form.task) }}
-                                                </fieldset>
+                                                <div class="form-group">
+                                                    {{ form_label(form.task, 'Choisir la ticket') }}
+                                                    {{ form_widget(form.task,  { 'attr' : { 'class' : 'form-control rounded' }}) }}
+                                                </div>
 
 
                                                 <h4 class="mt-2">Description </h4>
@@ -112,7 +111,7 @@
 
                                                     </div>
                                                 </fieldset>
-                                            </div>
+
 
                                         </div>
                                         <div class="form-actions center">

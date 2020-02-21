@@ -12,7 +12,7 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
-        return $this->render('@User/Security/login.html.twig');
+        return $this->render('@User/Default/index.html.twig');
     }
 
     public function registerAction()

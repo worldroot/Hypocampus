@@ -17,16 +17,24 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new Mgilet\NotificationBundle\MgiletNotificationBundle(),
             new AppBundle\AppBundle(),
-            new EventBundle\EventBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
+            new SubscriptionBundle\SubscriptionBundle(),
+            new EntrepriseBundle\EntrepriseBundle(),
+            new EventBundle\EventBundle(),
             new BacklogBundle\BacklogBundle(),
             new SubscriptionBundle\SubscriptionBundle(),
             new TeamBundle\TeamBundle(),
             new MeetingBundle\MeetingBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new projetsBundle\projetsBundle(),
+            new sprintBundle\sprintBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         ];
+
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
