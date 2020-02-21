@@ -1,0 +1,93 @@
+{% extends "backend.html.twig" %}
+
+{% block body %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <div class="content-header row">
+            </div>
+            <div class="content-body"><!-- Chart -->
+                <div class="row match-height">
+
+                </div>
+                <!-- Chart -->
+                <!-- eCommerce statistic -->
+                <div class="row">
+
+
+
+                </div>
+                <!--/ eCommerce statistic -->
+
+                <!-- Statistics -->
+                <form method="post">
+                <div class="row match-height">
+                    <div class="col-md-6">
+                        <div class="card" style="height: 798px;">
+                            <div class="card-header">
+                                <h4 class="card-title" id="basic-layout-colored-form-control">Update Team</h4>
+                                <a class="heading-elements-toggle">
+                                    <i class="la la-ellipsis-v font-medium-3"></i>
+                                </a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <a data-action="collapse">
+                                                <i class="ft-minus"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-action="reload">
+                                                <i class="ft-rotate-cw"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-action="expand">
+                                                <i class="ft-maximize"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-action="close">
+                                                <i class="ft-x"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="form-body">
+
+
+                                        <label for="contactinput5">Team Name</label>
+                                        <input type="text" class="form-control" placeholder="teamname"  name="teamname" value="{{ form.teamname   }}">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contactinput5">Date</label>
+                                        <input type="date" class="form-control" placeholder="dateofcreation"  name="dateofcreation" value="{{ form.dateofcreation | date('Y-m-d')  }}">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form-actions right">
+                                    <input type="submit" class="btn btn-primary" value="Save" >
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                </form>
+            </div>
+            <!--/ Statistics -->
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

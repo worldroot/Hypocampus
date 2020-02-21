@@ -23,6 +23,8 @@
         "knplabs/knp-paginator-bundle": "^3.0",
         "mgilet/notification-bundle": "^3.1",
         "ob/highcharts-bundle": "^1.6",
+        "knplabs/knp-snappy-bundle": "^1.5",
+        "nexmo/client": "^1.9",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^5.0.0",
         "symfony/monolog-bundle": "^3.1.0",
@@ -73,4 +75,5 @@
             "dev-master": "3.4-dev"
         }
     }
+
 }

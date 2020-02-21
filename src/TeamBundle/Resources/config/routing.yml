@@ -1,0 +1,19 @@
+team_homepage:
+    path:     /
+    defaults: { _controller: TeamBundle:Default:index }
+
+createteam:
+    path:     /createteam
+    defaults: { _controller: TeamBundle:team:createteam }
+
+readteam:
+    path:     /readteam
+    defaults: { _controller: TeamBundle:team:readteam }
+
+updateteam:
+    path:     /updateteam/{id}
+    defaults: { _controller: TeamBundle:team:updateteam }
+
+deleteteam:
+    path:     /deleteteam/{id}
+    defaults: { _controller: TeamBundle:team:deleteteam }
