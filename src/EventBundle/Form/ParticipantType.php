@@ -3,6 +3,7 @@
 namespace EventBundle\Form;
 
 use EventBundle\Entity\EventsAdmin;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,11 +21,18 @@ class ParticipantType extends AbstractType
                 ->add('prenomp')
                 ->add('email')
                 ->add('passwordp')
-                ->add('valider',SubmitType::class)
                 ->add('choix',EntityType::class, array(
                 'class'=>EventsAdmin::class,
                 'choice_label'=>'TitreEvent',
                 'multiple'=>false))
+                ->add('captcha', CaptchaType::class, array(
+                    'width' => 200,
+                    'height' => 60,
+                    'length' => 5,
+                    'quality' => 50,
+
+                    ))
+                ->add('valider',SubmitType::class)
 
         ;
 

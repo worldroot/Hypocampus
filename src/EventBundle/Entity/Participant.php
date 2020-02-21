@@ -44,7 +44,7 @@ class Participant
 
     /**
      *@ORM\ManyToOne(targetEntity="EventsAdmin")
-     *@ORM\JoinColumn(name="choix",referencedColumnName="idev")
+     *@ORM\JoinColumn(name="choix",referencedColumnName="idev", onDelete="CASCADE")
      */
     private $choix;
 

@@ -42,6 +42,13 @@ class EventsAdmin
      */
     private $typeEvent;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="DateEvent", type="date", nullable=TRUE)
+     */
+    private $dateEvent;
+
 
     /**
      * Get id
@@ -124,5 +131,27 @@ class EventsAdmin
     {
         return $this->typeEvent;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateEvent()
+    {
+        return $this->dateEvent;
+    }
+
+    /**
+     * @param \DateTime $dateEvent
+     */
+    public function setDateEvent($dateEvent)
+    {
+        $this->dateEvent = $dateEvent;
+    }
+
+
+
+
+
+
 }
 
