@@ -30,16 +30,9 @@ triep:
     path:     /P/Triep
     defaults: { _controller: EventBundle:Participant:Triep }
 
-
 loginp:
     path:     /P/Loginp
     defaults: { _controller: EventBundle:Participant:Loginp }
-
-
-
-
-
-
 
 addevent:
     path:     /addeventA
@@ -60,3 +53,7 @@ deleteevents:
 searchevents:
     path:     /searchevents
     defaults: { _controller: EventBundle:EventAdmin:searchevents }
+
+statevent:
+    path:     /statevent
+    defaults: { _controller: EventBundle:EventAdmin:statevent }

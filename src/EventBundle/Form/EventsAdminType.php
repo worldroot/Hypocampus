@@ -19,6 +19,7 @@ class EventsAdminType extends AbstractType
             ->add('numeroEvent')
             ->add('typeEvent')
             ->add('dateEvent')
+            ->add('enddateEvent')
             ->add('valider',SubmitType::class);
         ;
     }/**

@@ -3,6 +3,7 @@
 namespace EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * EventsAdmin
@@ -46,8 +47,35 @@ class EventsAdmin
      * @var \DateTime
      *
      * @ORM\Column(name="DateEvent", type="date", nullable=TRUE)
+     *
      */
     private $dateEvent;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="enddateEvent", type="date", nullable=TRUE)
+     * @Assert\GreaterThan(propertyPath="dateEvent")
+     *
+     */
+    private $enddateEvent;
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getEnddateEvent()
+    {
+        return $this->enddateEvent;
+    }
+
+    /**
+     * @param \DateTime $enddateEvent
+     */
+    public function setEnddateEvent($enddateEvent)
+    {
+        $this->enddateEvent = $enddateEvent;
+    }
 
 
     /**

@@ -8,7 +8,7 @@
     <script language="JavaScript" src="https://code.jquery.com/jquery-1.11.1.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="https://cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
-
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <!-- fixed-top-->
     <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
@@ -58,6 +58,8 @@
                     <ul class="menu-content">
                         <li class="menu-item"><a href="{{path('addevent')}}">Ajout Evenement</a>
                         </li>
+                        <li class="menu-item"><a href="{{path('searchevents')}}">List Evenements</a>
+                        </li>
                     </ul>
                 </li>
                 <li class=" nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title" data-i18n="">Participant</span></a>
@@ -72,6 +74,30 @@
 {% endblock %}
 
 {% block body %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['events_admin', 'participant'],
+                {% for e in formations %}
+                ['{{ e.TitreEvent }}',     {{ e.TypeEvent|length }}],
+                {% endfor %}
+            ]);
+
+            var options = {
+                title: 'Statistiques'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
@@ -83,13 +109,18 @@
 
                     <div class="card">
                         <div class="card-content">
-                            <div class="card-header"><h3>Les Participants</h3>
+                            <div class="card-header"><h3>Les Evenements</h3>
 
                                 <div class="heading-elements" >
                                     <ul class="list-inline mb-0">
                                         <li>
                                             <a data-action="reload" >
                                                 <i class="ft-rotate-cw" ></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{path('statevent')}}" >
+                                                <i class="ft-bar-chart" ></i>
                                             </a>
                                         </li>
                                     </ul>
@@ -103,8 +134,9 @@
                                         <tr>
                                             <th class="border-top-0">Titre</th>
                                             <th class="border-top-0">Type</th>
-                                            <th class="border-top-0">Numero</th>
+                                            <th class="border-top-0">Capacité</th>
                                             <th class="border-top-0">Date</th>
+                                            <th class="border-top-0">Date de Fin</th>
 
                                             <th ></th>
                                             <th ></th>
@@ -117,6 +149,7 @@
                                                 <td class="text-truncate">{{ i.TypeEvent }}</td>
                                                 <td class="text-truncate">{{ i.numeroEvent }}</td>
                                                 <td class="text-truncate">{{ i.dateEvent|date('Y-m-d') }}</td>
+                                                <td class="text-truncate">{{ i.enddateEvent|date('Y-m-d') }}</td>
                                                 <td class="text-truncat mr-1">
                                                     <a href="{{path('deleteevents',{'idev':i.idev})}}">
                                                         <button class="btn btn-sm btn-outline-danger round" type="submit">Supprimer</button>
@@ -140,9 +173,11 @@
 
 
 
-                </div>
-            </div>
 
+
+                </div>
+
+            </div>
 
 
 
@@ -150,7 +185,6 @@
             <!--/ END BODY -->
         </div>
     </div>
-
 
 
 
@@ -164,11 +198,8 @@
             });
         });
     </script>
-
-
-
-
-
 {% endblock %}
+
+
 
 
