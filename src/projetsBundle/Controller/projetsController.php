@@ -46,6 +46,10 @@ class projetsController extends Controller
             return $this->redirectToRoute('afficherprojet');
 
             }
+            else
+            {
+                echo "<script>alert('Vous avez sélectionnez une date incorrect!!')</script>";
+            }
         }
         
         return $this->render('@projets/projets/createprojet.html.twig', array(
@@ -90,6 +94,7 @@ class projetsController extends Controller
 
             $em->persist($projets);
             $em->flush();
+
             //Rederiger vers read
             return $this->redirectToRoute('afficherprojet');
         }
