@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use EventBundle\Entity\EventsAdmin;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CertifType extends AbstractType
 {
@@ -21,6 +23,7 @@ class CertifType extends AbstractType
                 'class'=>EventsAdmin::class,
                 'choice_label'=>'TitreEvent',
                 'multiple'=>false))
+            ->add('imageFile', VichImageType::class)
             ->add('pointc')
             ->add('datec')
             ->add('valider',SubmitType::class);

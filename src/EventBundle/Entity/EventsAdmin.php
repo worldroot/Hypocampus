@@ -5,6 +5,7 @@ namespace EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * EventsAdmin
  *
@@ -28,6 +29,8 @@ class EventsAdmin
      * @ORM\Column(name="TitreEvent", type="string", length=255)
      */
     private $titreEvent;
+
+
 
     /**
      * @var int

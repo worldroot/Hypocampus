@@ -78,30 +78,6 @@
 {% endblock %}
 
 {% block body %}
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-                ['events_admin', 'participant'],
-                {% for e in formations %}
-                ['{{ e.TitreEvent }}',     {{ e.TypeEvent|length }}],
-                {% endfor %}
-            ]);
-
-            var options = {
-                title: 'Statistiques'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-            chart.draw(data, options);
-        }
-    </script>
-
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
