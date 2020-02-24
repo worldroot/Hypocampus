@@ -87,16 +87,17 @@
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body pt-0 pb-1">
-                                        <h6 class="text-muted font-small-3"> Completed Task : 1</h6>
+                                        <h6 class="text-muted font-small-3"> Points Completed : {{ i.pointsDone }}</h6>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                                            <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: {{  (i.pointsDone  - (i.pointsInProgress + i.pointsTodo ))*100/ (i.pointsDone  + i.pointsInProgress + i.pointsTodo ) }}%" aria-valuenow="{{ (i.pointsDone  - (i.pointsInProgress + i.pointsTodo ))*100/ (i.pointsDone  + i.pointsInProgress + i.pointsTodo ) }}" aria-valuemin="0" aria-valuemax="{{ (i.pointsDone  + i.pointsInProgress + i.pointsTodo ) }}"></div>
                                         </div>
 
                                         <div class="media d-flex">
                                             <div class="align-self-center">
                                                 <h6 class="text-bold-600 mt-1">
 
-                                                    <a href="{{ path('view_ProjectBacklog',{'id':i.id}) }}"> <button type="button" class="btn btn-primary btn-min-width mr-1 mb-1"><i class="la la-bullseye"></i> Consulter</button></a>
+                                                    <a href="{{ path('view_ProjectBacklog',{'id':i.id}) }}">
+                                                        <button type="button" class="btn btn-primary btn-min-width mr-1 mb-1"><i class="la la-bullseye"></i> Consulter</button></a>
 
 
                                                 </h6>
