@@ -100,27 +100,34 @@
                                     <a href="{{ path('updateprojet',{'id':i.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a>
                                     <h4 class="card-title float-left ">{{ i.projetName }} :      </h4><a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
-                                    <span class="badge badge-pill badge-info float-left  ">In Progress</span>
+                                    {% if render(controller('sprintBundle:sprint:Progress', {'search':i.id}))!= render(controller('sprintBundle:sprint:ProgressC', {'search':i.id}))%}
+                                        <span class="badge badge-pill badge-info float-left  ">In Progress</span>
+                                    {% endif %}
+                                    {% if render(controller('sprintBundle:sprint:Progress', {'search':i.id}))== render(controller('sprintBundle:sprint:ProgressC', {'search':i.id})) and render(controller('sprintBundle:sprint:ProgressC', {'search':i.id}))!=0 %}
+                                        <span class="badge badge-primary badge-pill badge-success float-left  ">Completed</span>
+                                    {% endif %}
 
                                 </div>
                                 <div class="card-content collapse show">
                                     <div class="card-body pt-0 pb-1">
-                                        <h6 class="text-muted font-small-3"> Completed Task : 4/10</h6>
+                                        <h6 class="text-muted font-small-3"> Completed sprint : {{ render(controller('sprintBundle:sprint:Progress', {'search':i.id})) }}/{{ render(controller('sprintBundle:sprint:ProgressC', {'search':i.id})) }}</h6>
+                                        {% if render(controller('sprintBundle:sprint:ProgressC', {'search':i.id}))!=0%}
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
-                                            <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: {{ render(controller('sprintBundle:sprint:Progress', {'search':i.id}))*100/render(controller('sprintBundle:sprint:ProgressC', {'search':i.id})) }}%" aria-valuenow="{{ render(controller('sprintBundle:sprint:ProgressC', {'search':i.id})) }}" aria-valuemin="0" aria-valuemax="{{ render(controller('sprintBundle:sprint:ProgressC', {'search':i.id})) }}"></div>
                                         </div>
-
+                                        {% endif %}
                                         <div class="media d-flex">
                                             <div class="align-self-center">
                                                 <h6 class="text-bold-600 mt-2"> Nom de l'entreprise: <span class="info">{{ i.owner }}</span></h6>
                                                 <h6 class="text-bold-600 mt-1"> startDate: <span class="blue-grey">{{ i.startDate |date('Y-m-d') }}</span></h6>
                                                 <h6 class="text-bold-600 mt-1"> Deadline: <span class="blue-grey">{{ i.endDate |date('Y-m-d') }}</span></h6>
                                                 <h6 class="text-bold-600 mt-1"> Description: <span class="blue-grey">{{ i.description  }}</span></h6>
-
+                                                <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('affichersprint',{'id_projet':i.id}) }}">voir les sprints </a>
                                             </div>
 
                                         </div>
                                     </div>
+                                    <a class="btn btn-sm btn-white danger   btn-min-width float-right " href="{{ path('stat_sprint',{'idS':i.id}) }}"><i class="ft-pie-chart danger"></i> voir les statistiques</a>
 
                                 </div>
 

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class sprintController extends Controller
 {
-    public function createsprintAction(Request $request)
+    public function createsprintAction(Request $request,$id = null)
     {
 
 
@@ -32,27 +32,29 @@ class sprintController extends Controller
             $em->persist($sprint);
             //sauvegarder les donnees dans BD
             $em->flush();
-            return $this->redirectToRoute('affichersprint');
+            return $this->redirectToRoute('affichersprint',['id_projet' => $sprint->getProjets()->getId()]);
         }
         return $this->render('@sprint/sprint/createsprint.html.twig', array(
             'form'=>$form->createView()
         ));
     }
 
-    public function affichersprintAction()
+    public function affichersprintAction($id_projet)
     {
         $em=$this->getDoctrine();
-        $tab=$em->getRepository(sprint::class)->findAll();
+        $tab=$em->getRepository(sprint::class)->findprojet($id_projet);
         return $this->render('@sprint/sprint/affichersprint.html.twig', array(
-            'sprint'=>$tab
+            'sprint'=>$tab,
+            'id_p'=>$id_projet
         ));
     }
 
-    public function updatesprintAction($id,Request $request)
+    public function updatesprintAction($idU,$id,Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $sprint = $em->getRepository(sprint::class)->find($id);
         $projets=$em->getRepository(projets::class)->findAll();
+
 
 
 
@@ -71,7 +73,9 @@ class sprintController extends Controller
             $em->persist($sprint);
             $em->flush();
             //Rederiger vers read
-            return $this->redirectToRoute('affichersprint');
+
+           // $idt = $request->query->get('projets_id');
+            return $this->redirectToRoute('affichersprint',['id_projet' =>$idU]);
         }
         return $this->render('@sprint/sprint/updatesprint.html.twig', array(
             'form'=>$sprint,
@@ -87,28 +91,31 @@ class sprintController extends Controller
         $club=$em->getRepository(sprint::class)->find($id);
         $em->remove($club);
         $em->flush();
-        return $this->redirectToRoute('affichersprint');
+        return $this->redirectToRoute('affichersprint',['id_projet' => $club->getProjets()->getId()]);
     }
 
 
 
-    public function DRAG_DROPAction(Request $request)
+    public function DRAG_DROPAction($idd,Request $request)
     {
 
         $em=$this->getDoctrine();
-        $tab=$em->getRepository(sprint::class)->scarra();
+        $tab=$em->getRepository(sprint::class)->scarra($idd);
 
 
 
             $id = $request->query->get('id');
             $etat = $request->query->get('etat');
+
             if( $id != null)
             {
                 $em->getRepository(sprint::class)->scarra__($id,$etat);
 
+
+
             }
-
-
+        $em->getRepository(sprint::class)->updatesprintetat($idd);
+        $em->getRepository(sprint::class)->updatesprintetat2($idd);
         return $this->render('@sprint/sprint/DRAG_DROP.html.twig', array(
             'tasks'=>$tab
         ));
@@ -153,27 +160,59 @@ class sprintController extends Controller
         return  new Response($max['Done']);
 
     }
-    public function statsprintAction()
+    public function DoneTAction($search)
+    {
+        //$search =$request->query->get('projets');
+        $em = $this->getDoctrine()->getManager();
+        $result =$em->getRepository('sprintBundle:sprint')->getDoneT($search);
+        $max=$result[0];
+
+        return  new Response($max['DoneT']);
+
+    }
+
+    public function statsprintAction($idS)
     {        $pieChart = new PieChart();
         $em= $this->getDoctrine();
 
-        $sprint = $em->getRepository(sprint::class)->findAll();
+        $sprint = $em->getRepository(sprint::class)->findprojet($idS);
 
-        $totalEtudiant=0;
+        $totalsprint=0;
+        $totalsprint0=0;
+        $totalsprint1=0;
         foreach($sprint as $S) {
-            $totalEtudiant=$totalEtudiant+$S->getEtat();
+          //  $totalsprint=$totalsprint+$S->getEtat();
+            $totalsprintT=$totalsprint+1;
+            if ($S->getEtat()==0){
+                $totalsprintT0=$totalsprint0+1;
+            }
+            if ($S->getEtat()==1){
+                $totalsprintT1=$totalsprint1+1;
+            }
         }
 
+
         $data= array();
-        $stat=['classe', 'etat'];
+        $stat=['sprint', 'etat'];
         $nb=0;
         array_push($data,$stat);
         foreach($sprint as $S) {
             $stat=array();
-            array_push($stat,$S->getSprintName(),(($S->getEtat()) *100)/$totalEtudiant);
-            $nb=($S->getEtat() *100)/$totalEtudiant;
-            $stat=[$S->getSprintName(),$nb];
-            array_push($data,$stat);
+            if ($S->getEtat()==0){
+                array_push($stat,$S->getSprintName(),(($totalsprintT0) *100)/$totalsprintT);
+                $nb=($totalsprintT0 *100)/$totalsprintT;
+                $stat=[$S->getSprintName(),$nb];
+                array_push($data,$stat);
+            }
+            if ($S->getEtat()==1){
+                array_push($stat,$S->getSprintName(),(($totalsprintT1) *100)/$totalsprintT);
+                $nb=($totalsprintT1 *100)/$totalsprintT;
+                $stat=[$S->getSprintName(),$nb];
+                array_push($data,$stat);
+            }
+
+
+
 
         }
 
@@ -182,12 +221,12 @@ class sprintController extends Controller
         );
         $pieChart->getOptions()->setTitle('Pourcentages des sprint par niveau');
         $pieChart->getOptions()->setHeight(500);
-        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->setWidth(1200);
         $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
         $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
         $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
         $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
-        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(35);
 
 
 

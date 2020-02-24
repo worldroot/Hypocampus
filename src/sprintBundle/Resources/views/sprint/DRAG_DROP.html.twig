@@ -55,7 +55,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Liste des projets </h4>
+                        <h4 class="card-title">Liste des taches </h4>
 
                         <a class="heading-elements-toggle">
                             <i class="fa fa-ellipsis-v font-medium-3"></i>
@@ -63,24 +63,8 @@
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
                                 <li>
-                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('createprojet') }}">New project</a>
-                                    <input type="submit" value="Search" id="submit" hidden>
+                                    <a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right" href="{{ path('afficherprojet') }}">Retour</a>
 
-
-                                </li>
-                                <li class="nav-item dropdown navbar-search"><a class="nav-link dropdown-toggle hide" data-toggle="dropdown"  aria-expanded="false"><i class="ficon ft-search"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li class="arrow_box">
-                                            <form>
-                                                <div class="input-group search-box">
-                                                    <div class="position-relative has-icon-right full-width">
-                                                        <input type="text" id="recherche"name="projetName"class="form-control round pull-right" placeholder="Rounded Input"required>
-
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -92,32 +76,91 @@
 
                     <div class="app">
                         <header>
-                            <h1>sprint</h1>
+                            <h1> Sprint </h1>
                         </header>
                         <div class="lists">
-                            <div id="999" class="list ">
-                                <p class="text-primary">TODO</p>
-
+                            <div id="999" class="list badge border-info info badge-border ">
+                                <div class="badge badge-info badge-pill badge-glow pull-right"> To do </div>
+                                <br>
                                 {% for i in tasks %}
-                                    {% if i.etat == "TODO" %}
-                                        <div id="{{ i.id }}" class="list-item bg-primary" draggable="true">{{ i.title }}</div>
+                                    {% if i.state == "To Do" %}
+                                        <div id="{{ i.id }}" class="list-item bg-info badge-glow " draggable="true">
+
+
+                                                <div class="badge badge-secondary badge-glow float-left">
+                                                    {{ i.title }}
+                                                </div>
+                                            <br>
+                                            <br>
+                                            <div class="badge badge-light align-self-center float-left">Description fonctionnel: {{ i.description_fonctionnel }}
+                                            </div>
+                                            <div class="badge badge-pill badge-secondary float-right">
+                                                <i class="font-medium-4 icon-line-height ft-activity">
+                                                    {{ i.priority }}
+                                                </i>
+                                            </div>
+                                            <div class="badge badge-pill badge-glow badge-primary float-right">
+                                                <i class="font-medium-4 icon-line-height ft-award">{{ i.story_points }}
+                                                </i>
+                                            </div>
+
+                                        </div>
                                     {% endif %}
                                 {% endfor %}
                             </div>
-                            <div id="888" class="list">
-                                <p class="text-warning">DOING</p>
+                            <div id="888" class="list badge border-warning info badge-border">
+                                <div class="badge badge-warning badge-pill badge-glow pull-right"> In Progress </div>
+                                <br>
                                 {% for i in tasks %}
-                                    {% if i.etat == "DOING" %}
-                                        <div id="{{ i.id }}" class="list-item bg-warning" draggable="true">{{ i.title }}</div>
+                                    {% if i.state == "In Progress" %}
+                                        <div id="{{ i.id }}" class="list-item bg-warning badge-glow " draggable="true">
+
+                                                <div class="badge badge-secondary badge-glow float-left">
+                                                    {{ i.title }}
+                                                </div>
+                                            <br>
+                                            <br>
+                                            <div class="badge badge-light align-self-center float-left">Description fonctionnel: {{ i.description_fonctionnel }}
+                                            </div>
+                                            <div class="badge badge-pill badge-secondary float-right">
+                                                <i class="font-medium-4 icon-line-height ft-activity">
+                                                    {{ i.priority }}
+                                                </i>
+                                            </div>
+                                            <div class="badge badge-pill badge-glow badge-primary float-right">
+                                                <i class="font-medium-4 icon-line-height ft-award">{{ i.story_points }}
+                                                </i>
+                                            </div>
+
+                                        </div>
                                     {% endif %}
                                 {% endfor %}
                             </div>
-                            <div id="777" class="list">
-                                <p class="text-success">DONE</p>
-
+                            <div id="777" class="list badge border-success info badge-border">
+                                <div class="badge badge-success badge-pill badge-glow pull-right"> Done </div>
+                                <br>
                                 {% for i in tasks %}
-                                    {% if i.etat == "DONE" %}
-                                        <div id="{{ i.id }}" class="list-item bg-success" draggable="true">{{ i.title }}</div>
+                                    {% if i.state == "Done" %}
+                                        <div id="{{ i.id }}" class="list-item bg-success badge-glow " draggable="true">
+
+                                                <div class="badge badge-secondary badge-glow float-left">
+                                                    {{ i.title }}
+                                                </div>
+                                            <br>
+                                            <br>
+                                            <div class="badge badge-light align-self-center float-left">Description fonctionnel: {{ i.description_fonctionnel }}
+                                            </div>
+                                            <div class="badge badge-pill badge-secondary float-right">
+                                                <i class="font-medium-4 icon-line-height ft-activity">
+                                                    {{ i.priority }}
+                                                </i>
+                                            </div>
+                                            <div class="badge badge-pill badge-glow badge-primary float-right">
+                                                <i class="font-medium-4 icon-line-height ft-award">{{ i.story_points }}
+                                                </i>
+                                            </div>
+
+                                        </div>
                                     {% endif %}
 
                                 {% endfor %}
@@ -189,7 +232,7 @@
                     this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
 
                         $.ajax({
-                            url : "{{ path('DRAG_DROP') }}",
+                            url : "{{ path('DRAG_DROP',{'idd':10})  }}",
                             type: 'GET',
                             data : { 'id' : draggedItem.id , 'etat' : this.id}
                         })
