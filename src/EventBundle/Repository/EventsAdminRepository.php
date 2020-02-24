@@ -22,4 +22,21 @@ class EventsAdminRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function findcwf()
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT f FROM EventBundle:EventsAdmin f ,EventBundle:Participant p 
+        WHERE f.idEv=p.choix");
+
+
+        return $query->getResult();
+    }
+
+
+
+
+
+
+
+
 }
