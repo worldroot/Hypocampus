@@ -129,61 +129,10 @@ class EventAdminController extends Controller
         $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
         $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
 
-
-
-
-
         return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
             'formations'=>$tab,'piechart' => $pieChart
         ));
     }
-
-
-     public function stateventAction()
-    {
-        $pieChart = new PieChart();
-        $em= $this->getDoctrine();
-
-        $sprint = $em->getRepository(EventsAdmin::class)->findAll();
-
-        $totalEtudiant=0;
-        foreach($sprint as $S) {
-            $totalEtudiant=$totalEtudiant+$S->getNumeroEvent();
-        }
-
-        $data= array();
-        $stat=['classe', 'etat'];
-        $nb=0;
-        array_push($data,$stat);
-        foreach($sprint as $S) {
-            $stat=array();
-            array_push($stat,$S->getTitreEvent(),(($S->getNumeroEvent()) *100)/$totalEtudiant);
-            $nb=($S->getNumeroEvent() *100)/$totalEtudiant;
-            $stat=[$S->getTitreEvent(),$nb];
-            array_push($data,$stat);
-
-        }
-
-        $pieChart->getData()->setArrayToDataTable(
-            $data
-        );
-        $pieChart->getOptions()->setTitle('Pourcentages des event par Capacité des participants');
-        $pieChart->getOptions()->setHeight(500);
-        $pieChart->getOptions()->setWidth(900);
-        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
-        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
-        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
-        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
-        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
-
-
-
-
-        return $this->render('@Event/EventAdmin/statevent.html.twig', array('piechart' => $pieChart));
-
-    }
-
-
 
 
 
