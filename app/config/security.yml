@@ -31,3 +31,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/backlog/, role: ROLE_USER }
+        - { path: ^/meeting/, role: ROLE_USER }
+        - { path: ^/equipe/, role: ROLE_USER }
+
+

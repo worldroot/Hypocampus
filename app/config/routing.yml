@@ -29,6 +29,14 @@ backlog:
     resource: "@BacklogBundle/Resources/config/routing.yml"
     prefix:   /backlog
 
+meeting:
+    resource: "@MeetingBundle/Resources/config/routing.yml"
+    prefix:   /meeting
+
+team:
+    resource: "@TeamBundle/Resources/config/routing.yml"
+    prefix:   /team
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

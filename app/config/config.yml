@@ -2,6 +2,9 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@TeamBundle/Resources/config/services.yml" }
+    - { resource: "@MeetingBundle/Resources/config/services.yml" }
+    - { resource: "@EventBundle/Resources/config/services.yml" }
     - { resource: "@UserBundle/Resources/config/services.yml" }
     - { resource: "@EntrepriseBundle/Resources/config/services.yml" }
     - { resource: "@SubscriptionBundle/Resources/config/services.yml" }
@@ -118,6 +121,19 @@ vich_uploader:
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+# Windows configuration
+knp_snappy:
+    pdf:
+        enabled:    true
+        # If you have wkhtmltopdf as an environment variable you don't need to provide the
+        # full path to the executable, use it in the same way as you use in the console
+        #binary:  "wkhtmltopdf"
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        options:    []
+    image:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:    []
 
 
 gregwar_captcha: ~

@@ -1,0 +1,46 @@
+
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <div class="content-header row">
+            </div>
+            <div class="content-body"><!-- Chart -->
+                <div class="row match-height">
+
+                </div>
+                <!-- Chart -->
+                <!-- eCommerce statistic -->
+                <div class="row">
+
+
+
+                </div>
+                <!--/ eCommerce statistic -->
+
+                <!-- Statistics -->
+                <div class="row match-height">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-content collapse show">
+                                <div class="table-responsive">
+                                    {% for i in meetings %}
+                                    <h1>
+                                        Team Name :  {{ i.team.teamname }}
+                                    </h1>
+                                    <h2>
+                                        Duration :  {{ i.duration  }}
+                                    </h2>
+                                    <h3>
+                                        Description : {{ i.description }}
+                                    </h3>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/ Statistics -->
+            </div>
+        </div>
+    </div>
