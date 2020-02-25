@@ -43,7 +43,7 @@
 
                                     <a href="{{ path('delete_ProjectBacklog',{'id':i.id}) }}"><span class="badge badge-pill badge-danger float-right badge-glow"><i class="ft-x"></i></span></a>
                                     <a href="{{ path('update_ProjectBacklog',{'id':i.id}) }}"><span class="badge badge-primary badge-pill badge-glow float-right"><i class="ft-edit-2"></i></span></a>
-                                    <h4 class="card-title float-left "> Backlog {{ i.project.name }}: <span class="blue-grey lighten-2 font-small-3 mb-0">#{{ i.id }} </span>     </h4><a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                    <h4 class="card-title float-left "> Backlog {{ i.project.projetName }}: <span class="blue-grey lighten-2 font-small-3 mb-0">#{{ i.id }} </span>     </h4><a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
 
 
@@ -56,7 +56,10 @@
                                     <div class="card-body pt-0 pb-1">
                                         <h6 class="text-muted font-small-3"> Points Completed : {{ i.pointsDone }}</h6>
                                         <div class="progress progress-sm mt-1 mb-0 box-shadow-2">
+                                            {% if i.pointsToDo !=0 %}
+
                                             <div class="progress-bar bg-gradient-x-info" role="progressbar" style="width: {{  (i.pointsDone  - (i.pointsInProgress + i.pointsTodo ))*100/ (i.pointsDone  + i.pointsInProgress + i.pointsTodo ) }}%" aria-valuenow="{{ (i.pointsDone  - (i.pointsInProgress + i.pointsTodo ))*100/ (i.pointsDone  + i.pointsInProgress + i.pointsTodo ) }}" aria-valuemin="0" aria-valuemax="{{ (i.pointsDone  + i.pointsInProgress + i.pointsTodo ) }}"></div>
+                                        {% endif %}
                                         </div>
 
                                         <div class="media d-flex">

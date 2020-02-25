@@ -43,13 +43,13 @@ class Backlog
     private $pointsToDo;
 
     /**
-     * @ORM\OneToOne(targetEntity="Project")
-     * @ORM\JoinColumn(name="project_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="\projetsBundle\Entity\projets")
+     * @ORM\JoinColumn(name="project_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $project;
 
     /**
-     * @return \BacklogBundle\Entity\Project
+     * @return \projetsBundle\Entity\projets
      */
     public function getProject()
     {
@@ -57,7 +57,7 @@ class Backlog
     }
 
     /**
-     * @param \BacklogBundle\Entity\Project $project
+     * @param \projetsBundle\Entity\projets $project
      *
      * @return Backlog
      */
