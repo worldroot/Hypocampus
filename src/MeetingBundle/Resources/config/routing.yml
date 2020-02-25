@@ -20,3 +20,6 @@ delete_meeting:
 pdf:
     path:     /pdf/{id}
     defaults: { _controller: MeetingBundle:Meeting:pdf }
+stat_metting:
+    path:     /stat_metting
+    defaults: { _controller: MeetingBundle:Meeting:statmeeting }

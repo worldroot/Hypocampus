@@ -10,4 +10,12 @@ namespace MeetingBundle\Repository;
  */
 class MeetingRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function tri()
+    {
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT c FROM MeetingBundle:Meeting c ORDER BY c.nbrmeeting DESC  ");
+        return $query->getResult();
+
+    }
+
 }

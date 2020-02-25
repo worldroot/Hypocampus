@@ -2,6 +2,7 @@
 
 namespace MeetingBundle\Controller;
 
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use MeetingBundle\Entity\Meeting;
 use MeetingBundle\Form\MeetingType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -35,15 +36,57 @@ class MeetingController extends Controller
 
     }
 
-    public function readMeetingAction()
+    public function readMeetingAction(Request $request)
     {
         $em = $this->getDoctrine();
+        $tabb = $em->getRepository(Meeting::class)->tri();
         $tab = $em->getRepository(Meeting::class)->findAll();
+
+
+        $pieChart = new PieChart();
+        $totalEtudiant=0;
+        foreach($tab as $S) {
+            $totalEtudiant=$totalEtudiant+$S->getNbrmeeting();
+        }
+
+        $data= array();
+        $stat=['classe', 'etat'];
+        $nb=0;
+        array_push($data,$stat);
+        foreach($tab as $S) {
+            $stat=array();
+            array_push($stat,$S->getTeam()->getTeamname(),(($S->getNbrmeeting()) *100)/$totalEtudiant);
+            $nb=($S->getNbrmeeting() *100)/$totalEtudiant;
+            $stat=[$S->getTeam()->getTeamname(),$nb];
+            array_push($data,$stat);
+
+        }
+
+        $pieChart->getData()->setArrayToDataTable(
+            $data
+        );
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $tabb, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            3/*limit per page*/
+        );
+
+        $pieChart->getOptions()->setTitle('');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
 
 
 
         return $this->render('@Meeting/meeting/read_meeting.html.twig', array(
-            "meetings" => $tab
+            "meetings" => $tabb,
+            'piechart' => $pieChart,
+             'pagination' => $pagination
         ));
 
 
@@ -61,6 +104,7 @@ class MeetingController extends Controller
             //Mettre a jour
             $meeting->setDescription($request->get('description'));
             $meeting->setDuration($request->get('duration'));
+            $meeting->setNbrmeeting($request->get('nbrmeeting'));
 
             $teamtmp = $em->getRepository(team::class)->find($request->get('team'));
             $meeting->setTeam($teamtmp);
@@ -117,5 +161,44 @@ class MeetingController extends Controller
             )
         );
 
+    }
+    public function statmeetingAction()
+    {     $pieChart = new PieChart();
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(Meeting::class)->findAll();
+
+        $totalEtudiant=0;
+        foreach($tab as $S) {
+            $totalEtudiant=$totalEtudiant+$S->getNbrmeeting();
+        }
+
+        $data= array();
+        $stat=['classe', 'etat'];
+        $nb=0;
+        array_push($data,$stat);
+        foreach($tab as $S) {
+            $stat=array();
+            array_push($stat,$S->getTeam(),(($S->getNbrmeeting()) *100)/$totalEtudiant);
+            $nb=($S->getNbrmeeting() *100)/$totalEtudiant;
+            $stat=[$S->getTeam(),$nb];
+            array_push($data,$stat);
+
+        }
+
+        $pieChart->getData()->setArrayToDataTable(
+            $data
+        );
+        $pieChart->getOptions()->setTitle('');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+        return $this->render('@Meeting/meeting/statsmeeting.html.twig', array(
+            'formations'=>$tab,'piechart' => $pieChart
+        ));
     }
 }
