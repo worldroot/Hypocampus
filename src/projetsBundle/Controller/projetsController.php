@@ -70,6 +70,19 @@ class projetsController extends Controller
         return $this->redirectToRoute('afficherprojet');
 
     }
+    public function RdeleteprojetAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+
+        $projets=$em->getRepository(projets::class)->find($id);
+        $projets->setHistory(0);
+
+        $em->persist($projets);
+        $em->flush();
+
+        return $this->redirectToRoute('afficherprojet');
+
+    }
 
     public function updateprojetAction($id,Request $request)
     {
@@ -131,6 +144,7 @@ class projetsController extends Controller
 
         ));
     }
+
 
     /*
     public function searchAction(Request $request)

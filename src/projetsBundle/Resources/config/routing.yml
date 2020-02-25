@@ -9,6 +9,9 @@ createprojet:
 deleteprojet:
     path:     /deleteprojet/{id}
     defaults: { _controller: projetsBundle:projets:deleteprojet }
+Rdeleteprojet:
+    path:     /Rdeleteprojet/{id}
+    defaults: { _controller: projetsBundle:projets:Rdeleteprojet }
 
 updateprojet:
     path:     /updateprojet/{id}

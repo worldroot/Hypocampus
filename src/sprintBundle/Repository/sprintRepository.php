@@ -124,7 +124,8 @@ WHERE
     }
     public function findprojet($id_projet)
     {
-        $query=$this->getEntityManager()->createQuery("SELECT c FROM sprintBundle:sprint c WHERE c.projets='$id_projet'");
+        $query=$this->getEntityManager()->createQuery("SELECT c FROM sprintBundle:sprint c WHERE c.projets='$id_projet' ");
         return $query->getResult();
+
     }
 }
