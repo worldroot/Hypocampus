@@ -5,6 +5,8 @@ namespace BacklogBundle\Form;
 use AppBundle\Entity\User;
 use BacklogBundle\Entity\Backlog;
 use BacklogBundle\Entity\Task;
+use sprintBundle\Entity\sprint;
+use sprintBundle\sprintBundle;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -31,6 +33,11 @@ class TaskType extends AbstractType
             ->add('user',EntityType::class,array(
                 'class'=>User::class,
                 'choice_label'=>'username',
+                'multiple'=>false
+            ))
+            ->add('sprint',EntityType::class,array(
+                'class'=>Sprint::class,
+                'choice_label'=>'sprintName',
                 'multiple'=>false
             ))
             ->add('priority')

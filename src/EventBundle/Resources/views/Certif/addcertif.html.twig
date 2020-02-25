@@ -1,0 +1,112 @@
+{% extends 'backend.html.twig' %}
+
+    {% block sidenavbar %}
+        <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true" data-img="theme-assets/images/backgrounds/02.jpg">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav flex-row">
+                    <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html"><img class="brand-logo" alt="Chameleon admin logo" src="{{ asset('theme-assets/images/logo/hypocampus.png') }}"/>
+                            <h3 class="brand-text">Hypocampus</h3></a></li>
+                    <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
+                </ul>
+            </div>
+            <div class="main-menu-content">
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class=" nav-item"><a href="#"><i class="ft-star"></i><span class="menu-title" data-i18n="">Evenements</span></a>
+                        <ul class="menu-content">
+                            <li class="menu-item"><a href="{{path('addevent')}}">Ajout Evenement</a>
+                            </li>
+                            <li class="menu-item"><a href="{{path('searchevents')}}">List Evenements</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class=" nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title" data-i18n="">Participant</span></a>
+                        <ul class="menu-content">
+                            <li class="menu-item"><a href="{{path('searchp')}}">List Participants</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block body %}
+        <div class="app-content content">
+            <div class="content-wrapper">
+                <div class="content-header row">
+                </div>
+
+                <!-- PUT BODY HERE -->
+                <div class="content-body">
+                    <div class="row match-height">
+                        <div class="col-xl-4 col-lg-6 col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="font-large-1">
+                                        Ajout Certificat
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body">
+
+                                        <div class="form-body">
+                                            {{ form_start(form) }}
+                                            <div class="form-group">
+                                                <h5>Titre</h5>
+                                                <label for="donationinput1" class="sr-only"></label>
+                                                {{ form_widget(form.titrec, { 'attr' : { 'class' : 'form-control ' } }) }}
+                                            </div>
+                                            <div class="form-group">
+                                                <h5>Nombre de points</h5>
+                                                <label for="donationinput7" class="sr-only">Type d'event</label>
+                                                <input  class="form-control" placeholder=""  {{ form_widget(form.pointc) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h5>Date debut d'event</h5>
+                                                <label for="donationinput7" class="sr-only">Date Creation</label>
+                                                {{ form_widget(form.datec, { 'attr' : { 'class' : 'form-control date-inputmask' } }) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h5>Image</h5>
+                                                <div class="custom-file">
+
+
+                                                    {{ form_widget(form.imageFile, { 'attr' : { 'class' : 'custom-file-input' } }) }}
+
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                    {{ form_label(form.imageFile    , 'Ajouter votre fichier') }}
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="form-actions center">
+                                            <button class="btn btn-info" {{ form_widget(form.valider) }}  </button>
+                                        </div>
+
+
+                                        {{ form_end(form) }}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!--/ END BODY -->
+        </div>
+        </div>
+        </div>
+
+
+    {% endblock %}
+

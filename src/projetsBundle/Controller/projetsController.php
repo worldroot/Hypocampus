@@ -46,6 +46,10 @@ class projetsController extends Controller
             return $this->redirectToRoute('afficherprojet');
 
             }
+            else
+            {
+                echo "<script>alert('Vous avez sélectionnez une date incorrect!!')</script>";
+            }
         }
         
         return $this->render('@projets/projets/createprojet.html.twig', array(
@@ -59,6 +63,19 @@ class projetsController extends Controller
 
         $projets=$em->getRepository(projets::class)->find($id);
         $projets->setHistory(1);
+
+        $em->persist($projets);
+        $em->flush();
+
+        return $this->redirectToRoute('afficherprojet');
+
+    }
+    public function RdeleteprojetAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+
+        $projets=$em->getRepository(projets::class)->find($id);
+        $projets->setHistory(0);
 
         $em->persist($projets);
         $em->flush();
@@ -90,6 +107,7 @@ class projetsController extends Controller
 
             $em->persist($projets);
             $em->flush();
+
             //Rederiger vers read
             return $this->redirectToRoute('afficherprojet');
         }
@@ -126,6 +144,7 @@ class projetsController extends Controller
 
         ));
     }
+
 
     /*
     public function searchAction(Request $request)

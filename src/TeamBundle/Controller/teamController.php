@@ -17,10 +17,31 @@ class teamController extends Controller
         $form=$form->handleRequest($request);
         if($form->isValid())
         {
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($team);
-            $em->flush();
-            return $this->redirectToRoute('readteam');
+            $em=$this->getDoctrine();
+            $tab=$em->getRepository(team::class)->findAll();
+            //$tab1=$em->getRepository(team::class)->findAll();
+            $ABS = 0;
+            foreach ($tab as $row)
+            {
+
+                    if ($row->getTeamname()==$team->getTeamname())
+                    {
+                        $ABS=$ABS+1;
+                    }
+
+
+            }
+            if ($ABS==0)
+            {
+                $team->setDateofcreation(new \DateTime('now'));
+                $em=$this->getDoctrine()->getManager();
+                $em->persist($team);
+                $em->flush();
+                return $this->redirectToRoute('readteam');
+            }
+            else{
+                echo "<script>alert('déjà saisie')</script>";
+            }
         }
         return $this->render('@Team/team/createteam.html.twig', array(
             'form'=>$form->createView()

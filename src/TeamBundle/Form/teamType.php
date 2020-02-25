@@ -14,8 +14,7 @@ class teamType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('teamname')
-            ->add('dateofcreation');
+        $builder->add('teamname');
     }/**
      * {@inheritdoc}
      */

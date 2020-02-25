@@ -71,9 +71,9 @@
                                 <div class="arrow_box_right"><a class="dropdown-item" href="#"><i class="ft-book"></i> Read Mail</a><a class="dropdown-item" href="#"><i class="ft-bookmark"></i> Read Later</a><a class="dropdown-item" href="#"><i class="ft-check-square"></i> Mark all Read       </a></div>
                             </div>
                         </li>
-                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{{ asset('theme-assets/images/portrait/small/avatar-s-19.png') }}" alt="avatar"><i></i></span></a>
+                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">             <span class="avatar avatar-online"><img src="{{ asset('theme-assets/images/portrait/small/avatar-s-19.jpg') }}" alt="avatar"><i></i></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="{{ asset('theme-assets/images/portrait/small/avatar-s-19.png') }}" alt="avatar"><span class="user-name text-bold-700 ml-1">John Doe</span></span></a>
+                                <div class="arrow_box_right"><a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="{{ asset('theme-assets/images/portrait/small/avatar-s-19.jpg') }}" alt="avatar"><span class="user-name text-bold-700 ml-1">John Doe</span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="#"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="#"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="#"><i class="ft-message-square"></i> Chats</a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
                                 </div>
@@ -113,6 +113,7 @@
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
                                 <li>
+                                    <a href="{{ path('view_ProjectBacklog',{'id':backlog.id}) }}"><button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" >Toutes les taches</button></a>
                                     <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right"  >Points Done {{ backlog.pointsDone  }} </a>
                                     <a class="btn btn-sm btn-info box-shadow-2 round btn-min-width pull-right"  >Points In Progress {{  backlog.pointsInProgress }} </a>
                                     <a class="btn btn-sm btn-danger box-shadow-2 round btn-min-width pull-right"  >Points To Do {{ backlog.pointsToDo }}  </a>
@@ -125,7 +126,7 @@
 
 
                 <!-- Bordered table start -->
-                <div class="row">
+                <div class="row" id="tableau1">
                     <div class="col-12">
 
                         <div class="card">
@@ -149,12 +150,13 @@
                             </fieldset>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <p class="card-text">
+                                    <p class="card-text userid" id="{{ app.user }}">
+                                       <button type="button" id="{{ backlog.id }}"class="mestaches btn btn-info btn-min-width mr-1 mb-1"><i class="ft-pause"></i> Mes taches</button>
                                         <a href="{{ path('add_BacklogTask',{'id':backlog.id}) }}"><button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" >Add a new task</button></a>
                                     </p>
                                 </div>
                                 <div class="table-responsive">
-                                    <table id='table' class="table dataTable zero-configuration table-bordered mb-0">
+                                    <table id='table1' class="table dataTable zero-configuration table-bordered mb-0">
                                         <thead>
                                         <tr>
                                             <th>ID</th>
@@ -229,7 +231,7 @@
                             </fieldset>
 
                             <div class="table-responsive">
-                                <table id='table' class="table dataTable zero-configuration table-bordered mb-0">
+                                <table id='table2' class="table dataTable zero-configuration table-bordered mb-0">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
@@ -287,6 +289,35 @@
                         </div>
 
                     </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Statistique</h4>
+                            <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3">  </i></a>
+
+
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                    <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                    <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                    <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="div_chart">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
                 <!-- Bordered table end -->
 
@@ -294,7 +325,9 @@
     </div>
     </div>
 
+
     <script>
+
         $(document).ready(function(){
             $("#myInput").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
@@ -314,11 +347,45 @@
             });
         });
     </script>
-    <script>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(piechart, 'div_chart') }}
+    </script>
+    <script src="{{ asset('jquery-min.js') }}">
+        </script>
+<script>
+
+        const mestaches = document.querySelectorAll('.mestaches');
+        var bouton = document.getElementsByClassName('.mestaches');
+
+
+        document.getElementById('{{ backlog.id }}').addEventListener('click', function (e) {
+            console.log('*******************************');
+
+
+            $.ajax({
+                url : "{{ path('user_BacklogTask',{'id': backlog.id, 'id_u': app.user.id })  }}",
+                type: 'GET'
+            }).done(function (response) {
+                var tableau1 = $(response).find("table");
+                var tableau2 = $(response).find("table2");
+
+                $('#tableau1').empty();
+
+                $('#tableau1').append(tableau1);
+            });
+
+        });
+
     </script>
 
 {%endblock%}
 
+
+
     {% block footer %}
+
 
     {% endblock %}

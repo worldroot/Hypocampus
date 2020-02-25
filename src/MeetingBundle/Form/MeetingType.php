@@ -21,6 +21,7 @@ class MeetingType extends AbstractType
                 'attr' => ['class' => 'tinymce'],
             ])
                 ->add('duration')
+                ->add('nbrmeeting')
                 ->add('team',EntityType::class,array('class'=>team::class,'choice_label'=>'teamname','multiple'=>false))
         ;
     }/**

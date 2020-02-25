@@ -24,7 +24,7 @@ class Meeting
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string",length=255)
      */
     private $description;
 
@@ -34,6 +34,12 @@ class Meeting
      * @ORM\Column(name="duration", type="string", length=255)
      */
     private $duration;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbrmeeting", type="integer")
+     */
+    private $nbrmeeting;
 
     /**
      * @ORM\ManyToOne(targetEntity="TeamBundle\Entity\team")
@@ -122,5 +128,30 @@ class Meeting
     public function getTeam()
     {
         return $this->team;
+    }
+
+
+    /**
+     * Set nbrmeeting
+     *
+     * @param integer $nbrmeeting
+     *
+     * @return Meeting
+     */
+    public function setNbrmeeting($nbrmeeting)
+    {
+        $this->nbrmeeting = $nbrmeeting;
+
+        return $this;
+    }
+
+    /**
+     * Get nbrmeeting
+     *
+     * @return integer
+     */
+    public function getNbrmeeting()
+    {
+        return $this->nbrmeeting;
     }
 }

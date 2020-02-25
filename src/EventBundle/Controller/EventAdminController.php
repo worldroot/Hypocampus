@@ -11,28 +11,32 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EventAdminController extends Controller
 {
-    public function affichereventAction()
-    {
-        $em=$this->getDoctrine();
-        $tab=$em->getRepository(EventsAdmin::class)->findAll();
-        return $this->render('@Event/EventAdmin/afficherevent.html.twig', array(
-            'tabs'=>$tab
-            // ...
-        ));
-    }
+
     public function addeventAction(Request $request)
     {
-        $club = new EventsAdmin();
-        $form = $this->createForm(EventsAdminType::class, $club);
+        $event = new EventsAdmin();
+        $form = $this->createForm(EventsAdminType::class, $event);
         $form = $form->handleRequest($request);
 
         if (($form->isSubmitted()) & ($form->isValid())) {
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($club);
-            $em->flush();
-            return $this->redirectToRoute('searchevents');
+            $x = $event->getDateEvent();
+            $y = $event->getEnddateEvent();
 
+            $date1 = strtotime( $x->format("Y-m-d") );
+            $date2 = strtotime( $y->format("Y-m-d"));
+            $diff = $date2 - $date1;
+
+            if($diff > 0) {
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($event);
+                $em->flush();
+                return $this->redirectToRoute('searchevents');
+            }
+            else{
+                echo "<script>alert('Vérifier la date de fin !')</script>";
+            }
 
         }
         return $this->render('@Event/EventAdmin/addevent.html.twig', array(
@@ -67,25 +71,6 @@ class EventAdminController extends Controller
         return $this->redirectToRoute('searchevents');
     }
 
-    public function searcheventsAction(Request $request)
-    {
-        $em=$this->getDoctrine();
-        $tab=$em->getRepository(EventsAdmin::class)->findAll();
-
-        $input=$request->get('TitreEvent');
-        if(isset($input))
-        {
-            $formation = $em->getRepository(EventsAdmin::class)->findTitre($input);
-
-            return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
-                'formations' => $formation
-            ));
-        }
-
-        return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
-            'formations'=>$tab
-        ));
-    }
 
     public function ViewparticipantAction(Request $request)
     {
@@ -108,50 +93,26 @@ class EventAdminController extends Controller
 
     }
 
-
-     public function StatAction()
+    public function searcheventsAction()
     {
         $pieChart = new PieChart();
-        $pieChart->getData()->setArrayToDataTable(
-            [['Task', 'Hours per Day'],
-                ['Work',     11],
-                ['Eat',      2],
-                ['Commute',  2],
-                ['Watch TV', 2],
-                ['Sleep',    7]
-            ]
-        );
-        $pieChart->getOptions()->setTitle('My Daily Activities');
-        $pieChart->getOptions()->setHeight(500);
-        $pieChart->getOptions()->setWidth(900);
-        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
-        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
-        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
-        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
-        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(EventsAdmin::class)->findAll();
 
-        return $this->render('@Event/EventAdmin/afficherevent.html.twig', array(
-            'piechart' => $pieChart
-        ));
-
-        /*
-        $pieChart = new PieChart();
-        $em= $this->getDoctrine();
-        $classes = $em->getRepository(EventsAdmin::class)->findAll();
-        $totalEvent=0;
-        foreach($classes as $classe) {
-            $totalEvent=$totalEvent+$classe->getTypeEvent();
+        $totalEtudiant=0;
+        foreach($tab as $S) {
+            $totalEtudiant=$totalEtudiant+$S->getNumeroEvent();
         }
 
         $data= array();
-        $stat=['classe', 'nbEtudiant'];
+        $stat=['classe', 'etat'];
         $nb=0;
         array_push($data,$stat);
-        foreach($classes as $classe) {
+        foreach($tab as $S) {
             $stat=array();
-            array_push($stat,$classe->getNom(),(($classe->getNbEtudiants()) *100)/$totalEvent);
-            $nb=($classe->getNbEtudiants() *100)/$totalEvent;
-            $stat=[$classe->getNom(),$nb];
+            array_push($stat,$S->getTitreEvent(),(($S->getNumeroEvent()) *100)/$totalEtudiant);
+            $nb=($S->getNumeroEvent() *100)/$totalEtudiant;
+            $stat=[$S->getTitreEvent(),$nb];
             array_push($data,$stat);
 
         }
@@ -159,7 +120,7 @@ class EventAdminController extends Controller
         $pieChart->getData()->setArrayToDataTable(
             $data
         );
-        $pieChart->getOptions()->setTitle('Pourcentages des étudiants par niveau');
+        $pieChart->getOptions()->setTitle('');
         $pieChart->getOptions()->setHeight(500);
         $pieChart->getOptions()->setWidth(900);
         $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
@@ -168,9 +129,9 @@ class EventAdminController extends Controller
         $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
         $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
 
-
-        return $this->render('@Graphe\Default\index.html.twig', array('piechart' => $pieChart));
-        */
+        return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
+            'formations'=>$tab,'piechart' => $pieChart
+        ));
     }
 
 

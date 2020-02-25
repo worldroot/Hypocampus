@@ -3,6 +3,7 @@
 namespace projetsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * projets
@@ -25,6 +26,7 @@ class projets
      * @var string
      *
      * @ORM\Column(name="projet_name", type="string", length=255)
+     * @Assert\Length(min=2)
      */
     private $projetName;
 

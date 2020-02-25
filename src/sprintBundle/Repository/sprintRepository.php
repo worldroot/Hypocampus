@@ -10,17 +10,7 @@ namespace sprintBundle\Repository;
  */
 class sprintRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function search($colour)
-    {
 
-        $statement= $this->getEntityManager()
-            ->getConnection()
-            ->prepare("SELECT * FROM toys WHERE box='$colour' ");
-        $statement->execute();
-        $results = $statement->fetchAll();
-
-        return $results;
-    }
     public function getProgress($search)
     {
         $statement= $this->getEntityManager()
@@ -42,11 +32,11 @@ class sprintRepository extends \Doctrine\ORM\EntityRepository
         return $results;
     }
 
-    public function scarra()
+    public function scarra($idd)
     {
         $statement= $this->getEntityManager()
             ->getConnection()
-            ->prepare("SELECT * from task");
+            ->prepare("SELECT * from task WHERE sprint_id=$idd ");
         $statement->execute();
         $results = $statement->fetchAll();
 
@@ -58,20 +48,46 @@ class sprintRepository extends \Doctrine\ORM\EntityRepository
         $etat_ = "------";
         if($etat == 999)
         {
-            $etat_ = "TODO";
+            $etat_ = "To Do";
         }
         elseif ($etat == 888)
         {
-            $etat_ = "DOING";
+            $etat_ = "In Progress";
         }
         elseif ($etat == 777)
         {
-            $etat_ = "DONE";
+            $etat_ = "Done";
         }
 
         $statement= $this->getEntityManager()
             ->getConnection()
-            ->prepare("update task set etat='$etat_' where id=$id");
+            ->prepare("update task set state='$etat_' where id=$id");
+        $statement->execute();
+
+        return true;
+    }
+    public function updatesprintetat($id)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("UPDATE sprint s 
+JOIN task t ON t.sprint_id = s.id 
+SET etat = 1
+WHERE 
+  t.state = \"Done\" AND t.sprint_id =$id AND s.id=$id");
+        $statement->execute();
+
+        return true;
+    }
+    public function updatesprintetat2($id)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("UPDATE sprint s 
+JOIN task t ON t.sprint_id = s.id 
+SET etat = 0
+WHERE 
+  t.state = \"To Do\" OR t.state = \"In Progress\"AND t.sprint_id =$id AND s.id=$id");
         $statement->execute();
 
         return true;
@@ -80,7 +96,7 @@ class sprintRepository extends \Doctrine\ORM\EntityRepository
     {
         $statement= $this->getEntityManager()
             ->getConnection()
-            ->prepare("SELECT COUNT(*) as Todo FROM task where  	sprint_id=$search AND etat='TODO' ");
+            ->prepare("SELECT COUNT(*) as Todo FROM task where  	sprint_id=$search AND (state='To Do' OR state='In Progress' )");
         $statement->execute();
         $results = $statement->fetchAll();
 
@@ -90,10 +106,26 @@ class sprintRepository extends \Doctrine\ORM\EntityRepository
     {
         $statement= $this->getEntityManager()
             ->getConnection()
-            ->prepare("SELECT COUNT(*) as Done FROM task where  	sprint_id=$search AND etat='DONE' ");
+            ->prepare("SELECT COUNT(*) as Done FROM task where  	sprint_id=$search AND state='Done' ");
         $statement->execute();
         $results = $statement->fetchAll();
 
         return $results;
+    }
+    public function getDoneT($search)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT COUNT(*) as DoneT FROM task where  	sprint_id=$search  ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+    public function findprojet($id_projet)
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT c FROM sprintBundle:sprint c WHERE c.projets='$id_projet' ");
+        return $query->getResult();
+
     }
 }
