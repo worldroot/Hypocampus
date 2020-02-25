@@ -1,6 +1,7 @@
 {% extends "backend.html.twig" %}
 
 {% block body %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>//impotation de jequery
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
@@ -51,17 +52,20 @@
                                             <th>#</th>
                                             <th>Meeting</th>
                                             <th>duration</th>
+                                            <th>nbrmeeting</th>
                                             <th>Team Name</th>
                                             <th>Update</th>
                                             <th>Delete</th>
+                                            <th>pdf</th>
                                         </tr>
                                         </thead>
                                         <tbody id="myTable">
-                                        {% for i in meetings %}
+                                        {% for i in pagination %}
                                             <tr>
                                                 <th scope="row">{{ i.id }}</th>
                                                 <td>{{ i.description }}</td>
-                                                <td>{{ i.duration   }}</td>
+                                                <td>{{ i.description}} MIN</td>
+                                                <td>{{ i.nbrmeeting}}</td>
                                                 <td>{{ i.team.teamname }}</td>
                                                 <td><a href="{{ path('update_meeting',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Update</button></a>  </td>
                                                 <td><a href="{{ path('delete_meeting',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Delete</button></a>  </td>
@@ -69,18 +73,42 @@
                                             </tr>
                                         {% endfor %}
                                         <a href="{{ path('create_meeting') }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">ajouter</button></a>
+
                                         </tbody>
                                     </table>
+                                    <div class="paginate_button page-item previous disabled pull-right">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                            {{ knp_pagination_render(pagination) }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
+
+
+                            <div class="card-content collapse show">
+                                <div id="div_chart"></div>
+
+                            </div>
+
+
+
+
                         </div>
                     </div>
 
                 </div>
                 <!--/ Statistics -->
+                <div id="div_chart"></div>
+
             </div>
         </div>
     </div>
+
+
+    <script type="text/javascript">
+        {{ gc_draw(piechart,'div_chart') }}
+    </script>
     <script>
         $(document).ready(function(){
             $("#myInput").on("keyup", function() {

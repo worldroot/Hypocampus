@@ -24,7 +24,7 @@ class Meeting
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string",length=255)
      */
     private $description;
 
@@ -34,9 +34,15 @@ class Meeting
      * @ORM\Column(name="duration", type="string", length=255)
      */
     private $duration;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbrmeeting", type="integer")
+     */
+    private $nbrmeeting;
 
     /**
-     * @ORM\ManyToOne(targetEntity="team")
+     * @ORM\ManyToOne(targetEntity="TeamBundle\Entity\team")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
      */
     private $team;
@@ -99,5 +105,29 @@ class Meeting
     {
         return $this->duration;
     }
-}
 
+    /**
+     * Set team
+     *
+     * @param \TeamBundle\Entity\team $team
+     *
+     * @return Meeting
+     */
+    public function setTeam(\TeamBundle\Entity\team $team )
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return \TeamBundle\Entity\team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+}
