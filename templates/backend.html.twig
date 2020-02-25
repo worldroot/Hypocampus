@@ -89,24 +89,14 @@
         </div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="active"><a href="index.html"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a>
+                <li class="nav-item"><a href=""><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
+                <li {% if app.request.get('_route') == 'backlog_nav_homepage' %} class="active" {% else %} class=" nav-item" {% endif %}><a href="{{ path('backlog_nav_homepage') }}"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
                 </li>
-                <li class=" nav-item"><a href="/rapport"><i class="ft-pie-chart"></i><span class="menu-title" data-i18n="">Rapport</span></a>
+                <li {% if app.request.get('_route') == 'afficherprojet' %} class="active" {% else %} class=" nav-item" {% endif %}><a href="{{ path('afficherprojet') }}"><i  class="ft-box"></i><span class="menu-title" data-i18n="">Projets</span></a>
                 </li>
-                <li class=" nav-item"><a href="icons.html"><i class="ft-droplet"></i><span class="menu-title" data-i18n="">Mes taches</span></a>
+                <li {% if app.request.get('_route') == 'read_meeting' %} class="active" {% else %} class=" nav-item" {% endif %}><a href="{{ path('read_meeting') }}"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
                 </li>
-                <li class=" nav-item"><a href="cards.html"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Backlog</span></a>
-                </li>
-                <li class=" nav-item"><a href="buttons.html"><i class="ft-box"></i><span class="menu-title" data-i18n="">Projets</span></a>
-                </li>
-                <li class=" nav-item"><a href="typography.html"><i class="ft-bold"></i><span class="menu-title" data-i18n="">Reunion</span></a>
-                </li>
-                <li class=" nav-item"><a href="tables.html"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
-                </li>
-                <li class=" nav-item"><a href="form-elements.html"><i class="ft-layout"></i><span class="menu-title" data-i18n="">Ressources</span></a>
-                </li>
-                <li class=" nav-item"><a href="https://themeselection.com/demo/chameleon-admin-template/documentation"><i class="ft-book"></i><span class="menu-title" data-i18n="">Documentation</span></a>
-                </li>
+                <li {% if app.request.get('_route') == 'readteam' %} class="active" {% else %} class=" nav-item" {% endif %}"><a href="{{ path('readteam') }}"><i class="ft-credit-card"></i><span class="menu-title" data-i18n="">Equipe</span></a>
             </ul>
         </div>
         <div class="navigation-background"></div>

@@ -17,3 +17,11 @@ update:
 delete:
     path:     /delete/{id}
     defaults: { _controller: EntrepriseBundle:Entreprise:delete }
+
+scarra:
+    path:     /scarra
+    defaults: { _controller: EntrepriseBundle:Entreprise:scarra }
+
+xhem:
+    path:     /xhem
+    defaults: { _controller: EntrepriseBundle:Entreprise:xhem }

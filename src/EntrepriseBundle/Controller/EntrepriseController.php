@@ -5,7 +5,12 @@ namespace EntrepriseBundle\Controller;
 use EntrepriseBundle\Entity\Entreprise;
 use EntrepriseBundle\Form\EntrepriseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\KernelInterface;
+
 
 class EntrepriseController extends Controller
 {
@@ -81,6 +86,31 @@ class EntrepriseController extends Controller
         $em->flush();
         return $this->redirectToRoute('read');
 
+    }
+
+    public function scarraAction()
+    {
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(Entreprise::class)->scarraAa();
+
+        return $this->render('@Entreprise/Entreprise/scarra_.html.twig', array(
+            'user' => $tab
+        ));
+    }
+
+    public function xhemAction(Request $request)
+    {
+        $username = $request->get('username');
+        $role = $request->get('role');
+
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('username' => $username));
+        $user->addRole($role);
+        $userManager->updateUser($user);
+
+
+
+        return $this->redirectToRoute('scarra');
     }
 
 }

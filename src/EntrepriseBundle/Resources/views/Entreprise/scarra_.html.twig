@@ -1,0 +1,71 @@
+{% extends 'Admin/Adminindex.html.twig' %}
+
+{% block body %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <div class="content-header row">
+            </div>
+            <div class="content-body"><!-- Chart -->
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <p>
+
+
+                </p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Liste Compte </h4>
+                        <a class="heading-elements-toggle">
+                            <i class="fa fa-ellipsis-v font-medium-3"></i>
+                        </a>
+                        <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                                <li>
+                                    <a class="btn btn-sm btn-success box-shadow-2 round btn-min-width pull-right" href="{{ path('fos_user_registration_register') }}">Add Compte</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" id="tableau1">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Add Role_</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in user %}
+                            <tr>
+                                <th scope="row">{{ i.id }}</th>
+                                <td>{{ i.username }}</td>
+                                <td>{{ i.email }}</td>
+                                <td><form action="{{ path('xhem') }}"> <div class="form-body">
+                                            <input type="hidden" name="username" value="{{ i.username }}">
+                                            <select name="role" class="form-control">
+                                                <option  value="ROLE_DEVELOPER">DEVELOPER</option>
+                                                <option value="ROLE_SCRUM_MASTER">SCRUM_MASTER</option>
+                                        </select>
+                                            <button type="submit" class="btn btn-danger round btn-min-width ">Add</button>
+                                        </div>
+                                    </form></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
