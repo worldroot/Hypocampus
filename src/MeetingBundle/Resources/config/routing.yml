@@ -1,0 +1,25 @@
+meeting_homepage:
+    path:     /
+    defaults: { _controller: MeetingBundle:Default:index }
+
+create_meeting:
+    path:     /createMeeting
+    defaults: { _controller: MeetingBundle:Meeting:createMeeting }
+
+read_meeting:
+    path:     /readMeeting
+    defaults: { _controller: MeetingBundle:Meeting:readMeeting }
+
+update_meeting:
+    path:     /updateMeeting/{id}
+    defaults: { _controller: MeetingBundle:Meeting:updateMeeting }
+
+delete_meeting:
+    path:     /deleteMeeting/{id}
+    defaults: { _controller: MeetingBundle:Meeting:deleteMeeting }
+pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: MeetingBundle:Meeting:pdf }
+stat_metting:
+    path:     /stat_metting
+    defaults: { _controller: MeetingBundle:Meeting:statmeeting }

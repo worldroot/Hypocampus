@@ -1,0 +1,75 @@
+{% extends "backend.html.twig" %}
+
+{% block body %}
+    <div class="app-content content">
+        <div class="content-wrapper">
+
+            <div class="content-header row">
+            </div>
+            <div class="content-body"><!-- Chart -->
+                <div class="row match-height">
+
+                </div>
+                <!-- Chart -->
+                <!-- eCommerce statistic -->
+                <div class="row">
+
+
+
+                </div>
+                <!--/ eCommerce statistic -->
+
+                <!-- Statistics -->
+                <div class="row match-height">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Team</h4>
+                                <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-content collapse show">
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="bg-primary white">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>TeamName</th>
+                                            <th>Date</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for i in teams %}
+                                        <tr>
+                                            <th scope="row">{{ i.id }}</th>
+                                            <td>{{ i.teamname }}</td>
+                                            <td>{{ i.dateofcreation |date("m/d/Y")  }}</td>
+                                            <td><a href="{{ path('updateteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">update</button></a>  </td>
+                                            <td><a href="{{ path('deleteteam',{'id':i.id}) }}"><button type="button" class="btn btn-primary btn-min-width mr-1 mb-1">Delete</button></a>  </td>
+                                        </tr>
+
+                                       {% endfor %}
+                                        <a href="{{ path('createteam') }}"><button type="button" class="btn btn-success btn-min-width mr-1 mb-1">ajouter</button></a>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/ Statistics -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

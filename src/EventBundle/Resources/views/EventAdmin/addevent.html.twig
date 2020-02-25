@@ -13,7 +13,19 @@
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                     <li class=" nav-item"><a href="#"><i class="ft-star"></i><span class="menu-title" data-i18n="">Evenements</span></a>
                         <ul class="menu-content">
-                            <li class="menu-item"><a href="{{path('afficherevent')}}">List Events</a>
+                            <li class="menu-item"><a href="{{path('addevent')}}">Ajout Evenement</a>
+                            </li>
+                            <li class="menu-item"><a href="{{path('searchevents')}}">List Evenements</a>
+                            </li>
+                            <li class="menu-item"><a href="{{path('addcertif')}}">Ajout Certificat</a>
+                            </li>
+                            <li class="menu-item"><a href="{{path('readcertif')}}">List Certificats</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class=" nav-item"><a href="#"><i class="ft-user"></i><span class="menu-title" data-i18n="">Participant</span></a>
+                        <ul class="menu-content">
+                            <li class="menu-item"><a href="{{path('searchp')}}">List Participants</a>
                             </li>
                         </ul>
                     </li>
@@ -34,7 +46,9 @@
                         <div class="col-xl-4 col-lg-6 col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Ajout d'event</h4>
+                                    <div class="font-large-1">
+                                        Ajout Event
+                                    </div>
                                 </div>
                                 <div class="card-block">
                                     <div class="card-body">
@@ -42,21 +56,37 @@
                                         <div class="form-body">
                                             {{ form_start(form) }}
                                             <div class="form-group">
-                                                <label for="donationinput1" class="sr-only">Titre d'event</label>
-                                                <input type="text"  class="form-control" placeholder="Titre"  {{ form_widget(form.titreEvent) }}
+                                                <h5>Titre</h5>
+                                                <label for="donationinput1" class="sr-only"></label>
+                                                <input type="text"  class="form-control" placeholder=""  {{ form_widget(form.titreEvent) }}
                                             </div>
                                             <div class="form-group">
-                                                <label for="donationinput2" class="sr-only">Numero d'event</label>
-                                                <input type="text"  class="form-control" placeholder="Numero"  {{ form_widget(form.numeroEvent) }}
+                                                <h5>Capacité</h5>
+                                                <label for="donationinput2" class="sr-only"></label>
+                                                <input type="text"  class="form-control" placeholder=""  {{ form_widget(form.numeroEvent) }}
                                             </div>
                                             <div class="form-group">
+                                                <h5>Type</h5>
                                                 <label for="donationinput7" class="sr-only">Type d'event</label>
-                                                <input  class="form-control" placeholder="Type"  {{ form_widget(form.typeEvent) }}
+                                                <input  class="form-control" placeholder=""  {{ form_widget(form.typeEvent) }}
                                             </div>
+
+                                            <div class="form-group">
+                                                <h5>Date debut d'event</h5>
+                                                <label for="donationinput7" class="sr-only">Date d'event</label>
+                                                {{ form_widget(form.dateEvent, { 'attr' : { 'class' : 'form-control date-inputmask' } }) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                <h5>Date fin d'event</h5>
+                                                <label for="donationinput7" class="sr-only">Date d'event</label>
+                                                {{ form_widget(form.enddateEvent, { 'attr' : { 'class' : 'form-control date-inputmask' } }) }}
+                                            </div>
+
 
                                         </div>
                                         <div class="form-actions center">
-                                            <button class="btn btn-primary" {{ form_widget(form.valider) }}  </button>
+                                            <button class="btn btn-info" {{ form_widget(form.valider) }}  </button>
                                         </div>
 
 

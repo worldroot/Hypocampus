@@ -19,10 +19,16 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "~2.0",
+        "gregwar/captcha-bundle": "^2.0",
+        "hwi/oauth-bundle": "^0.6.3",
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-paginator-bundle": "^3.0",
+        "knplabs/knp-snappy-bundle": "^1.5",
         "mgilet/notification-bundle": "^3.1",
+        "nexmo/client": "^1.9",
         "ob/highcharts-bundle": "^1.6",
+        "php-http/guzzle6-adapter": "^1.1",
+        "php-http/httplug-bundle": "^1.15",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^5.0.0",
         "symfony/monolog-bundle": "^3.1.0",
@@ -73,4 +79,5 @@
             "dev-master": "3.4-dev"
         }
     }
+
 }

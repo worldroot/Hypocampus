@@ -3,6 +3,7 @@
 namespace BacklogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Task
@@ -23,7 +24,13 @@ class Task
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 20,
+     *     minMessage="Le titre doit comporter au moins 5 caractéres",
+     *     maxMessage="Le titre doit comporter au plus 20 caractéres"
+     * )
+     * @Assert\NotNull(message="le titre doit exister")
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -51,14 +58,12 @@ class Task
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="created_date", type="date")
      */
     private $createdDate;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="finished_date", type="date")
      */
     private $finishedDate;
@@ -90,11 +95,42 @@ class Task
      */
     private $backlog;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\sprintBundle\Entity\sprint")
+     * @ORM\JoinColumn(name="sprint_id", referencedColumnName="id")
+     */
+    private $sprint;
+
     /**
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
+    /**
+     * Set sprint
+     *
+     * @param \sprintBundle\Entity\sprint $sprint
+     *
+     * @return Task
+     */
+    public function setSprint(\sprintBundle\Entity\sprint $sprint = null)
+    {
+        $this->sprint = $sprint;
+
+        return $this;
+    }
+
+    /**
+     * Get sprint
+     *
+     * @return \sprintBundle\Entity\sprint
+     */
+    public function getSprint()
+    {
+        return $this->sprint;
+    }
 
     /**
      * Set user

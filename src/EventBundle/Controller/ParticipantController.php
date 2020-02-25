@@ -3,6 +3,7 @@
 namespace EventBundle\Controller;
 
 
+use EventBundle\Entity\EventsAdmin;
 use EventBundle\Entity\Participant;
 use EventBundle\Form\ParticipantType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,52 +17,89 @@ class ParticipantController extends Controller
     {
         $em=$this->getDoctrine();
         $tab=$em->getRepository(Participant::class)->findAll();
-        return $this->render('@Event/Participant/readevent.html.twig', array(
+        return $this->render('@Event/Participant/searchp.html.twig', array(
             'tabs'=>$tab
             // ...
         ));
     }
 
-    public function AddeventAction(Request $request)
+    public function AddpAction(Request $request)
     {
         $club = new Participant();
+        $em=$this->getDoctrine();
+
+        $event = new EventsAdmin();
         $form = $this->createForm(ParticipantType::class, $club);
 
         $form = $form->handleRequest($request);
         if (($form->isSubmitted()) & ($form->isValid())) {
 
-            $em = $this->getDoctrine()->getManager();
+            $x = 0;
+            $list = $em->getRepository(Participant::class)->findAll();
+            foreach ($list as $row)
+            {
+                if($row->getChoix() == $club->getChoix())
+                {
+                    $x = $x +1;
+                }
+            }
 
-/*
-                        $club->setChoix($request->get('typeEvent'));
+            $y = $club->getChoix()->getNumeroEvent();
 
-                        if($club->getChoix()=="Cours")
-                        {
-                            $choix=$em->getRepository(EventsAdmin::class)->findType("Cours");
-                            $club->setChoix($choix[0]);
-                        }
-                        if($club->getChoix()=="Workshop")
-                        {
-                            $choix=$em->getRepository(EventsAdmin::class)->findType("Workshop");
-                            $club->setChoix($choix[0]);
-                        }
-                        if($club->getChoix()=="Formation")
-                        {
-                            $choix=$em->getRepository(EventsAdmin::class)->findType("Formation");
-                            $club->setChoix($choix[0]);
-                        }
-*/
+                if($y > $x) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($club);
+                    $em->flush();
+                    echo "<script>alert('Ajouté avec succès')</script>";
+                    $choix = $em->getRepository(EventsAdmin::class)->find($club->getChoix()->getIdev());
 
-            $em->persist($club);
-            $em->flush();
-            echo "<script>alert('Ajouté avec succès')</script>";
-            return $this->redirectToRoute('_addevent');
+                    return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
+                        'formations' => $choix
+                    ));
+                }
+                else{
+                    echo "<script>alert('Capacité event choisi saturé !')</script>";
+                }
 
 
         }
 
-        return $this->render('@Event/Participant/addevent.html.twig', array(
+        return $this->render('@Event/Participant/addp.html.twig', array(
             'form'=>$form->createView()
+        ));
+    }
+
+    public function LoginpAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $email = $request->query->get('email');
+        $pwid = $request->query->get('passwird');
+
+        $particpants = $em->getRepository(Participant::class)->findParticipant($email);
+
+        foreach($particpants as $pa) {
+            $participant = $pa;
+
+            if($participant->getPasswordp() == $pwid)
+            {
+                $choix = $em->getRepository(EventsAdmin::class)->find($participant->getChoix()->getIdev());
+
+                return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
+                    'formations' => $choix
+                ));
+            }
+
+            else
+            {
+                echo "<script>alert('Vérifier e-mail ou mot de passe !')</script>";
+            }
+            // break loop after first iteration
+            break;
+        }
+
+        return $this->render('@Event/Participant/loginp.html.twig', array(
+
+            // ...
         ));
     }
 
@@ -74,7 +112,7 @@ class ParticipantController extends Controller
         $cnx->remove($d);
         $cnx->flush();
         echo "<script>alert('Suppression succeed')</script>";
-        return $this->redirectToRoute('_searchevent');
+        return $this->redirectToRoute('searchp');
     }
 
 
@@ -91,16 +129,16 @@ class ParticipantController extends Controller
         if( ($form->isSubmitted()) & ($form->isValid()) ){
 
             $em->flush();
-            return $this->redirectToRoute('_searchevent');
+            return $this->redirectToRoute('searchp');
         }
 
-        return $this->render('@Event/Participant/addevent.html.twig', array(
+        return $this->render('@Event/Participant/updatevent.html.twig', array(
             'form'=>$form->createView()
         ));
     }
 
 
-    public function SearcheventAction(Request $request)
+    public function SearchpAction(Request $request)
     {
 
         $em=$this->getDoctrine();
@@ -111,14 +149,30 @@ class ParticipantController extends Controller
         {
             $formation = $em->getRepository(Participant::class)->findNomp($input);
 
-            return $this->render('@Event/Participant/searchevent.html.twig', array(
+            return $this->render('@Event/Participant/searchp.html.twig', array(
                 'formations' => $formation
             ));
         }
 
-        return $this->render('@Event/Participant/searchevent.html.twig', array(
+        return $this->render('@Event/Participant/searchp.html.twig', array(
             'formations'=>$tab
         ));
     }
+
+
+    public function TriepAction()
+    {
+        $em=$this->getDoctrine();
+        $tab=$em->getRepository(Participant::class)->tri();
+        return $this->render('@Event/Participant/searchp.html.twig', array(
+            'tabs'=>$tab
+            // ...
+        ));
+    }
+
+
+
+
+
 
 }

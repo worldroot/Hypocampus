@@ -47,4 +47,15 @@ class EntrepriseRepository extends \Doctrine\ORM\EntityRepository
         }
 
     }
+
+    public function scarraAa()
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT id, username, email FROM fos_user ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
 }

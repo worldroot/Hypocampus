@@ -25,10 +25,15 @@ class AppKernel extends Kernel
             new EntrepriseBundle\EntrepriseBundle(),
             new EventBundle\EventBundle(),
             new BacklogBundle\BacklogBundle(),
+            new TeamBundle\TeamBundle(),
+            new MeetingBundle\MeetingBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new projetsBundle\projetsBundle(),
             new sprintBundle\sprintBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+
         ];
 
 

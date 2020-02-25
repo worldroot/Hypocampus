@@ -9,6 +9,7 @@ use BacklogBundle\Form\BacklogType;
 use BacklogBundle\Form\CommentaireType;
 use BacklogBundle\Form\TaskType;
 use Cassandra\Date;
+use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -59,6 +60,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine();
         $tab = $em->getRepository(Backlog::class)->findAll();
+
 
 
         return $this->render('@Backlog/Default/backlog_index.html.twig', array(
@@ -114,11 +116,37 @@ class DefaultController extends Controller
         $tab2 = $em->getRepository(Task::class)->backlogTasks($id);
         $archives = $em->getRepository(Task::class)->backlogArchives($id);
 
+        $inProgress = $em->getRepository(Task::class)->TasksInProgress($id);
+        $toDo= $em->getRepository(Task::class)->TasksToDo($id);
+        $done= $em->getRepository(Task::class)->TasksDone($id);
+
+
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['Task', 'Hours per Day'],
+                ['To Do',     (int)$toDo],
+                ['In progress',      (int)$inProgress],
+                ['Done',  (int)$done]
+            ]
+        );
+        $pieChart->getOptions()->setTitle('Taches et avancements');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->setIs3D(true);
+
 
         return $this->render('@Backlog/Default/view_ProjectBacklog.html.twig', array(
             'backlog'=> $tab,
             'tasks' => $tab2,
-            'archives' => $archives
+            'archives' => $archives,
+            'piechart' => $pieChart,
+            'test' => $inProgress
             // ...
         ));
 
@@ -158,7 +186,13 @@ class DefaultController extends Controller
             $backlog= $em->getRepository(Backlog::class)->find($id);
             $task->setBacklog($backlog);
             $task->setArchive(0);
+            if ($task->getFinishedDate() ==  $task->getCreatedDate() || $task->getFinishedDate() <=  $task->getCreatedDate()  )
+            {
+                return $this->render('@Backlog/Default/create_BacklogTask.html.twig', array(
+                    'form' => $form->createView()
+                ));
 
+            }
 
 
 
@@ -193,7 +227,7 @@ class DefaultController extends Controller
                 $notif = $manager->createNotification('Une Tache A Vous!!');
                 $notif->setMessage("La tache : ".$task->getTitle()." vous est affecter");
                 $notif->setLink('/view/'.$backlog->getId().'/task/view/'.$task->getId());
-                $manager->addNotification(array($this->getUser()), $notif, true);
+                $manager->addNotification(array($task->getUser()), $notif, true);
 
             }
 
@@ -293,6 +327,14 @@ class DefaultController extends Controller
         if(($form->isSubmitted()) & ($form->isValid()))
         {
 
+            if ($task->getFinishedDate() ==  $task->getCreatedDate() || $task->getFinishedDate() <=  $task->getCreatedDate()  )
+            {
+                return $this->render('@Backlog/Default/create_BacklogTask.html.twig', array(
+                    'form' => $form->createView()
+                ));
+
+            }
+
             if ( $task->getState() == 'To Do')
             {
                 $backlog->setPointsToDo($backlog->getPointsToDo() + $task->getStoryPoints());
@@ -311,7 +353,7 @@ class DefaultController extends Controller
                 $notif = $manager->createNotification('Une Tache Pour Vous!!');
                 $notif->setMessage("La tache".$task->getTitle()."vous est affecter");
                 $notif->setLink('/view/'.$id_b.'/task/view/'.$task->getId());
-                $manager->addNotification(array($this->getUser()), $notif, true);
+                $manager->addNotification(array($task->getUser()), $notif, true);
 
             }
 
@@ -347,6 +389,8 @@ class DefaultController extends Controller
 
         if(($form->isSubmitted()) & ($form->isValid()))
         {
+
+
 
             $em->flush();
 
@@ -421,6 +465,50 @@ class DefaultController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('view_BacklogTask',['id_b' => $id_b, 'id' => $id]);
+
+    }
+
+    public function MesTachesAction($id,$id_u){
+
+
+        $em = $this->getDoctrine();
+        $tab = $em->getRepository(Backlog::class)->find($id);
+        $tab2 = $em->getRepository(Task::class)->backlogTasksUser($id, $id_u);
+        $archives = $em->getRepository(Task::class)->backlogArchivesUser($id, $id_u);
+
+        $inProgress = $em->getRepository(Task::class)->TasksInProgressUser($id, $id_u);
+        $toDo= $em->getRepository(Task::class)->TasksToDoUser($id, $id_u);
+        $done= $em->getRepository(Task::class)->TasksDoneUser($id, $id_u);
+
+
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['Task', 'Hours per Day'],
+                ['To Do',     (int)$toDo],
+                ['In progress',      (int)$inProgress],
+                ['Done',  (int)$done]
+            ]
+        );
+        $pieChart->getOptions()->setTitle('Taches et avancements');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->setIs3D(true);
+
+
+        return $this->render('@Backlog/Default/view_ProjectBacklog.html.twig', array(
+            'backlog'=> $tab,
+            'tasks' => $tab2,
+            'archives' => $archives,
+            'piechart' => $pieChart,
+            'test' => $inProgress
+            // ...
+        ));
 
     }
 
