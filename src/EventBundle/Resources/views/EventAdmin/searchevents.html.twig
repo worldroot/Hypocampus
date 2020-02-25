@@ -114,6 +114,7 @@
                                             <th class="border-top-0">Capacité</th>
                                             <th class="border-top-0">Date</th>
                                             <th class="border-top-0">Date de Fin</th>
+                                            <th class="border-top-0">Fichier</th>
 
                                             <th ></th>
                                             <th ></th>
@@ -127,6 +128,10 @@
                                                 <td class="text-truncate">{{ i.numeroEvent }}</td>
                                                 <td class="text-truncate">{{ i.dateEvent|date('Y-m-d') }}</td>
                                                 <td class="text-truncate">{{ i.enddateEvent|date('Y-m-d') }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-info round"><a href="{{ asset('uploads/commentaires/files/' ~ i.imageName) }}">View File</a> <i class="ft-link-2"></i>
+                                                    </button>
+                                                </td>
                                                 <td class="text-truncat mr-1">
                                                     <a href="{{path('deleteevents',{'idev':i.idev})}}">
                                                         <button class="btn btn-sm btn-outline-danger round" type="submit">Supprimer</button>
