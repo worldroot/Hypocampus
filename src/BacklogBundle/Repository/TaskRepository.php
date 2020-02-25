@@ -40,4 +40,37 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery("SELECT COUNT(c) FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.state = 'Done' ");
         return $query->getSingleScalarResult();
     }
+
+
+
+
+    public function backlogTasksUser($id, $id_u){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT c FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.archive = 0 AND c.user='$id_u' ");
+        return $query->getResult();
+    }
+
+    public function backlogArchivesUser($id, $id_u){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT c FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.archive = 1 AND c.user='$id_u'");
+        return $query->getResult();
+    }
+
+    public function TasksToDoUser($id, $id_u){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT COUNT(c) FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.state = 'To Do' AND c.user='$id_u' ");
+        return $query->getSingleScalarResult();
+    }
+
+    public function TasksInProgressUser($id, $id_u){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT COUNT(c) FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.state = 'In Progress' AND c.user='$id_u'");
+        return $query->getSingleScalarResult();
+    }
+
+    public function TasksDoneUser($id, $id_u){
+        $query = $this->getEntityManager()
+            ->createQuery("SELECT COUNT(c) FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.state = 'Done' AND c.user='$id_u'");
+        return $query->getSingleScalarResult();
+    }
 }

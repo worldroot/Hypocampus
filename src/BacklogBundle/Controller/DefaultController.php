@@ -468,5 +468,49 @@ class DefaultController extends Controller
 
     }
 
+    public function MesTachesAction($id,$id_u){
+
+
+        $em = $this->getDoctrine();
+        $tab = $em->getRepository(Backlog::class)->find($id);
+        $tab2 = $em->getRepository(Task::class)->backlogTasksUser($id, $id_u);
+        $archives = $em->getRepository(Task::class)->backlogArchivesUser($id, $id_u);
+
+        $inProgress = $em->getRepository(Task::class)->TasksInProgressUser($id, $id_u);
+        $toDo= $em->getRepository(Task::class)->TasksToDoUser($id, $id_u);
+        $done= $em->getRepository(Task::class)->TasksDoneUser($id, $id_u);
+
+
+
+        $pieChart = new PieChart();
+        $pieChart->getData()->setArrayToDataTable(
+            [['Task', 'Hours per Day'],
+                ['To Do',     (int)$toDo],
+                ['In progress',      (int)$inProgress],
+                ['Done',  (int)$done]
+            ]
+        );
+        $pieChart->getOptions()->setTitle('Taches et avancements');
+        $pieChart->getOptions()->setHeight(500);
+        $pieChart->getOptions()->setWidth(900);
+        $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+        $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+        $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+        $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+        $pieChart->getOptions()->setIs3D(true);
+
+
+        return $this->render('@Backlog/Default/view_ProjectBacklog.html.twig', array(
+            'backlog'=> $tab,
+            'tasks' => $tab2,
+            'archives' => $archives,
+            'piechart' => $pieChart,
+            'test' => $inProgress
+            // ...
+        ));
+
+    }
+
 
 }

@@ -34,6 +34,10 @@ delete_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/remove/{id}
     defaults: { _controller: BacklogBundle:Default:RemoveBacklogTask }
 
+user_BacklogTask:
+    path:     /ProjectBacklog/view/{id}/user/{id_u}
+    defaults: { _controller: BacklogBundle:Default:MesTaches }
+
 update_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/update/{id}
     defaults: { _controller: BacklogBundle:Default:UpdateBacklogTask }
