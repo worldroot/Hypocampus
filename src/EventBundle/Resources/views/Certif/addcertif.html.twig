@@ -70,8 +70,15 @@
 
                                             <div class="form-group">
                                                 <h5>Image</h5>
-                                                <label for="donationinput7" class="sr-only">Date d'event</label>
-                                                {{ form_widget(form.imageFile, { 'attr' : { 'class' : 'form-control' } }) }}
+                                                <div class="custom-file">
+
+
+                                                    {{ form_widget(form.imageFile, { 'attr' : { 'class' : 'custom-file-input' } }) }}
+
+                                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                    {{ form_label(form.imageFile    , 'Ajouter votre fichier') }}
+
+                                                </div>
                                             </div>
 
 
