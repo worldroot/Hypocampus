@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class EventsAdminType extends AbstractType
 {
@@ -19,6 +20,7 @@ class EventsAdminType extends AbstractType
             ->add('numeroEvent')
             ->add('typeEvent')
             ->add('dateEvent')
+            ->add('enddateEvent')
             ->add('valider',SubmitType::class);
         ;
     }/**

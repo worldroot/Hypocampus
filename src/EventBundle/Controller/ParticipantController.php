@@ -26,21 +26,40 @@ class ParticipantController extends Controller
     public function AddpAction(Request $request)
     {
         $club = new Participant();
+        $em=$this->getDoctrine();
+
+        $event = new EventsAdmin();
         $form = $this->createForm(ParticipantType::class, $club);
 
         $form = $form->handleRequest($request);
         if (($form->isSubmitted()) & ($form->isValid())) {
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($club);
-            $em->flush();
-            echo "<script>alert('Ajouté avec succès')</script>";
-            $choix = $em->getRepository(EventsAdmin::class)->find($club->getChoix()->getIdev());
+            $x = 0;
+            $list = $em->getRepository(Participant::class)->findAll();
+            foreach ($list as $row)
+            {
+                if($row->getChoix() == $club->getChoix())
+                {
+                    $x = $x +1;
+                }
+            }
 
-            return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
-                'formations' => $choix
-            ));
+            $y = $club->getChoix()->getNumeroEvent();
 
+                if($y > $x) {
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($club);
+                    $em->flush();
+                    echo "<script>alert('Ajouté avec succès')</script>";
+                    $choix = $em->getRepository(EventsAdmin::class)->find($club->getChoix()->getIdev());
+
+                    return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
+                        'formations' => $choix
+                    ));
+                }
+                else{
+                    echo "<script>alert('Capacité event choisi saturé !')</script>";
+                }
 
 
         }
@@ -113,7 +132,7 @@ class ParticipantController extends Controller
             return $this->redirectToRoute('searchp');
         }
 
-        return $this->render('@Event/Participant/addp.html.twig', array(
+        return $this->render('@Event/Participant/updatevent.html.twig', array(
             'form'=>$form->createView()
         ));
     }
