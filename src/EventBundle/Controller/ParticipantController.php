@@ -3,6 +3,7 @@
 namespace EventBundle\Controller;
 
 
+use EventBundle\Entity\Certif;
 use EventBundle\Entity\EventsAdmin;
 use EventBundle\Entity\Participant;
 use EventBundle\Form\ParticipantType;
@@ -60,8 +61,6 @@ class ParticipantController extends Controller
                 else{
                     echo "<script>alert('Capacité event choisi saturé !')</script>";
                 }
-
-
         }
 
         return $this->render('@Event/Participant/addp.html.twig', array(
@@ -71,6 +70,7 @@ class ParticipantController extends Controller
 
     public function LoginpAction(Request $request)
     {
+        $certif = new Certif();
         $em = $this->getDoctrine()->getManager();
         $email = $request->query->get('email');
         $pwid = $request->query->get('passwird');
@@ -79,8 +79,11 @@ class ParticipantController extends Controller
 
         foreach($particpants as $pa) {
             $participant = $pa;
+            $re = $participant->getReview();
+            $c = $certif->getPointc();
 
-            if($participant->getPasswordp() == $pwid)
+
+            if($participant->getPasswordp() == $pwid )
             {
                 $choix = $em->getRepository(EventsAdmin::class)->find($participant->getChoix()->getIdev());
 
