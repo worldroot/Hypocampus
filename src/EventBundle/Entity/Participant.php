@@ -48,6 +48,14 @@ class Participant
      */
     private $choix;
 
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="review", type="integer")
+     */
+    private $review;
+
     /**
      * Set choix
      *
@@ -60,6 +68,22 @@ class Participant
         $this->choix = $choix;
 
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReview()
+    {
+        return $this->review;
+    }
+
+    /**
+     * @param int $review
+     */
+    public function setReview($review)
+    {
+        $this->review = $review;
     }
 
     /**

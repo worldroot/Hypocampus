@@ -54,21 +54,21 @@
                                     <div class="card-body">
 
                                         <div class="form-body">
-                                            {{ form_start(form) }}
+                                            {{ form_start(form,{'attr': {'novalidate': 'novalidate','id':'events'} }) }}
                                             <div class="form-group">
                                                 <h5>Titre</h5>
                                                 <label for="donationinput1" class="sr-only"></label>
-                                                <input type="text"  class="form-control" placeholder=""  {{ form_widget(form.titreEvent) }}
+                                                <input type="text"  class="form-control" placeholder=""  {{ form_widget(form.titreEvent,{'attr':{'type':'text','id':'Titre'}}) }}
                                             </div>
                                             <div class="form-group">
                                                 <h5>Capacité</h5>
                                                 <label for="donationinput2" class="sr-only"></label>
-                                                <input type="text"  class="form-control" placeholder=""  {{ form_widget(form.numeroEvent) }}
+                                                <input type="number"  class="form-control" placeholder=""  {{ form_widget(form.numeroEvent,{'attr':{'type':'number','id':'cap'}}) }}
                                             </div>
                                             <div class="form-group">
                                                 <h5>Type</h5>
                                                 <label for="donationinput7" class="sr-only">Type d'event</label>
-                                                <input  class="form-control" placeholder=""  {{ form_widget(form.typeEvent) }}
+                                                <input  class="form-control" placeholder=""  {{ form_widget(form.typeEvent,{'attr':{'type':'text','id':'Type'}}) }}
                                             </div>
 
                                             <div class="form-group">
@@ -87,7 +87,7 @@
                                                 <div class="custom-file">
 
 
-                                                    {{ form_widget(form.imageFile, { 'attr' : { 'class' : 'custom-file-input' } }) }}
+                                                    {{ form_widget(form.imageFile, { 'attr' : { 'class' : 'custom-file-input','id' : 'fichier' } }) }}
 
                                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                     {{ form_label(form.imageFile    , 'Ajouter votre fichier') }}
@@ -100,7 +100,6 @@
                                         <div class="form-actions center">
                                             <button class="btn btn-info" {{ form_widget(form.valider) }}  </button>
                                         </div>
-
 
                                         {{ form_end(form) }}
 
@@ -117,10 +116,32 @@
             </div>
         </div>
         <!--/ END BODY -->
-        </div>
-        </div>
-        </div>
-
-
     {% endblock %}
+
+                    {% block js %}
+                     <script type="text/javascript">
+                        $("#events").submit(function(e){
+
+                            if ( $("#Titre").val()==""){
+                                $("#errorTitre").show();
+                                e.preventDefault();}
+                            else
+                            {$("#errorTitre").hide();}
+                    /*** ***/
+                            if ( $("#Type").val()==""){
+                                $("#errorType").show();
+                                e.preventDefault();}
+                            else
+                            {$("#errorType").hide();}
+
+                            if ( $("#fichier").val()==""){
+                                $("#errorFichier").show();
+                                e.preventDefault();
+                            }
+                            else
+                            {$("#errorFichier").hide();}
+
+                        });
+                    </script>
+                {% endblock %}
 

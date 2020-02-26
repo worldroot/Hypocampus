@@ -112,6 +112,7 @@
                                             <th class="border-top-0">Email</th>
                                             <th class="border-top-0">Password</th>
                                             <th class="border-top-0">Choix</th>
+                                            <th class="border-top-0">Reviews</th>
                                             <th ></th>
                                             <th ></th>
                                         </tr>
@@ -124,6 +125,8 @@
                                                 <td class="text-truncate">{{ i.email }}</td>
                                                 <td class="text-truncate">{{ i.passwordp }}</td>
                                                 <td class="text-truncate">{{ i.choix.TitreEvent }}</td>
+                                                <td class="text-truncate">{{ i.review }}</td>
+
                                                 <td class="text-truncat mr-1">
                                                     <a href="{{path('_deletevent',{'nomp':i.nomp})}}">
                                                         <button class="btn btn-sm btn-outline-danger round" type="submit">Supprimer</button>

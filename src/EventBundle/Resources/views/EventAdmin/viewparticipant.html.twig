@@ -31,8 +31,6 @@
                         <ul class="nav navbar-nav float-right">
                             <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-user">             </i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href=""><i class="ft-pocket"></i> Demande</a>
-
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="{{path('loginp')}}"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </li>
@@ -61,88 +59,97 @@
 {% endblock %}
 
 {% block body %}
-    <div class="app-content content">
-        <div class="content-wrapper">
+
+
+    <div class="app-content content align-content-center align-self-center ">
+        <div class="content-wrapper align-self-center ">
             <div class="content-header row">
             </div>
+            <div class="content-body align-self-center"><!-- Chart -->
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <div class="col-12">    </div>
+                <p>
 
-            <!-- PUT BODY HERE -->
 
-            <div class="content-body">
-                <div class="row">
-                    <section id="decks">
-                        <div class="row">
-                            <div class="col-12">
-                                {% if formations.titreEvent is defined %}
-                                    <div class="">
-                                        <div class="">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <div class="">
-                                                    <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ formations.titreEvent }}</span></h5>
-                                                    <br>
-                                                    <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ formations.TypeEvent }}</span></h6>
-                                                    <h6 class="text-bold-600 mt-1"> Numero: <span class="blue-grey">{{ formations.numeroEvent }}</span></h6>
-                                                    <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ formations.dateEvent|date('Y-m-d') }}</span></h6>
-                                                        <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ formations.dateEvent|date('Y-m-d') }}</span></h6>
-                                                        <button type="button" class="btn btn-sm btn-outline-info round"><a href="{{ asset('uploads/commentaires/files/' ~ formations.imageName) }}">View File</a> <i class="ft-link-2"></i></button>
-                                                        <button type="button" class="btn btn-sm btn-outline-info round"><a href="">Review</a> <i class=""></i></button>
+                </p>
 
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+                <div class="content-body ">
+                    <div class="row match-height align-items-center align-self-center">
+                        <div class="col-6 ">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h1 class="card-title">Votre Participation</h1>
+                                    <a class="heading-elements-toggle">
+                                        <i class="fa fa-ellipsis-v font-medium-3"></i>
+                                    </a>
+                                    <div class="heading-elements">
+
                                     </div>
-                                {% else %}
-                                    {% for i in formations %}
-                                        <div class="col-12">
+                                </div>
+                                <div class="card-block">
+                                    <div class="card-body">
+
+                                        <div class="form-body">
+
+                                            {% if formations.titreEvent is defined %}
                                             <div class="">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <div class="col-12">
-                                                        <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ i.titreEvent }}</span></h5>
-                                                        <br>
-                                                        <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ i.TypeEvent }}</span></h6>
-                                                        <h6 class="text-bold-600 mt-1"> Capacité: <span class="blue-grey">{{ i.numeroEvent }}</span></h6>
-                                                        <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ i.dateEvent|date('Y-m-d') }}</span></h6>
-                                                        <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ i.enddateEvent|date('Y-m-d') }}</span></h6>
-                                                            <button type="button" class="btn btn-sm btn-outline-info round"><a href="{{ asset('uploads/commentaires/files/' ~ i.imageName) }}">View File</a> <i class="ft-link-2"></i>
-                                                            </button>
+                                                <div class="">
+                                                    <div class="card">
+                                                        <div class="card-body">
+                                                            <div class="">
+                                                                <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ formations.titreEvent }}</span></h5>
+                                                                <br>
+                                                                <h6 class="text-bold-600 mt-1"> Type d'event : <span class="blue-grey">{{ formations.TypeEvent }}</span></h6>
+                                                                <h6 class="text-bold-600 mt-1"> Date debut : <span class="blue-grey">{{ formations.dateEvent|date('Y-m-d') }}</span></h6>
+                                                                <h6 class="text-bold-600 mt-1"> Date fin : <span class="blue-grey">{{ formations.enddateEvent|date('Y-m-d') }}</span></h6>
+                                                                <br>
+                                                                <button type="button" class="btn btn-md btn-outline-success round"><a href="{{ asset('uploads/commentaires/files/' ~ formations.imageName) }}" >View File</a><i class="ft-link-2"></i></button>
+                                                                <button type="button" class="btn btn-md btn-outline-success round"><a href="">Review</a> <i class=""></i></button>
+
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor %}
-                                {% endif %}
+                                        {% else %}
+                                            {% for i in formations %}
+                                                <div class="col-6">
+                                                    <div class="">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="col-12">
+                                                                    <h5 class="text-bold-600 mt-1"> <span class="blue-grey">{{ i.titreEvent }}</span></h5>
+                                                                    <br>
+                                                                    <h6 class="text-bold-600 mt-1"> Type: <span class="blue-grey">{{ i.TypeEvent }}</span></h6>
+                                                                    <h6 class="text-bold-600 mt-1"> Capacité: <span class="blue-grey">{{ i.numeroEvent }}</span></h6>
+                                                                    <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ i.dateEvent|date('Y-m-d') }}</span></h6>
+                                                                    <h6 class="text-bold-600 mt-1"> Date: <span class="blue-grey">{{ i.enddateEvent|date('Y-m-d') }}</span></h6>
+                                                                    <button type="button" class="btn btn-sm btn-outline-info round"><a href="{{ asset('uploads/commentaires/files/' ~ i.imageName) }}">View File</a> <i class="ft-link-2"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+
                 </div>
-
-
-
-
             </div>
-
         </div>
-    </div>
-    </div>
 
-
-    </div>
-    </div>
-
-
-
-
-
-    <!--/ END BODY -->
-    </div>
-    </div>
-
-
+                                            </div>
 
 
 

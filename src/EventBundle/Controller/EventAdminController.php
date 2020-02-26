@@ -75,10 +75,9 @@ class EventAdminController extends Controller
     public function ViewparticipantAction(Request $request)
     {
         $em = $this->getDoctrine();
-
         $choix = $em->getRepository(EventsAdmin::class)->findAll();
-
         $input = $request->get('TypeEvent');
+
         if (isset($input)) {
             $formation = $em->getRepository(EventsAdmin::class)->findType($input);
 
@@ -86,6 +85,7 @@ class EventAdminController extends Controller
                 'formations' => $formation
             ));
         }
+
 
         return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
             'formations' => $choix
