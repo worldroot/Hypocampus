@@ -37,10 +37,10 @@ class CertifController extends Controller
         ));
     }
 
-    public function updatecertifAction($pointc,Request $request)
+    public function updatecertifAction($idc,Request $request)
     {
         $em=$this->getDoctrine()->getManager();
-        $club=$em->getRepository(Certif::class)->find($pointc);
+        $club=$em->getRepository(Certif::class)->find($idc);
         $form=$this->createForm(CertifType::class, $club);
         $form=$form->handleRequest($request);
 

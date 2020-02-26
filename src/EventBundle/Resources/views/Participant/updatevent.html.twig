@@ -49,9 +49,15 @@
                                                 <label for="donationinput4" class="sr-only">Password</label>
                                                 <input type="password" class="form-control round" placeholder="Password"   {{ form_widget(form.passwordp) }}
                                             </div>
+
                                             <div class="form-group">
                                                 <label for="donationinput7" class="sr-only">Choix</label>
                                                 {{ form_widget(form.choix, { 'attr' : { 'class' : 'form-control round' } }) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="donationinput4" class="sr-only">Reviews</label>
+                                                <input type="number" class="form-control round" placeholder="Reviews"   {{ form_widget(form.review) }}
                                             </div>
 
                                             <div class="disabled" aria-required="true">
