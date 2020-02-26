@@ -49,7 +49,7 @@ class sprint
     private $etat;
     /**
      * @ORM\ManyToOne(targetEntity="\projetsBundle\Entity\projets")
-     * @ORM\JoinColumn(name="projets_id",referencedColumnName="id")
+     * @ORM\JoinColumn(name="projets_id",referencedColumnName="id", onDelete="CASCADE")
      */
     private $projets;
 

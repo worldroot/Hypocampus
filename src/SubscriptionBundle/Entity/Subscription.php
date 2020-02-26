@@ -44,7 +44,7 @@ class Subscription
 
     /**
      * @ORM\ManyToOne(targetEntity="Tarif")
-     * @ORM\JoinColumn(name="tarif", referencedColumnName="id")
+     * @ORM\JoinColumn(name="tarif", referencedColumnName="id", onDelete="CASCADE")
      */
     private $tarif;
 
