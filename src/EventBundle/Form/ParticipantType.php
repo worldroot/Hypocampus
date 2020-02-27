@@ -21,7 +21,7 @@ class ParticipantType extends AbstractType
                 ->add('prenomp')
                 ->add('email')
                 ->add('passwordp')
-                ->add('passwordp')
+                ->add('review')
                 ->add('choix',EntityType::class, array(
                 'class'=>EventsAdmin::class,
                 'choice_label'=>'TitreEvent',

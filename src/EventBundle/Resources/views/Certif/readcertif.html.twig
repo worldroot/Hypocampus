@@ -112,7 +112,7 @@
                                             <tr>
                                                 <th class="border-top-0">Titre</th>
                                                 <th class="border-top-0">Points</th>
-                                                <th class="border-top-0">Date</th>
+                                                <th class="border-top-0">Date creation</th>
                                                 <th class="border-top-0">Image</th>
 
                                                 <th ></th>
@@ -126,11 +126,10 @@
                                                     <td class="text-truncate">{{ i.titrec.TitreEvent }}</td>
                                                     <td class="text-truncate">{{ i.pointc }}</td>
                                                     <td class="text-truncate">{{ i.datec|date('Y-m-d') }}</td>
-
-                                                   <td>
+                                                    <td>
                                                        <button type="button" class="btn btn-sm btn-outline-info round"><a href="{{ asset('uploads/commentaires/files/' ~ i.imageName) }}">View File</a> <i class="ft-link-2"></i>
                                                        </button>
-                                                   </td>
+                                                    </td>
 
                                                     <td class="text-truncat mr-1">
                                                         <a href="{{path('deletecertif',{'idc':i.idc})}}">
@@ -138,7 +137,7 @@
                                                         </a>
                                                     </td>
                                                     <td class="text-truncat mr-1">
-                                                        <a href="{{path('updatecertif',{'pointc':i.pointc})}}">
+                                                        <a href="{{path('updatecertif',{'idc':i.idc})}}">
                                                             <button class="btn btn-sm btn-outline-success round" type="submit">Modifier</button>
                                                         </a>
                                                     </td>

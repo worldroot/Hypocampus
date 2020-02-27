@@ -76,16 +76,31 @@ class ParticipantController extends Controller
         $pwid = $request->query->get('passwird');
 
         $particpants = $em->getRepository(Participant::class)->findParticipant($email);
+        $cc=$em->getRepository(Certif::class)->findAll();
 
         foreach($particpants as $pa) {
             $participant = $pa;
-            $re = $participant->getReview();
-            $c = $certif->getPointc();
-
 
             if($participant->getPasswordp() == $pwid )
             {
+
+                $re = $participant->getReview()+1;
+                $participant->setReview($re);
+
+                $em->flush();
+
                 $choix = $em->getRepository(EventsAdmin::class)->find($participant->getChoix()->getIdev());
+
+                $certif = $em->getRepository(Certif::class)->findTiit($choix->getIdev());
+
+                $hethi = $certif[0];
+
+                if($re >= $hethi->getPointc() )
+                {
+                    return $this->render('@Event/Participant/viewcertif.html.twig', array(
+                        'hethi' => $hethi
+                    ));
+                }
 
                 return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
                     'formations' => $choix

@@ -57,41 +57,37 @@
                                             {{ form_start(form,{'attr': {'novalidate': 'novalidate','id':'events'} }) }}
                                             <div class="form-group">
                                                 <h5>Titre</h5>
-                                                <label for="donationinput1" class="sr-only"></label>
+                                                <label for="errorTitre" class="control-label col-lg-2"><span class="required"></span></label>
                                                 <input type="text"  class="form-control" placeholder=""  {{ form_widget(form.titreEvent,{'attr':{'type':'text','id':'Titre'}}) }}
                                             </div>
                                             <div class="form-group">
                                                 <h5>Capacité</h5>
-                                                <label for="donationinput2" class="sr-only"></label>
+                                                <label for="errorCap" class="control-label col-lg-2"><span class="required"></span></label>
                                                 <input type="number"  class="form-control" placeholder=""  {{ form_widget(form.numeroEvent,{'attr':{'type':'number','id':'cap'}}) }}
                                             </div>
                                             <div class="form-group">
                                                 <h5>Type</h5>
-                                                <label for="donationinput7" class="sr-only">Type d'event</label>
+                                                <label for="errorFichier" class="control-label col-lg-2"><span class="required"></span></label>
                                                 <input  class="form-control" placeholder=""  {{ form_widget(form.typeEvent,{'attr':{'type':'text','id':'Type'}}) }}
                                             </div>
-
                                             <div class="form-group">
                                                 <h5>Date debut d'event</h5>
                                                 <label for="donationinput7" class="sr-only">Date d'event</label>
                                                 {{ form_widget(form.dateEvent, { 'attr' : { 'class' : 'form-control date-inputmask' } }) }}
                                             </div>
-
                                             <div class="form-group">
                                                 <h5>Date fin d'event</h5>
                                                 <label for="donationinput7" class="sr-only">Date d'event</label>
                                                 {{ form_widget(form.enddateEvent, { 'attr' : { 'class' : 'form-control date-inputmask' } }) }}
                                             </div>
+
                                             <div class="form-group">
                                                 <h5>Fichier</h5>
                                                 <div class="custom-file">
-
-
+                                                    <label for="errorFichier" class="control-label col-lg-2"><span class="required"></span></label>
                                                     {{ form_widget(form.imageFile, { 'attr' : { 'class' : 'custom-file-input','id' : 'fichier' } }) }}
-
                                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                                     {{ form_label(form.imageFile    , 'Ajouter votre fichier') }}
-
                                                 </div>
                                             </div>
 
@@ -115,33 +111,40 @@
 
             </div>
         </div>
+
+
+        <script type="text/javascript">
+            $("#events").submit(function(e){
+
+                if ( $("#Titre").val()==""){
+                    $("#errorTitre").show();
+                    e.preventDefault();}
+                else
+                {$("#errorTitre").hide();}
+
+                /*** Type ***/
+                if ( $("#Type").val()==""){
+                    $("#errorType").show();
+                    e.preventDefault();}
+                else
+                {$("#errorType").hide();}
+
+                /*** Capacité ***/
+                if ( $("#cap").val()==""){
+                    $("#errorCap").show();
+                    e.preventDefault();}
+                else
+                {$("#errorType").hide();}
+
+                /*** Fichier ***/
+                if ( $("#fichier").val()==""){
+                    $("#errorFichier").show();
+                    e.preventDefault();}
+                else
+                {$("#errorFichier").hide();}
+
+            });
+        </script>
         <!--/ END BODY -->
     {% endblock %}
-
-                    {% block js %}
-                     <script type="text/javascript">
-                        $("#events").submit(function(e){
-
-                            if ( $("#Titre").val()==""){
-                                $("#errorTitre").show();
-                                e.preventDefault();}
-                            else
-                            {$("#errorTitre").hide();}
-                    /*** ***/
-                            if ( $("#Type").val()==""){
-                                $("#errorType").show();
-                                e.preventDefault();}
-                            else
-                            {$("#errorType").hide();}
-
-                            if ( $("#fichier").val()==""){
-                                $("#errorFichier").show();
-                                e.preventDefault();
-                            }
-                            else
-                            {$("#errorFichier").hide();}
-
-                        });
-                    </script>
-                {% endblock %}
 

@@ -10,4 +10,12 @@ namespace EventBundle\Repository;
  */
 class CertifRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function findTiit($input)
+    {
+        $query=$this->getEntityManager()->createQuery("SELECT f FROM EventBundle:Certif f 
+        WHERE f.titrec = '$input'");
+
+        return $query->getResult();
+    }
 }

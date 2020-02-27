@@ -52,7 +52,7 @@ class Participant
     /**
      * @var int
      *
-     * @ORM\Column(name="review", type="integer")
+     * @ORM\Column(name="review", type="integer", nullable=TRUE)
      */
     private $review;
 

@@ -67,7 +67,7 @@ readcertif:
     defaults: { _controller: EventBundle:Certif:readcertif }
 
 updatecertif:
-    path:     /updatecertif/{pointc}
+    path:     /updatecertif/{idc}
     defaults: { _controller: EventBundle:Certif:updatecertif }
 
 deletecertif:
