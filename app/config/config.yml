@@ -77,8 +77,8 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     host: smtp.gmail.com
-    username: houcem.chett@gmail.com
-    password: 03041999houcem
+    username: mail
+    password: pwd
     spool: { type: memory }
 
 sensio_framework_extra:

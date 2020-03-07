@@ -65,6 +65,22 @@ released under the MIT or BSD license.
 
 Enjoy!
 
+Some screenshots of the project:
+![](web/screenshots/frontend_pic.png)
+* Backlog View
+![](web/screenshots/backlog_pic.png)
+![](web/screenshots/backlog_index_pic.png)
+
+* Sprint View
+![](web/screenshots/sprint_pic.png)
+
+* Participant View
+![](web/screenshots/participant_pic.png)
+![](web/screenshots/cert_pic.png)
+
+
+
+
 [1]:  https://symfony.com/doc/3.4/setup.html
 [6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
 [7]:  https://symfony.com/doc/3.4/doctrine.html
