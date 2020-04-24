@@ -65,3 +65,15 @@ update_commentaire:
 delete_commentaire:
     path:     /ProjectBacklog/view/{id_b}/task/view/{id}/commentaire/delete/{id_c}
     defaults: { _controller: BacklogBundle:Default:DeleteTaskCommentaire }
+
+api_afficher_backlog_index:
+    path:     /api/ProjectBacklog/index
+    defaults: { _controller: BacklogBundle:Default:IndexProjectBacklogApi }
+
+api_view_ProjectBacklog_tasks:
+    path:     /api/ProjectBacklog/view/{id}
+    defaults: { _controller: BacklogBundle:Default:view_ProjectBacklogApi }
+
+api_view_BacklogTask:
+    path:     /api/ProjectBacklog/view/{id_b}/task/view/{id}
+    defaults: { _controller: BacklogBundle:Default:ViewBacklogTaskApi }

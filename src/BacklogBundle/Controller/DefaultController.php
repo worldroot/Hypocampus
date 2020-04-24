@@ -11,7 +11,10 @@ use BacklogBundle\Form\TaskType;
 use Cassandra\Date;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class DefaultController extends Controller
 {
@@ -69,6 +72,8 @@ class DefaultController extends Controller
         ));
 
     }
+
+
 
     public function create_ProjectBacklogAction(Request $request)
     {
@@ -151,6 +156,8 @@ class DefaultController extends Controller
         ));
 
     }
+
+
 
     public function TransitNotificationAction($id_b,$id, $notifiable, $notification){
         //$manager = $this->get('mgilet.notification');
@@ -521,4 +528,41 @@ class DefaultController extends Controller
         return $this->render('@Backlog/Default/calendar.html.twig');
     }
 
+
+
+    /// Endpoints api
+
+    public function IndexProjectBacklogApiAction(){
+
+        $em = $this->getDoctrine();
+        $backlogs = $em->getRepository(Backlog::class)->findAll();
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($backlogs);
+        return new JsonResponse($formatted);
+
+
+    }
+
+    public function view_ProjectBacklogApiAction($id)
+    {
+
+        $em = $this->getDoctrine();
+        $backlog = $em->getRepository(Backlog::class)->find($id);
+        $tasks = $em->getRepository(Task::class)->backlogTasks($id);
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted_tasks= $serializer->normalize($tasks);
+        return new JsonResponse($formatted_tasks);
+
+    }
+
+    public function ViewBacklogTaskApiAction($id)
+    {
+
+        $em = $this->getDoctrine();
+        $task = $em->getRepository(Task::class)->find($id);
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted_task= $serializer->normalize($task);
+        return new JsonResponse($formatted_task);
+
+    }
 }
