@@ -513,4 +513,12 @@ class DefaultController extends Controller
     }
 
 
+    /**
+     * @Route("/calendar", name="task_calendar", methods={"GET"})
+     */
+    public function calendar(): Response
+    {
+        return $this->render('@Backlog/Default/calendar.html.twig');
+    }
+
 }

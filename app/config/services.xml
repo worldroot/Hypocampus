@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<container
+        xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service id="backlogbundle.calendar_listener" class="BacklogBundle\EventListener\TaskEventListener">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <tag name="kernel.event_listener" event="calendar.load_events" method="loadEvents" />
+        </service>
+    </services>
+</container>

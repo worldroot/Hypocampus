@@ -33,6 +33,10 @@ class AppKernel extends Kernel
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+
+
 
         ];
 

@@ -2,6 +2,8 @@
 
 namespace BacklogBundle\Repository;
 
+use BacklogBundle\Entity\Task;
+
 /**
  * TaskRepository
  *
@@ -73,4 +75,5 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
             ->createQuery("SELECT COUNT(c) FROM BacklogBundle:Task c WHERE c.backlog ='$id' AND c.state = 'Done' AND c.user='$id_u'");
         return $query->getSingleScalarResult();
     }
+
 }
