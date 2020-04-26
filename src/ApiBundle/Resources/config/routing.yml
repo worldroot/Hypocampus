@@ -1,0 +1,15 @@
+api_homepage:
+    path:     /
+    defaults: { _controller: ApiBundle:Default:index }
+
+api_backlog_index:
+    path:     /ProjectBacklog/index
+    defaults: { _controller: BacklogBundle:Default:IndexProjectBacklogApi }
+
+api_view_ProjectBacklog_tasks:
+    path:     /ProjectBacklog/view/{id}
+    defaults: { _controller: BacklogBundle:Default:view_ProjectBacklogApi }
+
+api_view_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/task/view/{id}
+    defaults: { _controller: BacklogBundle:Default:ViewBacklogTaskApi }
