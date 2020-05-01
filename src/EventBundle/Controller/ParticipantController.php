@@ -51,7 +51,7 @@ class ParticipantController extends Controller
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($club);
                     $em->flush();
-                    echo "<script>alert('Ajouté avec succès')</script>";
+                    echo "<script> alert('Ajouté avec succès')</script>";
                     $choix = $em->getRepository(EventsAdmin::class)->find($club->getChoix()->getIdev());
 
                     return $this->render('@Event/EventAdmin/viewparticipant.html.twig', array(
