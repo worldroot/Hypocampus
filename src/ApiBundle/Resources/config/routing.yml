@@ -13,3 +13,7 @@ api_view_ProjectBacklog_tasks:
 api_view_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/view/{id}
     defaults: { _controller: BacklogBundle:Default:ViewBacklogTaskApi }
+
+IndexEventApi:
+    path:     /Event/Index
+    defaults: { _controller: EventBundle:EventAdmin:IndexEventApi }
