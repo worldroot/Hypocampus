@@ -11,6 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class ParticipantController extends Controller
 {
@@ -187,6 +190,19 @@ class ParticipantController extends Controller
             // ...
         ));
     }
+
+
+    public function IndexPartApiAction(){
+
+        $em = $this->getDoctrine();
+        $ev = $em->getRepository(Participant::class)->findAll();
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($ev);
+        return new JsonResponse($formatted);
+    }
+
+
+
 
 
 

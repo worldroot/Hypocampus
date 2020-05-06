@@ -17,3 +17,7 @@ api_view_BacklogTask:
 IndexEventApi:
     path:     /Event/Index
     defaults: { _controller: EventBundle:EventAdmin:IndexEventApi }
+
+IndexPartApi:
+    path:     /Participant/Index
+    defaults: { _controller: EventBundle:Participant:IndexPartApi }
