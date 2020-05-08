@@ -570,7 +570,7 @@ class DefaultController extends Controller
     }
 
 
-    public function AddBacklogApiAction($id_b,$title,$story_points,$state,$priority,$desc_f,$sprint_id,$finisehd_date){
+    public function AddBacklogTaskApiAction($id_b,$title,$story_points,$state,$priority,$desc_f,$sprint_id,$finished_date){
         $task = new Task();
 
             //4.A Création d'un objet doctrine
@@ -578,7 +578,7 @@ class DefaultController extends Controller
             //4.B persister les données dans orm
             $date =new \DateTime('now');
             $task->setCreatedDate($date);
-            $end_date =new \DateTime($finisehd_date);
+            $end_date =new \DateTime($finished_date);
             $task->setFinishedDate($end_date);
             $backlog= $em->getRepository(Backlog::class)->find($id_b);
         $sprint= $em->getRepository(sprint::class)->find($sprint_id);
@@ -593,7 +593,6 @@ class DefaultController extends Controller
             $task->setDescriptionTechnique("desc");
             if ($task->getFinishedDate() ==  $task->getCreatedDate() || $task->getFinishedDate() <=  $task->getCreatedDate()  )
             {
-                return false;
 
             }
 
@@ -624,7 +623,7 @@ class DefaultController extends Controller
 
             //6 redirect to route
         $serializer= new Serializer([new ObjectNormalizer()]);
-        $formatted_tasks= $serializer->normalize($tasks);
+        $formatted_tasks= $serializer->normalize($task);
         return new JsonResponse($formatted_tasks);
 
 
