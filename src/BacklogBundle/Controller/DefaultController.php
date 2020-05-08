@@ -10,6 +10,7 @@ use BacklogBundle\Form\CommentaireType;
 use BacklogBundle\Form\TaskType;
 use Cassandra\Date;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
+use sprintBundle\Entity\sprint;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -531,7 +532,104 @@ class DefaultController extends Controller
 
 
     /// Endpoints api
+    ///
+    ///
+    ///
+    ///
 
+    public function RemoveBacklogTaskApiAction($id_b, $id){
+        $em = $this->getDoctrine()->getManager();
+
+        //1. prendre  l' objet
+        $task = $em->getRepository(Task::class)->find($id);
+
+        $backlog = $em->getRepository(Backlog::class)->find($id_b);
+
+        if ( $task->getState() == 'To Do')
+        {
+            $backlog->setPointsToDo($backlog->getPointsToDo() - $task->getStoryPoints());
+
+        }elseif ($task->getState() == 'In Progress'){
+            $backlog->setPointsInProgress($backlog->getPointsInProgress() - $task->getStoryPoints());
+
+        }else{
+            $backlog->setPointsDone($backlog->getPointsDone() - $task->getStoryPoints());
+
+        }
+
+
+        $em->remove($task);
+        $em->flush();
+
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($task);
+        return new JsonResponse($formatted);
+
+
+
+    }
+
+
+    public function AddBacklogApiAction($id_b,$title,$story_points,$state,$priority,$desc_f,$sprint_id,$finisehd_date){
+        $task = new Task();
+
+            //4.A Création d'un objet doctrine
+            $em = $this->getDoctrine()->getManager();
+            //4.B persister les données dans orm
+            $date =new \DateTime('now');
+            $task->setCreatedDate($date);
+            $end_date =new \DateTime($finisehd_date);
+            $task->setFinishedDate($end_date);
+            $backlog= $em->getRepository(Backlog::class)->find($id_b);
+        $sprint= $em->getRepository(sprint::class)->find($sprint_id);
+            $task->setBacklog($backlog);
+            $task->setArchive(0);
+            $task->setTitle($title);
+            $task->setStoryPoints($story_points);
+            $task->setState($state);
+            $task->setPriority($priority);
+            $task->setDescriptionFonctionnel($desc_f);
+            $task->setSprint($sprint);
+            $task->setDescriptionTechnique("desc");
+            if ($task->getFinishedDate() ==  $task->getCreatedDate() || $task->getFinishedDate() <=  $task->getCreatedDate()  )
+            {
+                return false;
+
+            }
+
+
+            $em->persist($task);
+
+
+
+            if ( $task->getState() == 'To Do')
+            {
+                $backlog->setPointsToDo($backlog->getPointsToDo() + $task->getStoryPoints());
+
+            }elseif ($task->getState() == 'In Progress'){
+                $backlog->setPointsInProgress($backlog->getPointsInProgress() + $task->getStoryPoints());
+
+            }else{
+                $backlog->setPointsDone($backlog->getPointsDone() + $task->getStoryPoints());
+
+            }
+
+
+
+
+
+            //5.A sauv les données dans la bd
+
+            $em->flush();
+
+            //6 redirect to route
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted_tasks= $serializer->normalize($tasks);
+        return new JsonResponse($formatted_tasks);
+
+
+
+    }
     public function IndexProjectBacklogApiAction(){
 
         $em = $this->getDoctrine();

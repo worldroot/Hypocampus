@@ -13,3 +13,11 @@ api_view_ProjectBacklog_tasks:
 api_view_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/view/{id}
     defaults: { _controller: BacklogBundle:Default:ViewBacklogTaskApi }
+
+api_delete_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/task/remove/{id}
+    defaults: { _controller: BacklogBundle:Default:RemoveBacklogTaskApi }
+
+api_add_BacklogTask:
+    path:     /ProjectBacklog/view/{id_b}/task/add/{title}/{story_points}/{state}/{priority}/{desc_f}/{sprint_id}/{finished_date}
+    defaults: { _controller: BacklogBundle:Default:AddBacklogTaskApi }
