@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new ApiBundle\ApiBundle(),
         ];
 
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

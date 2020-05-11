@@ -36,3 +36,4 @@ security:
         - { path: ^/equipe/, role: ROLE_USER }
 
 
+
