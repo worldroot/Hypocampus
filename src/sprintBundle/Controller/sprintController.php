@@ -233,4 +233,127 @@ class sprintController extends Controller
 
         return $this->render('@sprint/sprint/statsprint.html.twig', array('piechart' => $pieChart));
     }
+
+
+    //api mobile
+
+
+
+    public function afficherSprintApiAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $sprints = $em->getRepository(sprint::class)->findprojet($id);
+        $data = $this->get("jms_serializer")->serialize($sprints, "json");
+        return new Response($data);
+    }
+
+    public function createSprintApiAction(Request $request)
+    {
+
+        $sprints= new sprint();
+
+        $em = $this->getDoctrine()->getManager();
+        $projets= $em->getRepository(projets::class)->find($request->get('projets_id'));
+        $sprints->setProjets($projets);
+
+        $sprints->setSprintName($request->get("sprintname"));
+        $start_date=new \DateTime($request->get('startDatesprint'));
+        $end_date=new \DateTime($request->get('endDatesprint'));
+        $sprints->setStartDatesprint($start_date);
+        $sprints->setEndDatesprint($end_date);
+        $sprints->setEtat(0);
+        //creation d un objet doctrine
+
+
+        //persister les donnees dans ORM
+        $em->persist($sprints);
+        //sauvegarder les donnees dans BD
+        $em->flush();
+
+
+
+        return new Response($request->get('projets_id'));
+
+    }
+
+
+    public function api_deleteSprintAction($id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $sprint = $em->getRepository(sprint::class)->find($id);
+        dump($sprint);
+        $em->remove($sprint);
+        $em->flush();
+
+
+        return new Response();
+    }
+
+
+
+    public function updateSprintApiAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $sprint = $em->getRepository(sprint::class)->find($id);
+
+
+
+        //Mettre a jour
+
+        $start_date=new \DateTime($request->get('startDatesprint'));
+        $end_date=new \DateTime($request->get('endDatesprint'));
+        $sprint->setSprintName($request->get('sprintname'));
+
+
+
+        $sprint->setStartDatesprint($start_date);
+        $sprint->setEndDatesprint($end_date);
+
+
+        $em->persist($sprint);
+        $em->flush();
+
+
+        return new Response();
+
+
+    }
+
+
+    // not drag an drop
+    public function afficherSprint_taskApiAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projets = $em->getRepository(sprint::class)->scarra($id);
+        $data = $this->get("jms_serializer")->serialize($projets, "json");
+        return new Response($data);
+    }
+
+    public function update_drag_drop_ApiAction(Request $request,$id,$idd,$etat)
+    {
+
+        $em=$this->getDoctrine();
+
+
+
+
+        //$id = $request->query->get('id');
+       // $etat = $request->query->get('etat');
+
+        if( $id != null)
+        {
+            $em->getRepository(sprint::class)->scarra__($idd,$etat);
+
+
+
+        }
+        $em->getRepository(sprint::class)->updatesprintetat($id);
+        $em->getRepository(sprint::class)->updatesprintetat2($id);
+
+
+        return new Response();
+        // return new JsonResponse($formatted);
+
+    }
 }

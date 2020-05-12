@@ -36,6 +36,8 @@ class AppKernel extends Kernel
             new ADesigns\CalendarBundle\ADesignsCalendarBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new ApiBundle\ApiBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+
         ];
 
 

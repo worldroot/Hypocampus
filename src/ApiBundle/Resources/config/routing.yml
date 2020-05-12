@@ -29,3 +29,63 @@ IndexEventApi:
 IndexPartApi:
     path:     /Participant/Index
     defaults: { _controller: EventBundle:Participant:IndexPartApi }
+#  ****************************** Begin ahmedbs *******************************************************
+#  **************** Project
+api_afficher_Project:
+    path:     /Project/afficher
+    defaults: { _controller: projetsBundle:projets:afficherProjectApi  }
+
+api_ajouter_Project:
+    path:     /Project/ajouter/
+    defaults: { _controller: projetsBundle:projets:createProjectApi  }
+
+api_More_Project:
+    path:     /Project/More/{id}
+    defaults: { _controller: projetsBundle:projets:MoreProjectApi  }
+
+api_delete_Project:
+    path:     /Project/delete/{id}
+    defaults: { _controller: projetsBundle:projets:api_deleteProject  }
+api_update_Project:
+    path:     /Project/update/{id}
+    defaults: { _controller: projetsBundle:projets:updateprojetApi  }
+
+api_archiver_Project:
+    path:     /Project/archiver/{id}
+    defaults: { _controller: projetsBundle:projets:api_archiverProject  }
+api_NOTarchiver_Project:
+    path:     /Project/NOTarchiver/{id}
+    defaults: { _controller: projetsBundle:projets:api_NOTarchiverProject  }
+api_affiche_archiver_Project:
+    path:     /Project/affiche_archiver
+    defaults: { _controller: projetsBundle:projets:Aff_archiverProjectApi  }
+
+api_Progress_Project:
+    path:     /Project/Progress/{id}
+    defaults: { _controller: projetsBundle:projets:ProgressProjectApi  }
+api_Completed_Project:
+    path:     /Project/Completed/{id}
+    defaults: { _controller: projetsBundle:projets:CompletedProjectApi  }
+
+#  **************** sprint
+api_afficher_sprint:
+    path:     /sprint/afficher/{id}
+    defaults: { _controller: sprintBundle:sprint:afficherSprintApi  }
+api_ajouter_sprint:
+    path:     /sprint/ajouter/
+    defaults: { _controller: sprintBundle:sprint:createSprintApi  }
+api_delete_sprint:
+    path:     /sprint/delete/{id}
+    defaults: { _controller: sprintBundle:sprint:api_deleteSprint  }
+api_update_sprint:
+    path:     /sprint/update/{id}
+    defaults: { _controller: sprintBundle:sprint:updateSprintApi  }
+#not drag an drop
+api_DRAG_DROP_sprint:
+    path:     /sprint/DRAG_DROP/{id}
+    defaults: { _controller: sprintBundle:sprint:afficherSprint_taskApi  }
+api_update_DRAG_DROP_sprint:
+    path:     /sprint/update_DRAG_DROP/{id}/{idd}/{etat}
+    defaults: { _controller: sprintBundle:sprint:update_drag_drop_Api  }
+
+#  ****************************** END ahmedbs *******************************************************
