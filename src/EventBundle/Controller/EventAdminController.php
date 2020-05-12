@@ -7,7 +7,11 @@ use EventBundle\Entity\EventsAdmin;
 use EventBundle\Entity\Participant;
 use EventBundle\Form\EventsAdminType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class EventAdminController extends Controller
 {
@@ -132,6 +136,16 @@ class EventAdminController extends Controller
         return $this->render('@Event/EventAdmin/searchevents.html.twig', array(
             'formations'=>$tab,'piechart' => $pieChart
         ));
+    }
+
+
+    public function IndexEventApiAction(){
+
+        $em = $this->getDoctrine();
+        $ev = $em->getRepository(EventsAdmin::class)->findAll();
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($ev);
+        return new JsonResponse($formatted);
     }
 
 

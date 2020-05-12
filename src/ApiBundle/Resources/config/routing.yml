@@ -21,3 +21,11 @@ api_delete_BacklogTask:
 api_add_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/add/{title}/{story_points}/{state}/{priority}/{desc_f}/{sprint_id}/{finished_date}
     defaults: { _controller: BacklogBundle:Default:AddBacklogTaskApi }
+
+IndexEventApi:
+    path:     /Event/Index
+    defaults: { _controller: EventBundle:EventAdmin:IndexEventApi }
+
+IndexPartApi:
+    path:     /Participant/Index
+    defaults: { _controller: EventBundle:Participant:IndexPartApi }

@@ -73,3 +73,4 @@ updatecertif:
 deletecertif:
     path:     /deletecertif/{idc}
     defaults: { _controller: EventBundle:Certif:deletecertif }
+
