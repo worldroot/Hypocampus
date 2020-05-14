@@ -14,10 +14,25 @@ api_view_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/view/{id}
     defaults: { _controller: BacklogBundle:Default:ViewBacklogTaskApi }
 
+#  ****************************** Ghassen's Work *******************************************************
 IndexEventApi:
-    path:     /Event/Index
+    path:     /Event/Index/{idev}
     defaults: { _controller: EventBundle:EventAdmin:IndexEventApi }
+
+AddEventApi:
+    path:     /Event/Add/{idev}/{titre}/{type}/{cap}/{dateEvent}/{dateEnd}/{img}
+    defaults: { _controller: EventBundle:EventAdmin:AddEventApi }
 
 IndexPartApi:
     path:     /Participant/Index
     defaults: { _controller: EventBundle:Participant:IndexPartApi }
+
+DeleteEventApi:
+    path:     /Event/Delete/{idev}
+    defaults: { _controller: EventBundle:EventAdmin:DeleteEventApi }
+
+UpdateEventApi:
+    path:     /Event/Update/{idev}
+    defaults: { _controller: EventBundle:EventAdmin:UpdateEventApi }
+
+#  ****************************** End Work *******************************************************

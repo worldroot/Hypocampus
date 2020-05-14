@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\Response;
 
 class EventAdminController extends Controller
 {
@@ -139,13 +140,76 @@ class EventAdminController extends Controller
     }
 
 
-    public function IndexEventApiAction(){
+    public function IndexEventApiAction($idev){
 
         $em = $this->getDoctrine();
+        $evv= $em->getRepository(EventsAdmin::class)->find($idev);
         $ev = $em->getRepository(EventsAdmin::class)->findAll();
         $serializer= new Serializer([new ObjectNormalizer()]);
         $formatted= $serializer->normalize($ev);
         return new JsonResponse($formatted);
+    }
+
+    public function AddEventApiAction($idev,$titre,$type,$cap,$dateEvent,$dateEnd,$img)
+    {
+        $events= new EventsAdmin();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $date =new \DateTime($dateEvent);
+        $events->setDateEvent($date);
+        $end_date =new \DateTime($dateEnd);
+        $events->setEnddateEvent($end_date);
+
+
+        $evv= $em->getRepository(EventsAdmin::class)->find($idev);
+        $events->setTitreEvent($titre);
+        $events->setTypeEvent($type);
+        $events->setNumeroEvent($cap);
+        $events->setImageName($img);
+
+        if ($events->getDateEvent() == $events->getEnddateEvent() || $events->getEnddateEvent() <= $events->getDateEvent())
+        { return false; }
+
+        $em->persist($events);
+        $em->flush();
+
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formattedEV= $serializer->normalize($events);
+        return new JsonResponse($formattedEV);
+    }
+
+    public function DeleteEventApiAction($idev)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $ev = $em->getRepository(EventsAdmin::class)->find($idev);
+        dump($ev);
+        $em->remove($ev);
+        $em->flush();
+
+
+        return new Response();
+    }
+
+    public function UpdateEventApiAction(Request $request,$idev)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $ev = $em->getRepository(EventsAdmin::class)->find($idev);
+
+        $ev->setTitreEvent($request->get('TitreEvent'));
+        $ev->setTypeEvent($request->get('TypeEvent'));
+        $ev->setNumeroEvent($request->get('NumeroEvent'));
+        $start_date=new \DateTime($request->get('DateEvent'));
+        $end_date=new \DateTime($request->get('enddateEvent'));
+
+        $ev->setDateEvent($start_date);
+        $ev->setEnddateEvent($end_date);
+
+        $em->persist($ev);
+        $em->flush();
+
+        return new Response();
     }
 
 

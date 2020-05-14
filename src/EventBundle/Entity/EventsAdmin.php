@@ -83,7 +83,7 @@ class EventsAdmin
     private $imageName;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=TRUE)
      *
      * @var \DateTimeInterface|null
      */
