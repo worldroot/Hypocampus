@@ -10,6 +10,7 @@ use BacklogBundle\Form\CommentaireType;
 use BacklogBundle\Form\TaskType;
 use Cassandra\Date;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\PieChart;
+use projetsBundle\Entity\projets;
 use sprintBundle\Entity\sprint;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -662,4 +663,63 @@ class DefaultController extends Controller
         return new JsonResponse($formatted_task);
 
     }
+
+    public function AddBacklogApiAction($project_id){
+        $em = $this->getDoctrine();
+        $backlog = new Backlog();
+        $backlog->setPointsDone(0);
+        $backlog->setPointsInProgress(0);
+        $backlog->setPointsToDo(0);
+        $project= $em->getRepository(projets::class)->find($project_id);
+        $backlog->setProject($project);
+
+            //4.A Création d'un objet doctrine
+            $em = $this->getDoctrine()->getManager();
+            //4.B persister les données dans orm
+            $em->persist($backlog);
+            //5.A sauv les données dans la bd
+            $em->flush();
+            //6 redirect to route
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted_tasks= $serializer->normalize($backlog);
+        return new JsonResponse($formatted_tasks);
+
+    }
+
+    public function BacklogStatInProgressApiAction($id , $user_id){
+        $em = $this->getDoctrine();
+
+
+        $inProgress = $em->getRepository(Task::class)->TasksInProgressUser($id, $user_id);
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted_tasks= $serializer->normalize((int)$inProgress);
+        return new JsonResponse($formatted_tasks);
+
+
+    }
+
+    public function BacklogStatToDoApiAction($id, $user_id){
+        $em = $this->getDoctrine();
+
+
+        $toDo= $em->getRepository(Task::class)->TasksToDoUser($id, $user_id);
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted_tasks= $serializer->normalize((int)$toDo);
+        return new JsonResponse($formatted_tasks);
+
+
+    }
+
+    public function BacklogStatDoneApiAction($id, $user_id){
+        $em = $this->getDoctrine();
+
+
+
+        $done= $em->getRepository(Task::class)->TasksDoneUser($id, $user_id);
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted_tasks= $serializer->normalize((int)$done);
+        return new JsonResponse($formatted_tasks);
+
+    }
+
 }

@@ -22,6 +22,22 @@ api_add_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/add/{title}/{story_points}/{state}/{priority}/{desc_f}/{sprint_id}/{finished_date}
     defaults: { _controller: BacklogBundle:Default:AddBacklogTaskApi }
 
+api_add_Backlog:
+    path:     /ProjectBacklog/new/{project_id}
+    defaults: { _controller: BacklogBundle:Default:AddBacklogApi }
+
+api_stat_in_progress_backlog:
+    path:     /ProjectBacklog/stat/inprogress/backlog/{id}/user/{user_id}
+    defaults: { _controller: BacklogBundle:Default:BacklogStatInProgressApi }
+
+api_stat_to_do_backlog:
+    path:     /ProjectBacklog/stat/todo/backlog/{id}/user/{user_id}
+    defaults: { _controller: BacklogBundle:Default:BacklogStatToDoApi }
+
+api_stat_done_backlog:
+    path:     /ProjectBacklog/stat/done/backlog/{id}/user/{user_id}
+    defaults: { _controller: BacklogBundle:Default:BacklogStatDoneApi }
+
 IndexEventApi:
     path:     /Event/Index
     defaults: { _controller: EventBundle:EventAdmin:IndexEventApi }
