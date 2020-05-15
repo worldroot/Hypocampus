@@ -31,8 +31,12 @@ DeleteEventApi:
     path:     /Event/Delete/{idev}
     defaults: { _controller: EventBundle:EventAdmin:DeleteEventApi }
 
+StatApi:
+    path:     /Event/Stat
+    defaults: { _controller: EventBundle:EventAdmin:Statistique }
+
 UpdateEventApi:
-    path:     /Event/Update/{idev}
+    path:     /Event/Update/{idev}/{TitreEvent}/{NumeroEvent}/{TypeEvent}/{DateEvent}/{enddateEvent}/{image_name}
     defaults: { _controller: EventBundle:EventAdmin:UpdateEventApi }
 
 #  ****************************** End Work *******************************************************
