@@ -27,4 +27,12 @@ class User extends BaseUser implements NotifiableInterface
         // your own logic
     }
 
+    /**
+     * @ORM\ManyToOne(targetEntity="TeamBundle\Entity\team")
+     * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
+     */
+    private $team;
+
+
+
 }

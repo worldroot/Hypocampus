@@ -155,3 +155,7 @@ api_ajouter_Meeting:
 api_modifier_Meeting:
     path:     /Meeting/update/{id}
     defaults: { _controller: MeetingBundle:Meeting:updateMeg  }
+
+SCARRAA_LOGIN:
+    path:     /User/login
+    defaults: { _controller: EntrepriseBundle:Entreprise:loginScarra }
