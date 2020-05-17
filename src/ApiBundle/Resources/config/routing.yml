@@ -21,3 +21,7 @@ api_delete_BacklogTask:
 api_add_BacklogTask:
     path:     /ProjectBacklog/view/{id_b}/task/add/{title}/{story_points}/{state}/{priority}/{desc_f}/{sprint_id}/{finished_date}
     defaults: { _controller: BacklogBundle:Default:AddBacklogTaskApi }
+
+SCARRAA_LOGIN:
+    path:     /User/login
+    defaults: { _controller: EntrepriseBundle:Entreprise:loginScarra }

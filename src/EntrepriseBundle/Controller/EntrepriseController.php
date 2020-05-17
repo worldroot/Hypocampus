@@ -2,6 +2,7 @@
 
 namespace EntrepriseBundle\Controller;
 
+use AppBundle\Entity\User;
 use EntrepriseBundle\Entity\Entreprise;
 use EntrepriseBundle\Form\EntrepriseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +10,7 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 
@@ -113,4 +115,12 @@ class EntrepriseController extends Controller
         return $this->redirectToRoute('scarra');
     }
 
+    public function loginScarraAction(Request $request)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $user1 = $userManager->findUserBy(array('username' => $request->get("uname")));
+        $data = $this->get("jms_serializer")->serialize($user1, "json");
+        return new Response($data);
+
+    }
 }
