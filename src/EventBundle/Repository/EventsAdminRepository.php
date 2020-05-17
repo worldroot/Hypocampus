@@ -31,6 +31,53 @@ class EventsAdminRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+    function StatMobile1()
+    {
+        try {
+            return $this->getEntityManager()->createQuery(
+                "Select SUM(f.numeroEvent)*100 as pourcentage from EventBundle:EventsAdmin f 
+           Where f.typeEvent=:type"
+            )->setParameter('type', "Formations")->getSingleScalarResult();
+    } catch (NoResultException $e) {
+} catch (NonUniqueResultException $e) {
+}
+
+    }
+    function StatMobile2()
+    {
+        try {
+            return $this->getEntityManager()->createQuery(
+                "Select SUM(f.numeroEvent)*100 as pourcentage from EventBundle:EventsAdmin f 
+           Where f.typeEvent=:type"
+            )->setParameter('type', "Workshop")->getSingleScalarResult();
+        } catch (NoResultException $e) {
+        } catch (NonUniqueResultException $e) {
+        }
+
+    }
+    function StatMobile3()
+    {
+        try {
+            return $this->getEntityManager()->createQuery(
+                "Select SUM(f.numeroEvent)*100 as pourcentage from EventBundle:EventsAdmin f 
+           Where f.typeEvent=:type"
+            )->setParameter('type', "Cours")->getSingleScalarResult();
+        } catch (NoResultException $e) {
+        } catch (NonUniqueResultException $e) {
+        }
+
+    }
+
+   function Total()
+    {
+        try {
+            return $this->getEntityManager()->createQuery(
+                "select SUM(f.numeroEvent) as total from EventBundle:EventsAdmin f"
+            )->getSingleScalarResult();
+        } catch (NoResultException $e) {
+        } catch (NonUniqueResultException $e) {
+        }
+    }
 
 
 

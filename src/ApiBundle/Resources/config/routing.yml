@@ -39,12 +39,30 @@ api_stat_done_backlog:
     defaults: { _controller: BacklogBundle:Default:BacklogStatDoneApi }
 
 IndexEventApi:
-    path:     /Event/Index
+    path:     /Event/Index/{idev}
     defaults: { _controller: EventBundle:EventAdmin:IndexEventApi }
+
+AddEventApi:
+    path:     /Event/Add/{idev}/{titre}/{type}/{cap}/{dateEvent}/{dateEnd}/{img}
+    defaults: { _controller: EventBundle:EventAdmin:AddEventApi }
 
 IndexPartApi:
     path:     /Participant/Index
     defaults: { _controller: EventBundle:Participant:IndexPartApi }
+
+DeleteEventApi:
+    path:     /Event/Delete/{idev}
+    defaults: { _controller: EventBundle:EventAdmin:DeleteEventApi }
+
+StatApi:
+    path:     /Event/Stat
+    defaults: { _controller: EventBundle:EventAdmin:Statistique }
+
+UpdateEventApi:
+    path:     /Event/Update/{idev}/{TitreEvent}/{NumeroEvent}/{TypeEvent}/{DateEvent}/{enddateEvent}/{image_name}
+    defaults: { _controller: EventBundle:EventAdmin:UpdateEventApi }
+
+#  ****************************** End Work *******************************************************
 #  ****************************** Begin ahmedbs *******************************************************
 #  **************** Project
 api_afficher_Project:
