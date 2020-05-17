@@ -123,3 +123,35 @@ api_update_DRAG_DROP_sprint:
     defaults: { _controller: sprintBundle:sprint:update_drag_drop_Api  }
 
 #  ****************************** END ahmedbs *******************************************************
+api_afficher_Team:
+    path:     /Team/afficher
+    defaults: { _controller: TeamBundle:team:afficherMeg  }
+
+api_ajouter_Team:
+    path:     /Team/ajouter
+    defaults: { _controller: TeamBundle:team:ajouterMeg  }
+
+api_delete_Team:
+    path:     /Team/delete/{id}
+    defaults: { _controller: TeamBundle:team:deleteMeg  }
+
+api_modifier_Team:
+    path:     /Team/update/{id}
+    defaults: { _controller: TeamBundle:team:modifierMeg  }
+
+api_afficher_Meeting:
+    path:     /Meeting/afficher
+    defaults: { _controller: MeetingBundle:Meeting:afficherMeg  }
+
+
+api_delete_Meeting:
+    path:     /Meeting/delete/{id}
+    defaults: { _controller: MeetingBundle:Meeting:deleteMeg  }
+
+api_ajouter_Meeting:
+    path:     /Meeting/ajouter
+    defaults: { _controller: MeetingBundle:Meeting:ajouterMeg  }
+
+api_modifier_Meeting:
+    path:     /Meeting/update/{id}
+    defaults: { _controller: MeetingBundle:Meeting:updateMeg  }

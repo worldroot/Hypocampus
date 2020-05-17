@@ -4,6 +4,7 @@ namespace TeamBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use TeamBundle\Entity\team;
 use TeamBundle\Form\teamType;
 
@@ -91,4 +92,58 @@ class teamController extends Controller
         return $this->redirectToRoute('readteam');
     }
 
+    public function afficherMegAction() {
+        $em = $this->getDoctrine()->getManager();
+        $team = $em->getRepository(team::class)->findAll();
+        $data = $this->get("jms_serializer")->serialize($team, "json");
+        return new Response($data);
+    }
+
+    public function ajouterMegAction(Request $request) {
+
+        $team= new team();
+        $team->setTeamname($request->get("teamname"));
+        $start_date=new \DateTime($request->get('dateofcreation'));
+        $team->setDateofcreation($start_date);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($team);
+        $em->flush();
+
+
+        return new Response();
+    }
+
+    public function deleteMegAction($id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $notification = $em->getRepository(team::class)->find($id);
+        dump($notification);
+        $em->remove($notification);
+        $em->flush();
+
+
+        return new Response();
+    }
+
+    public function modifierMegAction(Request $request,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $team = $em->getRepository(team::class)->find($id);
+
+
+        $start_date = new \DateTime($request->get('dateofcreation'));
+        $team->setTeamname($request->get('teamname'));
+
+        $team->setDateofcreation($start_date);
+
+
+        $em->persist($team);
+        $em->flush();
+
+
+        return new Response();
+    }
 }
