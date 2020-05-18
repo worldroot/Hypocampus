@@ -37,7 +37,7 @@ class EventsAdminRepository extends \Doctrine\ORM\EntityRepository
             return $this->getEntityManager()->createQuery(
                 "Select SUM(f.numeroEvent)*100 as pourcentage from EventBundle:EventsAdmin f 
            Where f.typeEvent=:type"
-            )->setParameter('type', "Formations")->getSingleScalarResult();
+            )->setParameter('type', "Formation")->getSingleScalarResult();
     } catch (NoResultException $e) {
 } catch (NonUniqueResultException $e) {
 }
