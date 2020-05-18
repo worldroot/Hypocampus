@@ -145,9 +145,8 @@ class EventAdminController extends Controller
         $em = $this->getDoctrine();
         $evv = $em->getRepository(EventsAdmin::class)->find($idev);
         $ev = $em->getRepository(EventsAdmin::class)->findAll();
-        $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($ev);
-        return new JsonResponse($formatted);
+        $data = $this->get("jms_serializer")->serialize($ev, "json");
+        return new Response($data);
     }
 
     public function AddEventApiAction($idev, $titre, $type, $cap, $dateEvent, $dateEnd, $img)
