@@ -52,6 +52,9 @@ api_Progress_Project:
 api_Completed_Project:
     path:     /Project/Completed/{id}
     defaults: { _controller: projetsBundle:projets:CompletedProjectApi  }
+api_afficher_Project_user:
+    path:     /Project/afficher_user
+    defaults: { _controller: projetsBundle:projets:afficherProject_userApi  }
 
 #  **************** sprint
 api_afficher_sprint:

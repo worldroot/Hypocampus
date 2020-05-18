@@ -2,6 +2,7 @@
 
 namespace projetsBundle\Controller;
 
+use AppBundle\Entity\User;
 use BacklogBundle\Entity\Project;
 use projetsBundle\Entity\projets;
 use projetsBundle\Form\projetsType;
@@ -354,5 +355,12 @@ class projetsController extends Controller
 
         return  new Response($max['ProgressC']);
     }
-
+//user
+    public function afficherProject_userApiAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $projets = $em->getRepository(User::class)->findAll();
+        $data = $this->get("jms_serializer")->serialize($projets, "json");
+        return new Response($data);
+    }
 }
