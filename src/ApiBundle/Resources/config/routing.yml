@@ -25,3 +25,37 @@ api_add_BacklogTask:
 SCARRAA_LOGIN:
     path:     /User/login
     defaults: { _controller: EntrepriseBundle:Entreprise:loginScarra }
+
+SCARRAA_Entreprise_afficher:
+    path:     /Entreprise/afficher
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiAfficher }
+
+SCARRAA_Entreprise_delete:
+    path:     /Entreprise/delete/{id}
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiDelete }
+
+SCARRAA_Entreprise_ajouter:
+    path:     /Entreprise/ajouter
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiAjouter }
+
+SCARRAA_Entreprise_modifier:
+    path:     /Entreprise/update/{id}
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiModifier }
+
+SCARRAA_User_read:
+    path:     /User/afficher
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiUserRead }
+
+SCARRAA_User_Delete:
+    path:     /User/delete/{id}
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiUserDelete }
+
+SCARRAA_User_Create:
+    path:     /User/ajouter
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiUserCreate }
+
+SCARRAA_User_Update:
+    path:     /User/update/{id}
+    defaults: { _controller: EntrepriseBundle:Entreprise:apiUserUpdate }
+
+

@@ -123,4 +123,110 @@ class EntrepriseController extends Controller
         return new Response($data);
 
     }
+
+    public function apiAfficherAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $team = $em->getRepository(Entreprise::class)->findAll();
+        $data = $this->get("jms_serializer")->serialize($team, "json");
+        return new Response($data);
+    }
+    
+
+    public function apiDeleteAction($id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $notification = $em->getRepository(Entreprise::class)->find($id);
+        dump($notification);
+        $em->remove($notification);
+        $em->flush();
+
+
+        return new Response();
+    }
+
+    public function apiAjouterAction(Request $request)
+    {
+        $team= new Entreprise();
+        $team->setName($request->get("name"));
+        $team->setEmail($request->get("email"));
+        $start_date=new \DateTime($request->get('dateofcreation'));
+        $team->setCreatedate($start_date);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($team);
+        $em->flush();
+
+
+        return new Response();
+    }
+
+    public function apiModifierAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $team = $em->getRepository(Entreprise::class)->find($id);
+
+
+        $start_date = new \DateTime($request->get('dateofcreation'));
+        $team->setName($request->get('name'));
+        $team->setEmail($request->get('email'));
+
+
+        $team->setCreatedate($start_date);
+
+
+        $em->persist($team);
+        $em->flush();
+
+        return new Response();
+    }
+
+    public function apiUserReadAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $team = $em->getRepository(Entreprise::class)->getAllUsers();
+        $data = $this->get("jms_serializer")->serialize($team, "json");
+        return new Response($data);
+    }
+
+    public function apiUserDeleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $notification = $em->getRepository(Entreprise::class)->deleteUser($id);
+
+
+        return new Response();
+    }
+
+    public function apiUserCreateAction(Request $request)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->createUser();
+        $user->setUsername($request->get('username'));
+        $user->setEmail($request->get('email'));
+        $user->setPlainPassword($request->get('password'));
+        $user->setEnabled(true);
+        $user->setSuperAdmin(false);
+        $user->addRole("ROLE_SCRUM_MASTER");
+        $userManager->updateUser($user);
+
+        return new Response();
+    }
+
+    public function apiUserUpdateAction($id, Request $request)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->findUserBy(array('id'=>$id));
+
+        $user->setUsername($request->get('username'));
+        $user->setEmail($request->get('email'));
+        $user->setPlainPassword($request->get('password'));
+        //$user->addRole($request->get('roles'));
+
+
+        $userManager->updateUser($user);
+
+        return new Response();
+    }
 }
