@@ -58,4 +58,26 @@ class EntrepriseRepository extends \Doctrine\ORM\EntityRepository
 
         return $results;
     }
+
+    public function getAllUsers()
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("SELECT id, username, password, email, roles FROM fos_user ");
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+
+    public function deleteUser($id)
+    {
+        $statement= $this->getEntityManager()
+            ->getConnection()
+            ->prepare("Delete FROM fos_user WHERE id = ".$id);
+        $statement->execute();
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
 }
