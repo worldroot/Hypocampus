@@ -12,7 +12,7 @@
   "homepage": "https://themeselection.com/",
   "main": "gulpfile.js",
   "dependencies": {
-    "async": "^2.5.0",
+    "async": "^2.6.4",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "gulp-cli": "^1.4.0"
